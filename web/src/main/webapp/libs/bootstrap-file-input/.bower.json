@@ -1,0 +1,14 @@
+{
+  "name": "bootstrap-file-input",
+  "homepage": "https://github.com/grevory/bootstrap-file-input",
+  "_release": "480c80a165",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "480c80a16511d6e01b404330c7feba2b53762f9e"
+  },
+  "_source": "git://github.com/grevory/bootstrap-file-input.git",
+  "_target": "*",
+  "_originalSource": "bootstrap-file-input",
+  "_direct": true
+}
