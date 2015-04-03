@@ -6,14 +6,10 @@ import javax.persistence.*;
  * Created by kkimvazquezangeles on 02/04/15.
  */
 @Entity
-public class GradoMateria {
+public class Tutor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "periodo_personal_id")
-    private PeriodoPersonal periodoPersonal;
 
     @ManyToOne
     @JoinColumn(name = "grado_id")
@@ -24,12 +20,13 @@ public class GradoMateria {
     private Grupo grupo;
 
     @ManyToOne
-    @JoinColumn(name = "materia_id")
-    private Materia materia;
-
-    @ManyToOne
     @JoinColumn(name = "carrera_id")
     private Carrera carrera;
+
+    @ManyToOne
+    @JoinColumn(name = "periodo_personal_id")
+    private PeriodoPersonal periodoPersonal;
+
 
     public Long getId() {
         return id;
@@ -37,14 +34,6 @@ public class GradoMateria {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public PeriodoPersonal getPeriodoPersonal() {
-        return periodoPersonal;
-    }
-
-    public void setPeriodoPersonal(PeriodoPersonal periodoPersonal) {
-        this.periodoPersonal = periodoPersonal;
     }
 
     public Grado getGrado() {
@@ -55,12 +44,12 @@ public class GradoMateria {
         this.grado = grado;
     }
 
-    public Materia getMateria() {
-        return materia;
+    public Grupo getGrupo() {
+        return grupo;
     }
 
-    public void setMateria(Materia materia) {
-        this.materia = materia;
+    public void setGrupo(Grupo grupo) {
+        this.grupo = grupo;
     }
 
     public Carrera getCarrera() {
@@ -71,14 +60,22 @@ public class GradoMateria {
         this.carrera = carrera;
     }
 
+    public PeriodoPersonal getPeriodoPersonal() {
+        return periodoPersonal;
+    }
+
+    public void setPeriodoPersonal(PeriodoPersonal periodoPersonal) {
+        this.periodoPersonal = periodoPersonal;
+    }
+
     @Override
     public String toString() {
-        return "GradoMateria{" +
+        return "Tutor{" +
                 "id=" + id +
-                ", periodoPersonal=" + periodoPersonal +
                 ", grado=" + grado +
-                ", materia=" + materia +
+                ", grupo=" + grupo +
                 ", carrera=" + carrera +
+                ", periodoPersonal=" + periodoPersonal +
                 '}';
     }
 }

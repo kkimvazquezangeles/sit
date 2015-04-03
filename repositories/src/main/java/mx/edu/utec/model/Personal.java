@@ -1,6 +1,7 @@
 package mx.edu.utec.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by kkimvazquezangeles on 22/03/15.
@@ -15,6 +16,9 @@ public class Personal {
     private String apellidoPaterno;
     @Column(name = "apellido_materno")
     private String apellidoMaterno;
+
+    @OneToMany(mappedBy = "personal")
+    private List<PeriodoPersonal> periodosPersonal;
 
     public Long getId() {
 
