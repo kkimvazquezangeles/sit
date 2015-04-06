@@ -13,7 +13,7 @@ public class Grupo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long grupo;
+    private String grupo;
 
     @OneToMany(mappedBy = "grupo")
     private List<PeriodoAlumno> periodoAlumnos;
@@ -26,11 +26,9 @@ public class Grupo {
         this.id = id;
     }
 
-    public Long getGrupo() {
-        return grupo;
-    }
+    public String getGrupo() { return grupo; }
 
-    public void setGrupo(Long grupo) {
+    public void setGrupo(String grupo) {
         this.grupo = grupo;
     }
 

@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by kkimvazquezangeles on 02/04/15.
  */
 @Entity
-public class GradoMateria {
+public class CuatrimestreMateria {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -16,8 +16,8 @@ public class GradoMateria {
     private PeriodoPersonal periodoPersonal;
 
     @ManyToOne
-    @JoinColumn(name = "grado_id")
-    private Grado grado;
+    @JoinColumn(name = "cuatrimestre_id")
+    private Cuatrimestre cuatrimestre;
 
     @ManyToOne
     @JoinColumn(name = "grupo_id")
@@ -47,12 +47,12 @@ public class GradoMateria {
         this.periodoPersonal = periodoPersonal;
     }
 
-    public Grado getGrado() {
-        return grado;
+    public Cuatrimestre getCuatrimestre() {
+        return cuatrimestre;
     }
 
-    public void setGrado(Grado grado) {
-        this.grado = grado;
+    public void setCuatrimestre(Cuatrimestre cuatrimestre) {
+        this.cuatrimestre = cuatrimestre;
     }
 
     public Materia getMateria() {
@@ -76,7 +76,7 @@ public class GradoMateria {
         return "GradoMateria{" +
                 "id=" + id +
                 ", periodoPersonal=" + periodoPersonal +
-                ", grado=" + grado +
+                ", grado=" + cuatrimestre +
                 ", materia=" + materia +
                 ", carrera=" + carrera +
                 '}';

@@ -11,7 +11,7 @@ import java.util.List;
  * Created by kkimvazquezangeles on 02/04/15.
  */
 public interface PersonalRepository extends CrudRepository<Personal, Long> {
-    @Query("SELECT gm.periodoPersonal.personal FROM GradoMateria gm " +
+    @Query("SELECT gm.periodoPersonal.personal FROM CuatrimestreMateria gm " +
             "WHERE gm.periodoPersonal.perfil = 'PROFESOR' and gm.carrera.id = :idCarrera ")
     public List<Personal> findAllProfesorByCarrera(@Param("idCarrera") Long idCarrera);
 }

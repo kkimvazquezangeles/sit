@@ -20,8 +20,8 @@ public class PeriodoAlumno {
     private Alumno alumno;
 
     @ManyToOne
-    @JoinColumn(name = "grado_id")
-    private Grado grado;
+    @JoinColumn(name = "cuatrimestre_id")
+    private Cuatrimestre cuatrimestre;
 
     @ManyToOne
     @JoinColumn(name = "grupo_id")
@@ -51,12 +51,12 @@ public class PeriodoAlumno {
         this.alumno = alumno;
     }
 
-    public Grado getGrado() {
-        return grado;
+    public Cuatrimestre getCuatrimestre() {
+        return cuatrimestre;
     }
 
-    public void setGrado(Grado grado) {
-        this.grado = grado;
+    public void setCuatrimestre(Cuatrimestre cuatrimestre) {
+        this.cuatrimestre = cuatrimestre;
     }
 
     public Grupo getGrupo() {
@@ -73,7 +73,7 @@ public class PeriodoAlumno {
                 "id=" + id +
                 ", periodo=" + periodo +
                 ", alumno=" + alumno +
-                ", grado=" + grado +
+                ", grado=" + cuatrimestre +
                 ", grupo=" + grupo +
                 '}';
     }

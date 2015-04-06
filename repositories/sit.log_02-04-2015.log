@@ -1,4 +1,7 @@
+1    [Test worker] DEBUG org.jboss.logging  - Logging Provider: org.jboss.logging.Log4jLoggerProvider
 0    [Test worker] DEBUG org.jboss.logging  - Logging Provider: org.jboss.logging.Log4jLoggerProvider
 0    [Test worker] DEBUG org.jboss.logging  - Logging Provider: org.jboss.logging.Log4jLoggerProvider
 0    [Test worker] DEBUG org.jboss.logging  - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+0    [Test worker] DEBUG org.jboss.logging  - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+1    [Test worker] DEBUG org.jboss.logging  - Logging Provider: org.jboss.logging.Log4jLoggerProvider
 0    [Test worker] DEBUG org.jboss.logging  - Logging Provider: org.jboss.logging.Log4jLoggerProvider

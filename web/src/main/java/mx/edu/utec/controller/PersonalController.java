@@ -1,6 +1,8 @@
 package mx.edu.utec.controller;
 
+import mx.edu.utec.dto.CuatrimestreDTO;
 import mx.edu.utec.dto.PersonalDTO;
+import mx.edu.utec.model.Cuatrimestre;
 import mx.edu.utec.services.PersonalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,8 +23,9 @@ public class PersonalController {
     PersonalService personalService;
 
     @ResponseBody
-    @RequestMapping(value = { "/" }, method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = { "/carrera/{carrera}" }, method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     public List<PersonalDTO> listProfesorByCarrera(@PathVariable("carrera") Long carrera_id) {
         return personalService.findAllProfesorByCarrera(carrera_id);
     }
+
 }

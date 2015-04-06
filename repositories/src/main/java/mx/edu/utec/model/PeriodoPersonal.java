@@ -24,7 +24,7 @@ public class PeriodoPersonal {
     private Perfil perfil;
 
     @OneToMany(mappedBy = "periodoPersonal")
-    private List<GradoMateria> materias;
+    private List<CuatrimestreMateria> materias;
 
     @ManyToOne
     @JoinColumn(name = "plan_id")
@@ -70,11 +70,11 @@ public class PeriodoPersonal {
         this.perfil = perfil;
     }
 
-    public List<GradoMateria> getMaterias() {
+    public List<CuatrimestreMateria> getMaterias() {
         return materias;
     }
 
-    public void setMaterias(List<GradoMateria> materias) {
+    public void setMaterias(List<CuatrimestreMateria> materias) {
         this.materias = materias;
     }
 

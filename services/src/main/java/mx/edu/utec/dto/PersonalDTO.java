@@ -23,4 +23,6 @@ public class PersonalDTO {
     public void setNombreCompleto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
     }
+
+
 }

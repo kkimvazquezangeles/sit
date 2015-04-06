@@ -12,8 +12,8 @@ public class Tutor {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "grado_id")
-    private Grado grado;
+    @JoinColumn(name = "cuatrimestre_id")
+    private Cuatrimestre cuatrimestre;
 
     @ManyToOne
     @JoinColumn(name = "grupo_id")
@@ -36,12 +36,12 @@ public class Tutor {
         this.id = id;
     }
 
-    public Grado getGrado() {
-        return grado;
+    public Cuatrimestre getCuatrimestre() {
+        return cuatrimestre;
     }
 
-    public void setGrado(Grado grado) {
-        this.grado = grado;
+    public void setCuatrimestre(Cuatrimestre cuatrimestre) {
+        this.cuatrimestre = cuatrimestre;
     }
 
     public Grupo getGrupo() {
@@ -72,7 +72,7 @@ public class Tutor {
     public String toString() {
         return "Tutor{" +
                 "id=" + id +
-                ", grado=" + grado +
+                ", cuatrimestre=" + cuatrimestre +
                 ", grupo=" + grupo +
                 ", carrera=" + carrera +
                 ", periodoPersonal=" + periodoPersonal +

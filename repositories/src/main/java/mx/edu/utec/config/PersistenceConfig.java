@@ -25,7 +25,7 @@ public class PersistenceConfig {
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
         builder.addScript("classpath:/mx/edu/utec/scripts/alumno.sql");
         builder.addScript("classpath:/mx/edu/utec/scripts/carrera.sql");
-        builder.addScript("classpath:/mx/edu/utec/scripts/grado.sql");
+        builder.addScript("classpath:/mx/edu/utec/scripts/cuatrimestre.sql");
         builder.addScript("classpath:/mx/edu/utec/scripts/grupo.sql");
         builder.addScript("classpath:/mx/edu/utec/scripts/periodo.sql");
         builder.addScript("classpath:/mx/edu/utec/scripts/personal.sql");
@@ -34,7 +34,7 @@ public class PersistenceConfig {
         builder.addScript("classpath:/mx/edu/utec/scripts/tutoria.sql");
         builder.addScript("classpath:/mx/edu/utec/scripts/tutoriaDetalle.sql");
         builder.addScript("classpath:/mx/edu/utec/scripts/materia.sql");
-        builder.addScript("classpath:/mx/edu/utec/scripts/gradoMateria.sql");
+        builder.addScript("classpath:/mx/edu/utec/scripts/cuatrimestreMateria.sql");
         builder.addScript("classpath:/mx/edu/utec/scripts/plan.sql");
         builder.addScript("classpath:/mx/edu/utec/scripts/planDetalle.sql");
         builder.addScript("classpath:/mx/edu/utec/scripts/tutor.sql");
@@ -65,7 +65,7 @@ public class PersistenceConfig {
     @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
         HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
-        hibernateJpaVendorAdapter.setShowSql(false);
+        hibernateJpaVendorAdapter.setShowSql(true);
         hibernateJpaVendorAdapter.setGenerateDdl(true);
         hibernateJpaVendorAdapter.setDatabase(Database.H2);
         return hibernateJpaVendorAdapter;

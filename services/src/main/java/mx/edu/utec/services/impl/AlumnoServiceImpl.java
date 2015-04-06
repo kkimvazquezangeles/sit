@@ -21,7 +21,7 @@ public class AlumnoServiceImpl implements AlumnoService {
     @Override
     public AlumnoDTO findAlumnobyMatricula(String matricula) {
         Alumno alumno = alumnoRepository.findByMatricula(matricula);
-        return convertHotelToDTO(alumno);
+        return convertAlumnoToDTO(alumno);
     }
 
     @Override
@@ -30,13 +30,13 @@ public class AlumnoServiceImpl implements AlumnoService {
         List<AlumnoDTO> copy = new ArrayList<AlumnoDTO>();
         while (itAlumnos.hasNext()) {
             Alumno alumno = itAlumnos.next();
-            AlumnoDTO dto = convertHotelToDTO(alumno);
+            AlumnoDTO dto = convertAlumnoToDTO(alumno);
             copy.add(dto);
         }
         return copy;
     }
 
-    private AlumnoDTO convertHotelToDTO(Alumno alumno) {
+    private AlumnoDTO convertAlumnoToDTO(Alumno alumno) {
         AlumnoDTO dto = new AlumnoDTO();
         dto.setId(alumno.getId());
         dto.setNombre(alumno.getNombre());

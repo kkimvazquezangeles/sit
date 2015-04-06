@@ -9,13 +9,13 @@ import java.util.List;
  * Created by kkimvazquezangeles on 22/03/15.
  */
 @Entity
-public class Grado {
+public class Cuatrimestre {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Integer grado;
+    private String cuatrimestre;
 
-    @OneToMany(mappedBy = "grado")
+    @OneToMany(mappedBy = "cuatrimestre")
     private List<PeriodoAlumno> periodoAlumnos;
 
     public Long getId() {
@@ -26,12 +26,12 @@ public class Grado {
         this.id = id;
     }
 
-    public Integer getGrado() {
-        return grado;
+    public String getCuatrimestre() {
+        return cuatrimestre;
     }
 
-    public void setGrado(Integer grado) {
-        this.grado = grado;
+    public void setCuatrimestre(String cuatrimestre) {
+        this.cuatrimestre = cuatrimestre;
     }
 
     public List<PeriodoAlumno> getPeriodoAlumnos() {
@@ -46,7 +46,7 @@ public class Grado {
     public String toString() {
         return "Grado{" +
                 "id=" + id +
-                ", grado=" + grado +
+                ", cuatrimestre=" + cuatrimestre +
                 ", periodoAlumnos=" + periodoAlumnos +
                 '}';
     }
