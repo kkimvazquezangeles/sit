@@ -1,43 +1,83 @@
 package mx.edu.utec.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.security.web.csrf.CsrfTokenRepository;
+import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.RegexRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.regex.Pattern;
 
 /**
- * Created by kkimvazquezangeles on 05/04/15.
+ * Created by betuzo on 25/01/15.
  */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    /**
-     * Setup in memory authentication.
-     *
-     * @param auth
-     * @throws Exception
-     */
-    @Inject
+    private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
+
+    @Autowired
+    UserDetailsService userDetailsService;
+
+    @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .inMemoryAuthentication()
-                .withUser("admin").password("admin").roles("USER", "ADMIN");
+        auth.userDetailsService(userDetailsService);
     }
 
-    /**
-     * Configure HttpSecurity, namely setting the CsrfTokenRepository to our own implementation
-     * of HttpHeaderCsrfTokenRepository.
-     *
-     * @param http
-     * @throws Exception
-     */
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/css/**", "/js/**", "/fonts/**"); // #3
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .addFilterAfter(new CsrfResponseHeaderFilter(), CsrfFilter.class)
+                .formLogin()
+                .loginPage("/login").permitAll()
+                .and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .permitAll()
+                .and()
                 .authorizeRequests()
-                .antMatchers("/scripts/**", "/styles/**", "/font/**", "/fonts/**").permitAll()
                 .antMatchers("/**").authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login").permitAll();
+                .addFilterAfter(new CsrfResponseHeaderFilter(), CsrfFilter.class)
+                .csrf()
+                .csrfTokenRepository(csrfTokenRepository())
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/login");
+
+    }
+
+    private CsrfTokenRepository csrfTokenRepository() {
+        HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
+        repository.setHeaderName("X-XSRF-TOKEN");
+        return repository;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        return encoder;
     }
 }

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div class="container" id="login">
+        <form id="loginForm" name="f" action="login" method="post" class="form-horizontal">
+            <fieldset>
+                <legend>Login to my account</legend>
+                <div class="alert alert-error hide" id="login-invalid">
+                    <strong>Woops!</strong>  Your username or password is invalid.
+                </div>
+                <div class="control-group">
+                    <label for="j_username" class="control-label">Username</label>
+                    <div class="controls"><input type="text" id="j_username" name="username" value="" autocomplete="off"/></div>
+                </div>
+                <div class="control-group">
+                    <label for="j_password" class="control-label">Password</label>
+                    <div class="controls"><input type="password" id="j_password" name="password" value=""/></div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn">Login</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <script src="js/vendor/jquery/jquery-min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $(loginForm).on('submit', function(e) {
+            e.preventDefault();
+
+            $.when($.get('login')).then(
+              function(data, textStatus, jqXHR) {
+                var token = jqXHR.getResponseHeader('X-CSRF-TOKEN');
+                var csrf = $('<input/>', {
+                  type: 'hidden',
+                  name: jqXHR.getResponseHeader('X-CSRF-PARAM'),
+                  value: token
+                });
+                $(loginForm).append(csrf);
+                loginForm.submit();
+              },
+              function(error) {
+                console.error(error);
+              }
+            );
+          });
+    });
+    </script>
+</body>
+</html>

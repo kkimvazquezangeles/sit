@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <button id="close-hotel-detail" class="close"><span aria-hidden="true">&times;</span></button>
+                <h1><%= nombreOficial%></h1>
+            </div>
+        </div>
+    </div>
+    <div id="hotel-general" class="row">
+        <div class="col-md-12">
+            <div class="list-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="list-group-item-text"><%= direccion%> <%= noExt%> <%= noInt%> <%= colonia%></p>
+                        <p class="list-group-item-text"><%= municipio%></p>
+                        <p class="list-group-item-text"><%= estado%></p>
+                        <p class="list-group-item-text"><%= pais%></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table id="hotel-solicitudes" class="table table-condensed">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>No Hab</th>
+                    <th>Servicio</th>
+                    <th>Fecha Solicitud</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-primary">Solicitar</button>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div id="detail-solicitud" class="col-md-12">
+        </div>
+    </div>
+</div>

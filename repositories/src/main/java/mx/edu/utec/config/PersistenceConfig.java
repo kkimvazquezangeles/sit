@@ -39,6 +39,7 @@ public class PersistenceConfig {
         builder.addScript("classpath:/mx/edu/utec/scripts/planDetalle.sql");
         builder.addScript("classpath:/mx/edu/utec/scripts/tutor.sql");
         builder.addScript("classpath:/mx/edu/utec/scripts/director.sql");
+        builder.addScript("classpath:/mx/edu/utec/scripts/user.sql");
         builder.addScript("classpath:/mx/edu/utec/scripts/constraints.sql");
         return builder.setType(EmbeddedDatabaseType.H2).build();
 
