@@ -2,15 +2,18 @@
 define([
 	'jquery',
 	'backbone',
-	'router'
-], function($, Backbone, Router){
+	'router',
+	'Session'
+], function($, Backbone, Router, Session){
 
 	var ApplicationModel = Backbone.Model.extend({
 
 	    start : function(){
-		    var router = new Router();
-		    Backbone.history.start();
-		    Backbone.history.navigate('', { trigger : true });
+	        Session.getAuth(function(response){
+                var router = new Router();
+                Backbone.history.start();
+                Backbone.history.navigate('', { trigger : true });
+		    });
 		}
 	});
 

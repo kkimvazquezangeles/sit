@@ -60,6 +60,11 @@ public class Personal {
         this.apellidoMaterno = apellidoMaterno;
     }
 
+    public String getFullName() {
+
+        return nombre + ' ' + apellidoPaterno + ' ' + apellidoMaterno;
+    }
+
     @Override
     public String toString() {
         return "Personal{" +

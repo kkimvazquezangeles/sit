@@ -16,6 +16,10 @@ public class User {
 	private boolean enabled;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private Set<UserRole> userRole = new HashSet<UserRole>(0);
+
+    @ManyToOne
+    @JoinColumn(name = "personal_id")
+    private Personal personal;
  
 	public User() {
 	}
@@ -33,6 +37,16 @@ public class User {
 		this.enabled = enabled;
 		this.userRole = userRole;
 	}
+
+    public User(String username, String password,
+                boolean enabled, Set<UserRole> userRole,
+                Personal personal) {
+        this.username = username;
+        this.password = password;
+        this.enabled = enabled;
+        this.userRole = userRole;
+        this.personal = personal;
+    }
  	
 	public String getUsername() {
 		return this.username;
@@ -65,5 +79,13 @@ public class User {
 	public void setUserRole(Set<UserRole> userRole) {
 		this.userRole = userRole;
 	}
+
+    public Personal getPersonal() {
+        return personal;
+    }
+
+    public void setPersonal(Personal personal) {
+        this.personal = personal;
+    }
  
 }

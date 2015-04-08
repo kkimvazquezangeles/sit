@@ -24,7 +24,6 @@ define([
             return this;
         },
 
-
         agregarHotel: function(modelo){
             $('#input-hotel').append($('<option>', {
                 value: modelo.get('id'),

@@ -16,7 +16,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "com.codigoartesanal.hoteladn.controller" })
+@ComponentScan(basePackages = { "mx.edu.utec.controller" })
 @Import({ PersistenceConfig.class, ServicesConfig.class, SecurityConfig.class })
 public class WebConfig extends WebMvcConfigurerAdapter {
 

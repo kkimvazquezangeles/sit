@@ -17,11 +17,7 @@ import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.security.web.util.matcher.RegexRequestMatcher;
-import org.springframework.security.web.util.matcher.RequestMatcher;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.regex.Pattern;
 
 /**
  * Created by betuzo on 25/01/15.
@@ -51,21 +47,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .formLogin()
-                .loginPage("/login").permitAll()
-                .and()
+                    .loginPage("/login").permitAll()
+                    .and()
                 .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .permitAll()
-                .and()
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .permitAll()
+                    .and()
                 .authorizeRequests()
-                .antMatchers("/**").authenticated()
-                .and()
+                    .antMatchers("/**").authenticated()
+                    .and()
                 .addFilterAfter(new CsrfResponseHeaderFilter(), CsrfFilter.class)
-                .csrf()
-                .csrfTokenRepository(csrfTokenRepository())
-                .and()
+                    .csrf()
+                    .csrfTokenRepository(csrfTokenRepository())
+                    .and()
                 .exceptionHandling()
-                .accessDeniedPage("/login");
+                    .accessDeniedPage("/login");
 
     }
 
