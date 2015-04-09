@@ -12,7 +12,6 @@ define([
 	        Session.getAuth(function(response){
                 var router = new Router();
                 Backbone.history.start();
-                Backbone.history.navigate('', { trigger : true });
 		    });
 		}
 	});

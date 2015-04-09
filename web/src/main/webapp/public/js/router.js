@@ -3,14 +3,18 @@ define([
 	'underscore',
 	'backbone',
 	'core/BaseRouter',
-	'views/HotelAdnView',
-	'views/HotelDetailView'
-], function($, _, Backbone, BaseRouter, HotelAdnView, HotelDetailView){
+	'views/SitNavView',
+	'views/DirAsignacionesView',
+    'Session'
+], function($, _, Backbone, BaseRouter, SitNavView, DirAsignacionesView, Session){
         var Router = BaseRouter.extend({
 
         routes: {
-            '': 'hotel',
-            'hotel/:id/detail': 'detalle'
+            'prosefor'              : 'prosefor',
+            'director'              : 'director',
+            'tutor'                 : 'tutor',
+            'psicologo'             : 'psicologo',
+            'director/asignaciones' : 'directorAsignaciones'
         },
 
         before : function(params, next){
@@ -32,25 +36,36 @@ define([
                     this.currentView.close();
                 }
                 this.currentView = view;
-                $('.container').html(view.render().$el);
+                $('section.container').html(view.render().$el);
             }
 
             setView(view);
         },
 
         initialize: function () {
-            this.hotel();
+            this.sitNav();
+            Backbone.history.navigate(Session.getRole().toLowerCase(), { trigger : true });
         },
 
-        hotel: function(){
-            var view = new HotelAdnView();
+        sitNav: function(){
+            new SitNavView();
+        },
+
+        prosefor: function(){
+        },
+
+        director: function(){
+        },
+
+        directorAsignaciones: function(){
+            var view = new DirAsignacionesView();
             this.changeView(view);
         },
 
-        detalle: function(id){
-            var modelo = app.hoteles.get(id);
-            var view = new HotelDetailView({model: modelo});
-            this.changeView(view);
+        tutor: function(){
+        },
+
+        psicologo: function(){
         }
 	});
 

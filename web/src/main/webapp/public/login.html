@@ -1,31 +1,32 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="es">
+<head>
     <meta charset="UTF-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>UTEC | Sistema institucional de tutorias</title>
+    <link href='http://fonts.googleapis.com/css?family=Exo' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
 </head>
 <body>
-    <div class="container" id="login">
-        <form id="loginForm" name="f" action="login" method="post" class="form-horizontal">
-            <fieldset>
-                <legend>Login to my account</legend>
-                <div class="alert alert-error hide" id="login-invalid">
-                    <strong>Woops!</strong>  Your username or password is invalid.
-                </div>
-                <div class="control-group">
-                    <label for="j_username" class="control-label">Username</label>
-                    <div class="controls"><input type="text" id="j_username" name="username" value="" autocomplete="off"/></div>
-                </div>
-                <div class="control-group">
-                    <label for="j_password" class="control-label">Password</label>
-                    <div class="controls"><input type="password" id="j_password" name="password" value=""/></div>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="btn">Login</button>
-                </div>
-            </fieldset>
+    <header>
+        <figure>
+            <img src="img/logo2.jpg">
+        </figure>
+        <h1>Sistema institucional de tutorias</h1>
+    </header>
+    <section class="container" id="login">
+        <aside>
+            <a href="https://www.facebook.com/utec.tgo?ref=hl"> <img src="img/facebook2.png"></a>
+            <a href="https://twitter.com/utec_tgo">
+                <img src="img/twitter.png"></a>
+        </aside>
+        <form id="loginForm" name="f" action="login" method="post" class="login">
+            <input type="email" id="j_username" name="username" value="" autocomplete="off" placeholder="Usuario" required="">
+            <input type="password" id="j_password" name="password" value="" placeholder="Contraseña" required="">
+            <input type="submit" value="Ingresar">
         </form>
-    </div>
+    </section>
+    <footer>© 2015 UTEC Todos los derechos reservados</footer>
     <script src="js/vendor/jquery/jquery-min.js"></script>
     <script>
     $(document).ready(function() {
