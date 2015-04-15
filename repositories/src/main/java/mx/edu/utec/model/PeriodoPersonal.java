@@ -20,9 +20,6 @@ public class PeriodoPersonal {
     @JoinColumn(name = "personal_id")
     private Personal personal;
 
-    @Enumerated(EnumType.STRING)
-    private Perfil perfil;
-
     @OneToMany(mappedBy = "periodoPersonal")
     private List<CuatrimestreMateria> materias;
 
@@ -60,16 +57,6 @@ public class PeriodoPersonal {
         this.personal = personal;
     }
 
-    public Perfil getPerfil() {
-
-        return perfil;
-    }
-
-    public void setPerfil(Perfil perfil) {
-
-        this.perfil = perfil;
-    }
-
     public List<CuatrimestreMateria> getMaterias() {
         return materias;
     }
@@ -84,7 +71,6 @@ public class PeriodoPersonal {
                 "id=" + id +
                 ", periodo=" + periodo +
                 ", personal=" + personal +
-                ", perfil=" + perfil +
                 ", materias=" + materias +
                 '}';
     }

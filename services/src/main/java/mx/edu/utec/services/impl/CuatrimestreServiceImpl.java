@@ -29,8 +29,8 @@ public class CuatrimestreServiceImpl implements CuatrimestreService {
     GrupoRepository grupoRepository;
 
     @Override
-    public List<CuatrimestreDTO> findAllCuatrimestreByCarrera(Long idCarrera) {
-        Iterator<Cuatrimestre> itCuatrimestre = cuatrimestreRepository.findAllCuatrimestreByCarrera(idCarrera).iterator();
+    public List<CuatrimestreDTO> findAllCuatrimestreByCarrera(Long idCarrera, Long idPeriodo) {
+        Iterator<Cuatrimestre> itCuatrimestre = cuatrimestreRepository.findAllCuatrimestreByCarrera(idCarrera, idPeriodo).iterator();
         List<CuatrimestreDTO> cuatrimestres = new ArrayList<>();
         while (itCuatrimestre.hasNext()) {
             Cuatrimestre cuatrimestre = itCuatrimestre.next();
@@ -49,8 +49,8 @@ public class CuatrimestreServiceImpl implements CuatrimestreService {
 
 
     @Override
-    public List<GrupoDTO> findAllGrupoByCuatrimestreAndCarrera(Long idCarrera, Long idGrupo) {
-        Iterator<Grupo> itGrupo = grupoRepository.findAllGrupoByCarreraAndCuatrimestre(idCarrera, idGrupo).iterator();
+    public List<GrupoDTO> findAllGrupoByCuatrimestreAndCarrera(Long idCarrera, Long idGrupo, Long idPeriodo) {
+        Iterator<Grupo> itGrupo = grupoRepository.findAllGrupoByCarreraAndCuatrimestre(idCarrera, idGrupo, idPeriodo).iterator();
         List<GrupoDTO> grupos = new ArrayList<>();
         while (itGrupo.hasNext()) {
             Grupo grupo = itGrupo.next();

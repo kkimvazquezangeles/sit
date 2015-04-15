@@ -9,6 +9,6 @@ import java.util.List;
  * Created by kkimvazquezangeles on 05/04/15.
  */
 public interface CuatrimestreService {
-    List<CuatrimestreDTO> findAllCuatrimestreByCarrera(Long idCarrera);
-    List<GrupoDTO> findAllGrupoByCuatrimestreAndCarrera(Long idCarrera, Long idGrupo);
+    List<CuatrimestreDTO> findAllCuatrimestreByCarrera(Long idCarrera, Long idPeriodo);
+    List<GrupoDTO> findAllGrupoByCuatrimestreAndCarrera(Long idCarrera, Long idGrupo, Long idPeriodo);
 }

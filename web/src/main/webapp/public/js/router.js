@@ -5,8 +5,21 @@ define([
 	'core/BaseRouter',
 	'views/SitNavView',
 	'views/DirAsignacionesView',
+	'views/DirTutoresView',
+	'views/DirPlanView',
+	'views/DirSeguimientoView',
+	'views/ProfCanalizarView',
+	'views/ProfSeguimientoView',
+	'views/PsicPlanView',
+	'views/PsicSeguimientoView',
+	'views/TutPlanView',
+	'views/TutBitacoraView',
+	'views/TutProfesoresView',
+	'views/TutSeguimientoView',
     'Session'
-], function($, _, Backbone, BaseRouter, SitNavView, DirAsignacionesView, Session){
+], function($, _, Backbone, BaseRouter, SitNavView, DirAsignacionesView, DirTutoresView, DirPlanView, DirSeguimientoView,
+            ProfCanalizarView, ProfSeguimientoView, PsicPlanView, PsicSeguimientoView,
+            TutPlanView, TutBitacoraView, TutProfesoresView, TutSeguimientoView, Session){
         var Router = BaseRouter.extend({
 
         routes: {
@@ -14,7 +27,18 @@ define([
             'director'              : 'director',
             'tutor'                 : 'tutor',
             'psicologo'             : 'psicologo',
-            'director/asignaciones' : 'directorAsignaciones'
+            'director/asignaciones' : 'directorAsignaciones',
+            'director/tutores'      : 'tutores',
+            'director/plan'         : 'dirPlan',
+            'director/seguimiento'  : 'dirSeguimiento',
+            'profesor/canalizar'    : 'profCanalizar',
+            'profesor/seguimiento'  : 'profSeguimiento',
+            'psicologo/plan'        : 'psicPlan',
+            'psicologo/seguimiento' : 'psicSeguimiento',
+            'tutor/plan'            : 'tutorPlan',
+            'tutor/bitacora'        : 'tutorBitacora',
+            'tutor/profesores'      : 'tutorProfesores',
+            'tutor/seguimiento'     : 'tutorSeguimiento'
         },
 
         before : function(params, next){
@@ -62,10 +86,59 @@ define([
             this.changeView(view);
         },
 
-        tutor: function(){
+        tutores: function(){
+            var view = new DirTutoresView();
+            this.changeView(view);
         },
 
-        psicologo: function(){
+        dirPlan: function(){
+            var view = new DirPlanView();
+            this.changeView(view);
+        },
+
+        dirSeguimiento: function(){
+            var view = new DirSeguimientoView();
+            this.changeView(view);
+         },
+
+        profCanalizar: function(){
+            var view = new ProfCanalizarView();
+            this.changeView(view);
+        },
+
+        profSeguimiento: function(){
+             var view = new ProfSeguimientoView();
+             this.changeView(view);
+        },
+
+        psicPlan: function(){
+              var view = new PsicPlanView();
+              this.changeView(view);
+        },
+
+        psicSeguimiento: function(){
+              var view = new PsicSeguimientoView();
+              this.changeView(view);
+        },
+
+        tutorPlan: function(){
+              var view = new TutPlanView();
+              this.changeView(view);
+        },
+
+        tutorBitacora: function(){
+              var view = new TutBitacoraView();
+              this.changeView(view);
+        },
+
+        tutorProfesores: function(){
+              var view = new TutProfesoresView();
+              this.changeView(view);
+        },
+
+        tutorSeguimiento: function(){
+              var view = new TutSeguimientoView();
+              this.changeView(view);
         }
 	});
 

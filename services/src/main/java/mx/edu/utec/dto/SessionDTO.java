@@ -12,9 +12,13 @@ import java.util.Set;
 public class SessionDTO {
 
     private String name;
-    private String id;
+    private Long id;
     private String username;
     private Collection<? extends GrantedAuthority> roles;
+    private Long idCarrera;
+    private String carrera;
+    private String estadoPeriodo;
+    private String idPeriodo;
 
     public String getName() {
         return name;
@@ -24,11 +28,11 @@ public class SessionDTO {
         this.name = name;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -46,5 +50,35 @@ public class SessionDTO {
 
     public void setRoles(Collection<? extends GrantedAuthority> roles) {
         this.roles = roles;
+    }
+
+    public Long getIdCarrera() { return idCarrera; }
+
+    public void setIdCarrera(Long idCarrera) {
+        this.idCarrera = idCarrera;
+    }
+
+    public String getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
+    }
+
+    public String getEstadoPeriodo() {
+        return estadoPeriodo;
+    }
+
+    public void setEstadoPeriodo(String estadoPeriodo) {
+        this.estadoPeriodo = estadoPeriodo;
+    }
+
+    public String getIdPeriodo() {
+        return idPeriodo;
+    }
+
+    public void setIdPeriodo(String idPeriodo) {
+        this.idPeriodo = idPeriodo;
     }
 }

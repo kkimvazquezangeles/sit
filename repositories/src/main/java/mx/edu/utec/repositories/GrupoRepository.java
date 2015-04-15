@@ -15,6 +15,9 @@ import java.util.List;
 public interface GrupoRepository extends CrudRepository<Grupo, Long> {
 
     @Query("SELECT distinct gm.grupo FROM CuatrimestreMateria gm " +
-            "WHERE gm.carrera.id = :idCarrera AND gm.cuatrimestre.id = :idCuatrimestre ")
-    public List<Grupo> findAllGrupoByCarreraAndCuatrimestre(@Param("idCarrera") Long idCarrera, @Param("idCuatrimestre") Long idCuatrimestre);
+            "WHERE gm.carrera.id = :idCarrera AND gm.cuatrimestre.id = :idCuatrimestre AND gm.periodoPersonal.periodo.id = :idPeriodo")
+    public List<Grupo> findAllGrupoByCarreraAndCuatrimestre(
+            @Param("idCarrera") Long idCarrera,
+            @Param("idCuatrimestre") Long idCuatrimestre,
+            @Param("idPeriodo") Long idPeriodo);
 }

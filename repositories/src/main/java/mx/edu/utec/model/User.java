@@ -17,7 +17,7 @@ public class User {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private Set<UserRole> userRole = new HashSet<UserRole>(0);
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "personal_id")
     private Personal personal;
  

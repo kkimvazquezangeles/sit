@@ -37,6 +37,7 @@ public class PersonalServiceImpl implements PersonalService {
 
     private PersonalDTO convertPersonalToDTO(Personal personal) {
         PersonalDTO dto = new PersonalDTO();
+        dto.setId(personal.getId());
         dto.setNombreCompleto(personal.getNombre() +
                 ' ' + personal.getApellidoPaterno() +
                 ' ' + personal.getApellidoMaterno());

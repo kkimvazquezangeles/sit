@@ -1,6 +1,9 @@
 package mx.edu.utec.controller;
 
 import mx.edu.utec.dto.SessionDTO;
+import mx.edu.utec.model.EstadoPeriodo;
+import mx.edu.utec.model.Periodo;
+import mx.edu.utec.services.PeriodoService;
 import mx.edu.utec.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -22,12 +25,24 @@ public class SessionController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    PeriodoService periodoService;
+
     @ResponseBody
     @RequestMapping(value = { "/user" }, method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     public SessionDTO userAuthenticated() {
         User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         SessionDTO sessionDTO = userService.findByUsername(user.getUsername());
         sessionDTO.setRoles(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
+
+        Periodo periodo = periodoService.findByEstadoPeriodo(EstadoPeriodo.ACTIVO);
+        if(periodo != null){
+            sessionDTO.setEstadoPeriodo(EstadoPeriodo.ACTIVO.name());
+            sessionDTO.setIdPeriodo(periodo.getId().toString());
+        } else {
+            sessionDTO.setEstadoPeriodo(EstadoPeriodo.DESACTIVO.name());
+        }
+
         return sessionDTO;
     }
 

@@ -1,16 +1,21 @@
 package mx.edu.utec.controller;
 
+import mx.edu.utec.dto.CarreraDTO;
 import mx.edu.utec.dto.CuatrimestreDTO;
 import mx.edu.utec.dto.PersonalDTO;
+import mx.edu.utec.model.Carrera;
 import mx.edu.utec.model.Cuatrimestre;
+import mx.edu.utec.services.CarreraService;
 import mx.edu.utec.services.PersonalService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -19,13 +24,40 @@ import java.util.List;
 @Controller
 @RequestMapping("/personal")
 public class PersonalController {
+
+    private static final Logger logger = LoggerFactory.getLogger(PersonalController.class);
+
     @Autowired
     PersonalService personalService;
 
+    @Autowired
+    CarreraService carreraService;
+
     @ResponseBody
     @RequestMapping(value = { "/carrera/{carrera}" }, method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
-    public List<PersonalDTO> listProfesorByCarrera(@PathVariable("carrera") Long carrera_id) {
+    public List<PersonalDTO> listProfesorByCarrera(@PathVariable("carrera") Long carrera_id, @RequestParam(value = "periodo") Long periodo) {
+        logger.info("carrera_id " + carrera_id);
+        logger.info("page " + periodo);
         return personalService.findAllProfesorByCarrera(carrera_id);
     }
 
+    @ResponseBody
+    @RequestMapping(value = { "/{personal}/carreras" }, method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    public List<PersonalDTO> listProfesorByCarreraDos(@PathVariable("personal") Long carrera_id, @RequestParam(value = "periodo") Long periodo) {
+        logger.info("carrera_id " + carrera_id);
+        logger.info("page " + periodo);
+        return personalService.findAllProfesorByCarrera(carrera_id);
+    }
+
+    @ResponseBody
+    @RequestMapping(
+            value = { "/{personal}/carrera" },
+            method = RequestMethod.GET,
+            produces = {"application/json;charset=UTF-8"})
+    public List<CarreraDTO> listCarreraByPersonalAndPeriodoAndPerfil(
+            @PathVariable("personal") Long idPersonal,
+            @RequestParam(value = "periodo") Long idPeriodo,
+            @RequestParam(value = "perfil") String perfil) {
+        return carreraService.findAllByPersonalAndPeriodoAndPerfil(idPersonal, idPeriodo, perfil);
+    }
 }

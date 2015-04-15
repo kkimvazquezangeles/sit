@@ -1,9 +1,10 @@
 define([
 	'jquery',
+    'underscore',
 	'core/BaseView',
 	'text!templates/tplSitNav.html',
 	'Session'
-], function($, BaseView, tplSitNav, Session){
+], function($, _, BaseView, tplSitNav, Session){
 
 	var SitNavView = BaseView.extend({
 	    el: $("#sit-nav"),
@@ -78,39 +79,47 @@ define([
         },
 
         verTutores: function(){
-
+            Backbone.history.navigate('director/tutores', { trigger : true });
         },
 
         verPlanesDir: function(){
-
+            Backbone.history.navigate('director/plan', { trigger : true });
         },
 
         verSeguimientosDir: function(){
-
+            Backbone.history.navigate('director/seguimiento', { trigger : true });
         },
 
         verCanalizar: function(){
-
+            Backbone.history.navigate('profesor/canalizar', { trigger : true });
         },
 
         verSeguimientoProf: function(){
+            Backbone.history.navigate('profesor/seguimiento', { trigger : true });
+        },
 
+        verPlan: function(){
+            Backbone.history.navigate('psicologo/plan', { trigger : true });
+        },
+
+        verSeguimientosPsi: function(){
+            Backbone.history.navigate('psicologo/seguimiento', { trigger : true });
         },
 
         verTutoria: function(){
-
+            Backbone.history.navigate('tutor/plan', { trigger : true });
         },
 
         verBitacora: function(){
-
+            Backbone.history.navigate('tutor/bitacora', { trigger : true });
         },
 
         verProfesores: function(){
-
+            Backbone.history.navigate('tutor/profesores', { trigger : true });
         },
 
         verSeguimientos: function(){
-
+            Backbone.history.navigate('tutor/seguimiento', { trigger : true });
         },
 
         closeHotelDetail: function(){

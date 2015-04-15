@@ -17,6 +17,9 @@ public class Personal {
     @Column(name = "apellido_materno")
     private String apellidoMaterno;
 
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "personal")
+    private User user;
+
     @OneToMany(mappedBy = "personal")
     private List<PeriodoPersonal> periodosPersonal;
 
@@ -60,6 +63,14 @@ public class Personal {
         this.apellidoMaterno = apellidoMaterno;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public String getFullName() {
 
         return nombre + ' ' + apellidoPaterno + ' ' + apellidoMaterno;
@@ -72,6 +83,7 @@ public class Personal {
                 ", nombre='" + nombre + '\'' +
                 ", apellidoPaterno='" + apellidoPaterno + '\'' +
                 ", apellidoMaterno='" + apellidoMaterno + '\'' +
+                ", user='" + user + '\'' +
                 '}';
     }
 }

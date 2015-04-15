@@ -13,8 +13,8 @@ import java.util.List;
  */
 public interface CuatrimestreRepository extends CrudRepository<Cuatrimestre, Long> {
     @Query("SELECT distinct gm.cuatrimestre FROM CuatrimestreMateria gm " +
-            "WHERE gm.carrera.id = :idCarrera ")
-    public List<Cuatrimestre> findAllCuatrimestreByCarrera(@Param("idCarrera") Long idCarrera);
+            "WHERE gm.carrera.id = :idCarrera and gm.periodoPersonal.periodo.id = :idPeriodo")
+    public List<Cuatrimestre> findAllCuatrimestreByCarrera(@Param("idCarrera") Long idCarrera, @Param("idPeriodo") Long idPeriodo);
     public List<Grupo> findAllGrupoByCuatrimestre(@Param("grupo") Long grupo);
 
 }

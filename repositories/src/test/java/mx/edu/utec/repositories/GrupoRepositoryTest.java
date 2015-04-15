@@ -23,7 +23,7 @@ public class GrupoRepositoryTest {
 
     @Test
     public void testFindAllGrupoByCarreraAndCuatrimestre() {
-        List<Grupo> grupos = grupoRepository.findAllGrupoByCarreraAndCuatrimestre(1L, 1L);
+        List<Grupo> grupos = grupoRepository.findAllGrupoByCarreraAndCuatrimestre(1L, 1L, 1L);
         Assert.assertNotNull(grupos);
     }
 }

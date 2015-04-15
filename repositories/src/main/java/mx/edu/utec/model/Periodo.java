@@ -18,6 +18,9 @@ public class Periodo {
     private Date fechaInicio;
     @Column(name = "fecha_fin")
     private Date fechaFin;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estado_periodo")
+    private EstadoPeriodo estadoPeriodo;
 
     @OneToMany(mappedBy = "periodo")
     private List<PeriodoAlumno> periodoAlumnos;
@@ -62,6 +65,10 @@ public class Periodo {
         this.periodoAlumnos = periodoAlumnos;
     }
 
+    public EstadoPeriodo getEstadoPeriodo() { return estadoPeriodo; }
+
+    public void setEstadoPeriodo(EstadoPeriodo estadoPeriodo) { this.estadoPeriodo = estadoPeriodo; }
+
     @Override
     public String toString() {
         return "Periodo{" +
@@ -69,6 +76,7 @@ public class Periodo {
                 ", nombrePeriodo='" + nombrePeriodo + '\'' +
                 ", fechaInicio=" + fechaInicio +
                 ", fechaFin=" + fechaFin +
+                ", estadoPeriodo=" + estadoPeriodo +
                 ", periodoAlumnos=" + periodoAlumnos +
                 '}';
     }

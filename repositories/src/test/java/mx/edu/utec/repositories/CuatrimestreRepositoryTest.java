@@ -24,7 +24,7 @@ public class CuatrimestreRepositoryTest {
 
     @Test
     public void testFindAllCuatrimestreByCarrera() {
-        List<Cuatrimestre> cuatrimestres = cuatrimestreRepository.findAllCuatrimestreByCarrera(1L);
+        List<Cuatrimestre> cuatrimestres = cuatrimestreRepository.findAllCuatrimestreByCarrera(1L, 1L);
         Assert.assertNotNull(cuatrimestres);
     }
 }
