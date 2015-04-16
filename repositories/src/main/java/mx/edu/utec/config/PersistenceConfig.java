@@ -4,10 +4,13 @@ import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.jdbc.datasource.init.DataSourceInitializer;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -51,6 +54,34 @@ public class PersistenceConfig {
         dataSource.setPassword("password");
 
         return dataSource;*/
+    }
+
+    @Bean
+    public DataSourceInitializer dataSourceInitializer() {
+        ResourceDatabasePopulator resourceDatabasePopulator = new ResourceDatabasePopulator();
+        resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/carrera-data.sql"));
+        resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/cuatrimestre-data.sql"));
+        resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/grupo-data.sql"));
+        resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/materia-data.sql"));
+        resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/periodo-data.sql"));
+        resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/personal-data.sql"));
+
+        resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/plan-data.sql"));
+        resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/planDetalle-data.sql"));
+        resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/alumno-data.sql"));
+        resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/periodoPersonal-data.sql"));
+        resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/periodoAlumno-data.sql"));
+        resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/cuatrimestreMateria-data.sql"));
+        resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/tutor-data.sql"));
+        resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/tutoria-data.sql"));
+        resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/tutoriaDetalle-data.sql"));
+        resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/director-data.sql"));
+        resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/user-data.sql"));
+
+        DataSourceInitializer dataSourceInitializer = new DataSourceInitializer();
+        dataSourceInitializer.setDataSource(dataSource());
+        dataSourceInitializer.setDatabasePopulator(resourceDatabasePopulator);
+        return dataSourceInitializer;
     }
 
     @Bean

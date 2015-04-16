@@ -70,6 +70,9 @@ project(":web") {
         compile "org.apache.commons:commons-lang3:3.2.1"
         compile "com.fasterxml.jackson.core:jackson-databind:2.3.4"
 
+        compile 'net.sf.jasperreports:jasperreports:5.0.1'
+        compile 'com.lowagie:itext:2.1.7'
+
         testCompile "org.springframework:spring-test:$springVersion"
         testCompile 'junit:junit:4.11'
 

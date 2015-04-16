@@ -12,7 +12,8 @@ define([
         template: _.template(tplDirTutores),
 
         events: {
-            'change #dir-carrera': 'actualizaCuatrimestre'
+            'change #dir-carrera': 'actualizaCuatrimestre',
+            'click #btn-pdf' : 'generaPdf'
         },
 
         initialize: function() {
@@ -68,6 +69,18 @@ define([
                 value: modelo.get('id'),
                 text : modelo.get('cuatrimestre')
             }));
+        },
+
+        generaPdf: function(){
+            /*$.get(
+                "report/tutor",
+                {carrera : $('#dir-carrera').val(), periodo : Session.get('idPeriodo')},
+                function(data) {
+                   alert('page content: ' + data);
+                }
+            );*/
+            var url = "report/tutor?periodo=" + Session.get('idPeriodo') + "&carrera=" + $('#dir-carrera').val();
+            window.open(url, '_blank');
         }
 
 	});

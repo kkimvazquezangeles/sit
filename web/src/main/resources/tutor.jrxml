@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="tutor" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0aec2014-2e1a-49df-9591-dbc48d7e9084">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="tutores" uuid="19d61c3d-1e17-44bc-93aa-7aaf98342427">
+		<queryString language="SQL">
+			<![CDATA[SELECT
+     CONCAT(CONCAT(CONCAT(CONCAT(p.nombre,' '),p.apellido_paterno),' '),p.apellido_materno) AS tutor,
+     ca.`nombre_carrera` AS carrera,
+     gr.`grupo` AS grupo,
+     ct.`cuatrimestre` AS cuatrimestre
+FROM
+     `sitdb`.`Tutor` tu INNER JOIN `sitdb`.`PeriodoPersonal` pp ON tu.`periodo_personal_id` = pp.`id`
+     INNER JOIN `sitdb`.`Personal` p ON pp.`personal_id` = p.`id`
+     INNER JOIN `sitdb`.`Carrera` ca ON tu.`carrera_id` = ca.`id`
+     INNER JOIN `sitdb`.`Cuatrimestre` ct ON tu.`cuatrimestre_id` = ct.`id`
+     INNER JOIN `sitdb`.`Grupo` gr ON tu.`grupo_id` = gr.`id`]]>
+		</queryString>
+		<field name="tutor" class="java.lang.String"/>
+		<field name="carrera" class="java.lang.String"/>
+		<field name="grupo" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="cuatrimestre" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="carreraid" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="periodoid" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select ca.nombre_carrera as Carrera, gr.grupo as Grupo, ct.cuatrimestre as Cuatrimestre,
+		CONCAT(CONCAT(CONCAT(CONCAT(p.nombre, ' '), p.apellido_paterno), ' '), p.apellido_materno) as Tutor,
+ pr.nombre_periodo as Periodo
+from Tutor tu,
+    Carrera ca,
+    Grupo gr,
+    Cuatrimestre ct,
+    PeriodoPersonal pp,
+    Periodo pr,
+    Personal p
+where tu.periodo_personal_id = pp.id
+    and pp.personal_id = p.id
+    and pp.periodo_id = pr.id
+    and tu.carrera_id = ca.id
+    and tu.cuatrimestre_id = ct.id
+    and tu.grupo_id = gr.id
+    and tu.carrera_id = $P{carreraid}
+    and pp.periodo_id = $P{periodoid}]]>
+	</queryString>
+	<field name="Carrera" class="java.lang.String"/>
+	<field name="Grupo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Cuatrimestre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Tutor" class="java.lang.String"/>
+	<field name="Periodo" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="163" height="79" uuid="56a294ea-fd42-4487-9703-c442951e8f22"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="163" y="0" width="392" height="79" uuid="af773073-1a22-4b94-a797-31a0820accac"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="163" y="0" width="392" height="18" backcolor="#CCCCCC" uuid="528efe97-5f58-48a2-ab8a-f9dc2152d66a"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="163" y="0" width="169" height="18" uuid="fbc163d1-2ae9-4e32-91c4-49e53d28a414"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[     A. Nombre del Formato:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="0" width="163" height="18" backcolor="#CCCCCC" uuid="2e2d223d-3fdb-4137-abac-1a76dbbcf224"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="61" width="163" height="18" backcolor="#CCCCCC" uuid="b63779c9-0069-47b3-8e9a-40b0bd9ecebf"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="163" y="61" width="195" height="18" backcolor="#CCCCCC" uuid="f3bab174-1566-4422-ada8-7a218036edb4"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="358" y="61" width="197" height="18" uuid="b4fabdf7-4d43-4f42-bafa-989bba519a9c"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="163" y="61" width="195" height="18" uuid="9c0a61cd-5de4-4526-9115-0806f8159e6c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[     B. Código/Revisión; Fecha:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="163" height="18" uuid="f1f90e5b-4ae3-43c0-a9f8-0091a193f0cf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[Encabezado General]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="61" width="163" height="18" uuid="486c108b-f3d6-47f7-afbf-1469bc285a9d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[F-24-004/R0;070612]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="358" y="61" width="197" height="18" uuid="92535b9a-7bc7-41b6-9ae5-00bda2f05798"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[F-03-003/R5;180912]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="163" y="18" width="392" height="43" uuid="5f87b060-1fa4-4544-9c68-eca39a284dc5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Asignación de Tutorías]]></text>
+			</staticText>
+			<image>
+				<reportElement x="11" y="20" width="161" height="40" uuid="0e7024e4-8b1d-48f5-b59e-12952fda3c06"/>
+				<imageExpression><![CDATA["/Users/kkimvazquezangeles/opt/java/sit/web/src/main/resources/utec_titulo.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="102" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="5" width="391" height="18" backcolor="#CCCCCC" uuid="26244e22-cd9b-465d-a9ea-6a54c82413a2"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="391" y="5" width="163" height="18" backcolor="#CCCCCC" uuid="1b2cb37b-3344-43bb-aae8-f9177184319c"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="23" width="273" height="18" backcolor="#CCCCCC" uuid="66f69ddf-3c07-464d-a2d9-c5499e4eaa51"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="273" y="23" width="282" height="18" backcolor="#CCCCCC" uuid="1b11a3d3-61f4-43e5-9e28-60a59e4c5198"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="5" width="391" height="18" uuid="6217fbaf-d362-4bbb-b0c7-2c4b609a6c7b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[Datos de los Registros (evidencia):]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="138" y="23" width="135" height="18" forecolor="#000000" uuid="05e21468-9c63-4319-bb75-db461044f6b3"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="419" y="23" width="135" height="18" forecolor="#000000" uuid="6e35e3a3-e467-45c0-8a3c-84332219e055"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="518" y="5" width="36" height="18" forecolor="#000000" uuid="ca95abc8-3d41-4764-bd3b-6ab9ba91b88a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="460" y="5" width="36" height="18" forecolor="#000000" uuid="13757e4e-c926-4189-afe5-b950f2231aea"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="391" y="5" width="69" height="18" uuid="6c558b83-1eb4-4333-9d5e-10096e97a1f8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[C. Página]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="23" width="138" height="18" uuid="78b03b8b-b9fe-414a-b610-3b93b983c4c1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[D. Fecha de elaboración:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="273" y="23" width="146" height="18" uuid="a9c762cc-75e7-4a61-b6d7-ca3ba3c1e285"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[E. Periodo al que aplica:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="496" y="5" width="22" height="18" uuid="91db6f06-e9f4-440a-9887-5c7356e53cc5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="81" width="138" height="18" uuid="1b2e829f-f805-45dd-94d1-b90c13c0eff7"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[2. GRUPO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="138" y="81" width="138" height="18" uuid="bb62535d-c07f-4448-a0a4-19f2ad5b556b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[3. CUATRIMESTRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="81" width="138" height="18" uuid="209e4ed8-903a-4bd6-986b-03d37276c83f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[4. TUTOR DE GRUPO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="414" y="81" width="138" height="18" uuid="a251d626-7e4e-469b-8850-fe1c17523c6e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[5. FIRMA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="53" width="92" height="18" uuid="d6cb8a65-f4ff-4255-bb38-206ca74c7739"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[1. CARRERA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="460" y="4" width="36" height="18" uuid="7e5cf884-85f4-4cd4-a90c-f358a644ae32"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="518" y="5" width="34" height="18" uuid="3f4a50b2-49f5-46fa-897c-b9a0478b163b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="138" y="24" width="135" height="18" uuid="9c44a3d3-32b8-4c12-9ebe-800b41aa8991"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="418" y="24" width="134" height="17" uuid="8bf43244-801a-4b98-99c8-421495c02a01"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Periodo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="95" y="53" width="135" height="18" uuid="40417ff7-d97b-47ef-b4ad-97e4f2a4b357"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Carrera}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="138" height="20" uuid="4e2e7a59-5720-4d7f-ba3c-b7cac423610a"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Grupo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="0" width="138" height="20" uuid="fb86cf8d-c848-4987-bb3d-1d6a7cd6c247"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cuatrimestre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="0" width="138" height="20" uuid="10257c8a-1d92-4a68-968c-4569b2332c0b"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Tutor}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="435" y="19" width="100" height="1" uuid="8c72664f-4368-4cd9-9ac2-bea48cc2e311"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="56" splitType="Stretch">
+			<line>
+				<reportElement x="288" y="17" width="218" height="1" uuid="7ad17096-19ee-4818-9126-6dcaa1d9b057"/>
+			</line>
+			<staticText>
+				<reportElement x="276" y="18" width="246" height="18" uuid="4d35c9d6-52f8-4f93-88ec-30322f676636"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[6. Nombre y firma del Director de Carrera]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
