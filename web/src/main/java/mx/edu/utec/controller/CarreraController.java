@@ -3,8 +3,10 @@ package mx.edu.utec.controller;
 import mx.edu.utec.dto.CarreraDTO;
 import mx.edu.utec.dto.CuatrimestreDTO;
 import mx.edu.utec.dto.GrupoDTO;
+import mx.edu.utec.dto.TutorDTO;
 import mx.edu.utec.services.CarreraService;
 import mx.edu.utec.services.CuatrimestreService;
+import mx.edu.utec.services.TutorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,9 @@ import java.util.List;
 public class CarreraController {
     @Autowired
     CuatrimestreService cuatrimestreService;
+
+    @Autowired
+    TutorService tutorService;
 
 
     @ResponseBody
@@ -42,6 +47,17 @@ public class CarreraController {
             @PathVariable("cuatrimestre") Long idCuatrimestre,
             @RequestParam(value = "periodo") Long idPeriodo) {
         return cuatrimestreService.findAllGrupoByCuatrimestreAndCarrera(idCarrera, idCuatrimestre, idPeriodo);
+    }
+
+    @ResponseBody
+    @RequestMapping(
+            value = { "/{carrera}/tutor" },
+            method = RequestMethod.GET,
+            produces = {"application/json;charset=UTF-8"})
+    public List<TutorDTO> listTutoresByCarrera(
+            @PathVariable("carrera") Long idCarrera,
+            @RequestParam(value = "periodo") Long idPeriodo) {
+        return tutorService.findAllTutoresByCarreraAndPeriodo(idCarrera, idPeriodo);
     }
 
 }

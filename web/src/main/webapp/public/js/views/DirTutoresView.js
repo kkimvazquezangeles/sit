@@ -2,11 +2,13 @@ define([
 	'jquery',
 	'underscore',
 	'core/BaseView',
+	'views/DirRegistroTutoresView',
 	'collections/CarrerasCollection',
     'collections/CuatrimestreCollection',
+    'collections/TutorCollection',
 	'text!templates/tplDirTutores.html',
 	'Session'
-], function($, _, BaseView, CarrerasCollection, CuatrimestreCollection, tplDirTutores, Session){
+], function($, _, BaseView, DirRegistroTutoresView, CarrerasCollection, CuatrimestreCollection, TutorCollection, tplDirTutores, Session){
 
 	var DirTutoresView = BaseView.extend({
         template: _.template(tplDirTutores),
@@ -24,6 +26,9 @@ define([
                 data: { periodo: Session.get('idPeriodo'), perfil: Session.getRole() },
                 processData: true
             });
+
+            this.tutores = new TutorCollection();
+            this.listenTo(this.tutores, 'add', this.agregaTutor);
 
         },
 
@@ -53,7 +58,11 @@ define([
                 processData: true
             });
 
-
+            this.tutores.setCarreraId(idCarrera);
+            this.tutores.fetch({
+                data: { periodo: Session.get('idPeriodo') },
+                processData: true
+            });
         },
 
         syncCuatrimestres: function(){
@@ -72,17 +81,14 @@ define([
         },
 
         generaPdf: function(){
-            /*$.get(
-                "report/tutor",
-                {carrera : $('#dir-carrera').val(), periodo : Session.get('idPeriodo')},
-                function(data) {
-                   alert('page content: ' + data);
-                }
-            );*/
             var url = "report/tutor?periodo=" + Session.get('idPeriodo') + "&carrera=" + $('#dir-carrera').val();
             window.open(url, '_blank');
-        }
+        },
 
+        agregaTutor: function(modelo){
+            var vista = new DirRegistroTutoresView({model: modelo});
+            $("#grid-data").find('tbody:last').append(vista.render().$el);
+        }
 	});
 
 	return DirTutoresView;
