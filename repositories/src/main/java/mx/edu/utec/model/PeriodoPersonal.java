@@ -23,9 +23,6 @@ public class PeriodoPersonal {
     @OneToMany(mappedBy = "periodoPersonal")
     private List<CuatrimestreMateria> materias;
 
-    @ManyToOne
-    @JoinColumn(name = "plan_id")
-    private Plan plan;
 
     public Long getId() {
 

@@ -4,6 +4,7 @@ import mx.edu.utec.dto.CarreraDTO;
 import mx.edu.utec.model.Carrera;
 import mx.edu.utec.repositories.CarreraRepository;
 import mx.edu.utec.repositories.PersonalRepository;
+import mx.edu.utec.repositories.TutorRepository;
 import mx.edu.utec.services.CarreraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,10 @@ public class CarreraServiceImpl implements CarreraService {
     @Autowired
     PersonalRepository personalRepository;
 
+    @Autowired
+    private TutorRepository tutorRepository;
+
+
     @Override
     public List<CarreraDTO> findAllByPersonalAndPeriodoAndPerfil(Long idPersonal, Long idPeriodo, String perfil) {
         if (perfil.equals("DIRECTOR")) {
@@ -36,6 +41,10 @@ public class CarreraServiceImpl implements CarreraService {
 
         if (perfil.equals("PSICOLOGO")) {
             itCarrera = carreraRepository.findAllCarrerasByPeriodo(idPeriodo).iterator();
+        }
+
+        if (perfil.equals("TUTOR")) {
+            itCarrera = carreraRepository.findAllByTutorAndPeriodo(idPersonal, idPeriodo).iterator();
         }
 
         if (perfil.equals("PROFESOR")) {

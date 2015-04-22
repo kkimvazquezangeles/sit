@@ -22,4 +22,10 @@ public interface CarreraRepository extends CrudRepository<Carrera, Long> {
     @Query("SELECT distinct gm.carrera FROM CuatrimestreMateria gm " +
             "WHERE gm.periodoPersonal.periodo.id = :idPeriodo")
     List<Carrera> findAllCarrerasByPeriodo(@Param("idPeriodo") Long idPeriodo);
+
+    @Query("SELECT distinct tu.carrera FROM Tutor tu" +
+            " WHERE tu.periodoPersonal.periodo.id = :idPeriodo AND tu.periodoPersonal.personal.id = :idPersonal")
+    List<Carrera> findAllByTutorAndPeriodo(
+            @Param("idPersonal") Long idPersonal,
+            @Param("idPeriodo") Long idPeriodo);
 }

@@ -17,9 +17,9 @@ public class Plan {
     private String medidas;
     private String recomendaciones;
 
-    @ManyToOne
-    @JoinColumn(name = "plan_detalle_id")
-    private PlanDetalle planDetalle;
+    @OneToOne
+    @JoinColumn(name = "tutor_id")
+    private Tutor tutor;
 
 
     public Long getId() {
@@ -72,12 +72,12 @@ public class Plan {
         this.recomendaciones = recomendaciones;
     }
 
-    public PlanDetalle getPlanDetalle() {
-        return planDetalle;
+    public Tutor getTutor() {
+        return tutor;
     }
 
-    public void setPlanDetalle(PlanDetalle planDetalle) {
-        this.planDetalle = planDetalle;
+    public void setTutor(Tutor tutor) {
+        this.tutor = tutor;
     }
 
     @Override
@@ -88,7 +88,7 @@ public class Plan {
                 ", proposito='" + proposito + '\'' +
                 ", medidas='" + medidas + '\'' +
                 ", recomendaciones='" + recomendaciones + '\'' +
-                ", planDetalle=" + planDetalle +
+                ", tutor=" + tutor +
                 '}';
     }
 }

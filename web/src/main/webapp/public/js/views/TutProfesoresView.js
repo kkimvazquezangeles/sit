@@ -1,8 +1,9 @@
 define([
 	'jquery',
+	'underscore',
 	'core/BaseView',
 	'text!templates/tplTutProfesores.html'
-], function($, BaseView, tplTutProfesores){
+], function($, _, BaseView, tplTutProfesores){
 
 	var TutProfesoresView = BaseView.extend({
         template: _.template(tplTutProfesores),

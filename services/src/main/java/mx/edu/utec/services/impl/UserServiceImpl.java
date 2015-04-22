@@ -1,14 +1,17 @@
 package mx.edu.utec.services.impl;
 
+import mx.edu.utec.dto.CarreraDTO;
 import mx.edu.utec.dto.SessionDTO;
-import mx.edu.utec.model.Carrera;
 import mx.edu.utec.model.User;
-import mx.edu.utec.repositories.CarreraRepository;
 import mx.edu.utec.repositories.UserRepository;
-import mx.edu.utec.repositories.UserRoleRepository;
+import mx.edu.utec.services.CarreraService;
 import mx.edu.utec.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by kkimvazquezangeles on 07/04/15.
@@ -20,15 +23,21 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private CarreraRepository carreraRepository;
+    private CarreraService carreraService;
 
     @Override
-    public SessionDTO findByUsername(String username) {
+    public SessionDTO findByUsername(String username, Long idPeriodo, Collection<? extends GrantedAuthority> authorities) {
         SessionDTO dto = convertUserToDTO(userRepository.findByUsername(username));
-        Carrera carrera = carreraRepository.findByDirector(dto.getId());
-        if (carrera!=null){
+        dto.setRoles(authorities);
+
+        List<CarreraDTO> carreras =
+                carreraService.findAllByPersonalAndPeriodoAndPerfil(
+                        dto.getId(), idPeriodo, rolePrincipal(dto.getRoles()));
+
+        if (carreras.size() > 0){
+            CarreraDTO carrera = carreras.get(0);
             dto.setIdCarrera(carrera.getId());
-            dto.setCarrera(carrera.getNombreCarrera());
+            dto.setCarrera(carrera.getCarrera());
         }
         return dto;
     }
@@ -39,5 +48,22 @@ public class UserServiceImpl implements UserService {
         sessionDTO.setName(user.getPersonal().getFullName());
         sessionDTO.setUsername(user.getUsername());
         return sessionDTO;
+    }
+
+    private String rolePrincipal(Collection<? extends GrantedAuthority> roles){
+
+        if(roles.contains("DIRECTOR"))
+            return "DIRECTOR";
+
+        if(roles.contains("TUTOR"))
+            return "TUTOR";
+
+        if(roles.contains("PROFESOR"))
+            return "PROFESOR";
+
+        if(roles.contains("PSICOLOGO"))
+            return "PSICOLOGO";
+
+        return null;
     }
 }

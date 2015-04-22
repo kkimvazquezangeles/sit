@@ -51,4 +51,33 @@ public class TutorServiceImpl implements TutorService {
 
     }
 
+    @Override
+    public List<TutorDTO> findGrupoTutoradoByTutorAndPeriodo(Long idPersonal, Long idPeriodo) {
+        Iterator<Tutor> itTutor = tutorRepository.findAllByCarreraAndPeriodo(idPersonal, idPeriodo).iterator();
+        List<TutorDTO> copy = new ArrayList<TutorDTO>();
+        while (itTutor.hasNext()) {
+            Tutor tutor = itTutor.next();
+            TutorDTO dto = convertTutorDTO(tutor);
+            copy.add(dto);
+        }
+        return copy;
+    }
+
+    private TutorDTO convertTutorDTO(Tutor tutor) {
+        TutorDTO dto = new TutorDTO();
+        dto.setId(tutor.getId());
+        dto.setIdTutor(tutor.getPeriodoPersonal().getPersonal().getId());
+        dto.setNombreCompleto(tutor.getPeriodoPersonal().getPersonal().getNombre() +
+                ' ' + tutor.getPeriodoPersonal().getPersonal().getApellidoPaterno() +
+                ' ' + tutor.getPeriodoPersonal().getPersonal().getApellidoMaterno());
+        dto.setIdCarrera(tutor.getCarrera().getId());
+        dto.setCarrera(tutor.getCarrera().getNombreCarrera());
+        dto.setIdCuatrimestre(tutor.getCuatrimestre().getId());
+        dto.setCuatrimestre(tutor.getCuatrimestre().getCuatrimestre());
+        dto.setIdGrupo(tutor.getGrupo().getId());
+        dto.setGrupo(tutor.getGrupo().getGrupo());
+        return dto;
+
+    }
+
 }

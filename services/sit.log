@@ -1,0 +1,16 @@
+0    [Test worker] DEBUG org.jboss.logging  - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2381 [Test worker] INFO  java.sql.DatabaseMetaData  - HHH000262: Table not found: PlanTutoria
+2418 [Test worker] INFO  java.sql.DatabaseMetaData  - HHH000262: Table not found: PlanTutoria
+2419 [Test worker] INFO  java.sql.DatabaseMetaData  - HHH000262: Table not found: PlanTutoria
+0    [Test worker] DEBUG org.jboss.logging  - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2194 [Test worker] INFO  java.sql.DatabaseMetaData  - HHH000262: Table not found: PlanTutoria
+2233 [Test worker] INFO  java.sql.DatabaseMetaData  - HHH000262: Table not found: PlanTutoria
+2237 [Test worker] INFO  java.sql.DatabaseMetaData  - HHH000262: Table not found: PlanTutoria
+0    [Test worker] DEBUG org.jboss.logging  - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+1828 [Test worker] INFO  java.sql.DatabaseMetaData  - HHH000262: Table not found: PlanTutoria
+1861 [Test worker] INFO  java.sql.DatabaseMetaData  - HHH000262: Table not found: PlanTutoria
+1863 [Test worker] INFO  java.sql.DatabaseMetaData  - HHH000262: Table not found: PlanTutoria
+0    [Test worker] DEBUG org.jboss.logging  - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+1963 [Test worker] INFO  java.sql.DatabaseMetaData  - HHH000262: Table not found: PlanTutoria
+2002 [Test worker] INFO  java.sql.DatabaseMetaData  - HHH000262: Table not found: PlanTutoria
+2004 [Test worker] INFO  java.sql.DatabaseMetaData  - HHH000262: Table not found: PlanTutoria

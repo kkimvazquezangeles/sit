@@ -131,7 +131,7 @@ where tu.periodo_personal_id = pp.id
 			</staticText>
 			<image>
 				<reportElement x="11" y="20" width="161" height="40" uuid="0e7024e4-8b1d-48f5-b59e-12952fda3c06"/>
-				<imageExpression><![CDATA["/Users/kkimvazquezangeles/opt/java/sit/web/src/main/resources/utec_titulo.png"]]></imageExpression>
+				<imageExpression><![CDATA["utec_titulo.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

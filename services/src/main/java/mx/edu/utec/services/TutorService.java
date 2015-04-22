@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface TutorService {
     List<TutorDTO> findAllTutoresByCarreraAndPeriodo(Long idCarrera, Long idPeriodo);
+    List<TutorDTO> findGrupoTutoradoByTutorAndPeriodo(Long idPersonal, Long idPeriodo);
+
 }

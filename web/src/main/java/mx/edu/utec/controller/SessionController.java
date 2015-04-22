@@ -32,10 +32,9 @@ public class SessionController {
     @RequestMapping(value = { "/user" }, method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     public SessionDTO userAuthenticated() {
         User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        SessionDTO sessionDTO = userService.findByUsername(user.getUsername());
-        sessionDTO.setRoles(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
-
         Periodo periodo = periodoService.findByEstadoPeriodo(EstadoPeriodo.ACTIVO);
+        SessionDTO sessionDTO = userService.findByUsername(user.getUsername(), periodo.getId(), SecurityContextHolder.getContext().getAuthentication().getAuthorities());
+
         if(periodo != null){
             sessionDTO.setEstadoPeriodo(EstadoPeriodo.ACTIVO.name());
             sessionDTO.setIdPeriodo(periodo.getId().toString());

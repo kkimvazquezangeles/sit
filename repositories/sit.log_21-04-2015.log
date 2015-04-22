@@ -1,0 +1,11 @@
+0    [main] DEBUG org.jboss.logging  - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+0    [main] DEBUG org.jboss.logging  - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+5    [main] DEBUG org.jboss.logging  - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+0    [main] DEBUG org.jboss.logging  - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2311 [main] INFO  java.sql.DatabaseMetaData  - HHH000262: Table not found: PlanTutoria
+2381 [main] INFO  java.sql.DatabaseMetaData  - HHH000262: Table not found: PlanTutoria
+2392 [main] INFO  java.sql.DatabaseMetaData  - HHH000262: Table not found: PlanTutoria
+0    [main] DEBUG org.jboss.logging  - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2360 [main] INFO  java.sql.DatabaseMetaData  - HHH000262: Table not found: PlanTutoria
+2395 [main] INFO  java.sql.DatabaseMetaData  - HHH000262: Table not found: PlanTutoria
+2397 [main] INFO  java.sql.DatabaseMetaData  - HHH000262: Table not found: PlanTutoria
