@@ -25,21 +25,27 @@ public class UserServiceTest {
     @Test
     public void testFindByUsername(){
         Collection<GrantedAuthority> roles = new ArrayList<>();
-        GrantedAuthority profesor = new GrantedAuthority() {
-            @Override
-            public String getAuthority() {
-                return "PROFESOR";
-            }
-        };
-        GrantedAuthority tutor = new GrantedAuthority() {
-            @Override
-            public String getAuthority() {
-                return "TUTOR";
-            }
-        };
+
+        GrantedAuthority profesor = new TestAuthority("PROFESOR");
+        GrantedAuthority tutor = new TestAuthority("TUTOR");
         roles.add(profesor);
         roles.add(tutor);
         userService.findByUsername("jcruz@utec.edu.mx", 1L, roles);
+    }
+
+    private class TestAuthority implements GrantedAuthority {
+
+        private String authority;
+
+        public TestAuthority(String authority){
+            this.authority = authority;
+        }
+
+        @Override
+        public String getAuthority() {
+            return authority;
+        }
+
     }
 
 }

@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -51,17 +53,22 @@ public class UserServiceImpl implements UserService {
     }
 
     private String rolePrincipal(Collection<? extends GrantedAuthority> roles){
+        Iterator<? extends GrantedAuthority> itr = roles.iterator();
+        List<String> rolesList = new ArrayList<String>();
+        while (itr.hasNext()){
+            rolesList.add(itr.next().getAuthority());
+        }
 
-        if(roles.contains("DIRECTOR"))
+        if(rolesList.contains("DIRECTOR"))
             return "DIRECTOR";
 
-        if(roles.contains("TUTOR"))
+        if(rolesList.contains("TUTOR"))
             return "TUTOR";
 
-        if(roles.contains("PROFESOR"))
+        if(rolesList.contains("PROFESOR"))
             return "PROFESOR";
 
-        if(roles.contains("PSICOLOGO"))
+        if(rolesList.contains("PSICOLOGO"))
             return "PSICOLOGO";
 
         return null;
