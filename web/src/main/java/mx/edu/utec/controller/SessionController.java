@@ -5,7 +5,10 @@ import mx.edu.utec.model.EstadoPeriodo;
 import mx.edu.utec.model.Periodo;
 import mx.edu.utec.services.PeriodoService;
 import mx.edu.utec.services.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -21,6 +25,8 @@ import java.util.Set;
 @Controller
 @RequestMapping("/session")
 public class SessionController {
+
+    private static final Logger logger = LoggerFactory.getLogger(SessionController.class);
 
     @Autowired
     UserService userService;
@@ -33,7 +39,9 @@ public class SessionController {
     public SessionDTO userAuthenticated() {
         User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Periodo periodo = periodoService.findByEstadoPeriodo(EstadoPeriodo.ACTIVO);
-        SessionDTO sessionDTO = userService.findByUsername(user.getUsername(), periodo.getId(), SecurityContextHolder.getContext().getAuthentication().getAuthorities());
+        Collection<? extends GrantedAuthority> roles = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+        logger.info("Roles del usuario ------> " + roles);
+        SessionDTO sessionDTO = userService.findByUsername(user.getUsername(), periodo.getId(), roles);
 
         if(periodo != null){
             sessionDTO.setEstadoPeriodo(EstadoPeriodo.ACTIVO.name());
