@@ -1,11 +1,11 @@
 define([
 	'jquery',
 	'core/BaseView',
-	'views/DirRegistroSeguimientoView',
+	'views/TutRegistroSeguimientoView',
 	'collections/TutoriaCollection',
 	'text!templates/tplTutSeguimiento.html',
 	'Session'
-], function($, BaseView, DirRegistroSeguimientoView, TutoriaCollection, tplTutSeguimiento, Session){
+], function($, BaseView, TutRegistroSeguimientoView, TutoriaCollection, tplTutSeguimiento, Session){
 
 	var TutSeguimientoView = BaseView.extend({
         template: _.template(tplTutSeguimiento),
