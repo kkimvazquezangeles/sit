@@ -19,7 +19,7 @@ public interface TutorRepository extends CrudRepository<Tutor, Long> {
 
     @Query("SELECT tu FROM Tutor tu" +
             " WHERE tu.periodoPersonal.periodo.id = :idPeriodo AND tu.periodoPersonal.personal.id = :idPersonal")
-    List<Tutor> findGrupoTutoradoByTutorAndPeriodo(
+    Tutor findByPersonalAndPeriodo(
             @Param("idPersonal") Long idPersonal,
             @Param("idPeriodo") Long idPeriodo);
 }

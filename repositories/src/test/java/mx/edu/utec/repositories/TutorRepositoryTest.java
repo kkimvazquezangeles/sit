@@ -29,7 +29,7 @@ public class TutorRepositoryTest {
 
     @Test
     public void testfindGrupoTutoradoByTutorAndPeriodo(){
-        List<Tutor> tutor = tutorRepository.findGrupoTutoradoByTutorAndPeriodo(3L,1L);
+        Tutor tutor = tutorRepository.findByPersonalAndPeriodo(3L,1L);
         Assert.assertNotNull(tutor);
     }
 

@@ -2,9 +2,9 @@ package mx.edu.utec.services.impl;
 
 import mx.edu.utec.dto.PersonalDTO;
 import mx.edu.utec.dto.TutorDTO;
-import mx.edu.utec.model.Personal;
-import mx.edu.utec.model.Tutor;
+import mx.edu.utec.model.*;
 import mx.edu.utec.repositories.TutorRepository;
+import mx.edu.utec.services.PeriodoService;
 import mx.edu.utec.services.TutorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,15 +52,9 @@ public class TutorServiceImpl implements TutorService {
     }
 
     @Override
-    public List<TutorDTO> findGrupoTutoradoByTutorAndPeriodo(Long idPersonal, Long idPeriodo) {
-        Iterator<Tutor> itTutor = tutorRepository.findAllByCarreraAndPeriodo(idPersonal, idPeriodo).iterator();
-        List<TutorDTO> copy = new ArrayList<TutorDTO>();
-        while (itTutor.hasNext()) {
-            Tutor tutor = itTutor.next();
-            TutorDTO dto = convertTutorDTO(tutor);
-            copy.add(dto);
-        }
-        return copy;
+    public TutorDTO findGrupoTutoradoByTutorAndPeriodo(Long idPersonal, Long idPeriodo) {
+        Tutor tutor = tutorRepository.findByPersonalAndPeriodo(idPersonal, idPeriodo);
+        return convertTutorDTO(tutor);
     }
 
     private TutorDTO convertTutorDTO(Tutor tutor) {
@@ -79,5 +73,39 @@ public class TutorServiceImpl implements TutorService {
         return dto;
 
     }
+
+    @Override
+    public void createTutor(TutorDTO tutor) {
+        this.tutorRepository.save(convertDTOtoTutor(tutor));
+    }
+
+    private Tutor convertDTOtoTutor(TutorDTO tutorDto) {
+        Tutor tutor = new Tutor();
+
+        Carrera carrera = new Carrera();
+        carrera.setId(tutorDto.getIdCarrera());
+        tutor.setCarrera(carrera);
+
+        Cuatrimestre cuatrimestre = new Cuatrimestre();
+        cuatrimestre.setId(tutorDto.getIdCuatrimestre());
+        tutor.setCuatrimestre(cuatrimestre);
+
+        Grupo grupo = new Grupo();
+        grupo.setId(tutorDto.getIdGrupo());
+        tutor.setGrupo(grupo);
+
+        PeriodoPersonal periodoPersonal = new PeriodoPersonal();
+        periodoPersonal.setId(tutorDto.getIdPeriodoPersonal());
+        tutor.setPeriodoPersonal(periodoPersonal);
+
+
+        return tutor;
+    }
+
+    @Override
+    public void deleteTutor(TutorDTO tutor) {
+        this.tutorRepository.delete(tutor.getId());
+    }
+
 
 }

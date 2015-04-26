@@ -6,7 +6,7 @@ define([
     var TutorModel = Backbone.Model.extend({
 
         url: function() {
-            return 'carrera/tutor';
+            return 'tutor/personal/' + Session.get('id');
         },
 
         defaults: {

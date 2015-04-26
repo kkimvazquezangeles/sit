@@ -49,8 +49,16 @@ public class CuatrimestreServiceImpl implements CuatrimestreService {
 
 
     @Override
-    public List<GrupoDTO> findAllGrupoByCuatrimestreAndCarrera(Long idCarrera, Long idGrupo, Long idPeriodo) {
-        Iterator<Grupo> itGrupo = grupoRepository.findAllGrupoByCarreraAndCuatrimestre(idCarrera, idGrupo, idPeriodo).iterator();
+    public List<GrupoDTO> findAllGrupoByCuatrimestreAndCarrera(Long idCarrera, Long idGrupo, Long idPeriodo, String tipo) {
+        Iterator<Grupo> itGrupo = null;
+
+        if(tipo.equals("asignacion")) {
+            itGrupo = grupoRepository.findAllGrupoByCarreraAndCuatrimestre(idCarrera, idGrupo, idPeriodo).iterator();
+        }
+        if(tipo.equals("plan")) {
+            itGrupo = grupoRepository.findAllPlanGrupoByCarreraAndCuatrimestre(idCarrera, idGrupo, idPeriodo).iterator();
+        }
+
         List<GrupoDTO> grupos = new ArrayList<>();
         while (itGrupo.hasNext()) {
             Grupo grupo = itGrupo.next();

@@ -6,6 +6,7 @@ package mx.edu.utec.dto;
 public class TutorDTO {
 
     private Long id;
+    private Long idPeriodoPersonal;
     private Long idTutor;
     private String nombreCompleto;
     private Long idCarrera;
@@ -21,6 +22,14 @@ public class TutorDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getIdPeriodoPersonal() {
+        return idPeriodoPersonal;
+    }
+
+    public void setIdPeriodoPersonal(Long idPeriodoPersonal) {
+        this.idPeriodoPersonal = idPeriodoPersonal;
     }
 
     public Long getIdTutor() {
@@ -92,6 +101,7 @@ public class TutorDTO {
     public String toString() {
         return "TutorDTO{" +
                 "id=" + id +
+                ", idPeriodoPersonal" + idPeriodoPersonal +
                 ", idTutor=" + idTutor +
                 ", nombreCompleto='" + nombreCompleto + '\'' +
                 ", idCarrera=" + idCarrera +

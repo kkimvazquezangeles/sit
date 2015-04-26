@@ -14,7 +14,8 @@ define([
 
         events: {
                     'change #psi-carreras': 'actualizaCuatrimestre',
-                    'change #psi-cuatrimestres': 'actualizaGrupos'
+                    'change #psi-cuatrimestres': 'actualizaGrupos',
+                    'click #btn-pdf' : 'generaPdf'
                 },
 
                 initialize: function() {
@@ -47,6 +48,7 @@ define([
                 actualizaCuatrimestre: function(event){
                     var idCarrera = $(event.target).val();
                     var modelo = this.carreras.get(idCarrera);
+                    $("#psi-cuatrimestres").html('');
                     this.cuatrimestres = new CuatrimestreCollection(modelo);
                     this.listenTo(this.cuatrimestres, 'sync', this.syncCuatrimestres);
                     this.cuatrimestres.fetch({
@@ -81,7 +83,7 @@ define([
                     this.grupos = new GruposCollection(carrera, cuatrimestre);
                     this.listenTo(this.grupos, 'sync', this.syncGrupos);
                     this.grupos.fetch({
-                        data: { periodo: Session.get('idPeriodo') },
+                        data: { periodo: Session.get('idPeriodo'), tipo: 'plan' },
                         processData: true
                     });
                 },
@@ -99,7 +101,15 @@ define([
                         value: modelo.get('id'),
                         text : modelo.get('grupo')
                     }));
-                }
+                },
+
+                 generaPdf: function(){
+                     var url = "report/programaGrupal?periodo=" + Session.get('idPeriodo') +
+                         "&carrera=" + $('#psi-carreras').val() +
+                         "&cuatrimestre=" + $('#psi-cuatrimestres').val() +
+                         "&grupo=" + $('#psi-grupos').val();
+                     window.open(url, '_blank');
+                 }
         	});
 
 	return PsicPlanView;

@@ -8,17 +8,19 @@ define([
 	'collections/GruposCollection',
 	'models/PersonalModel',
 	'models/CarreraModel',
+	'models/TutorModel',
 	'text!templates/tplDirAsignaciones.html',
 	'Session'
 ], function($, _, BaseView, CarrerasCollection, PersonalCollection, CuatrimestreCollection, GruposCollection,
-            PersonalModel, CarreraModel, tplDirAsignaciones, Session){
+            PersonalModel, CarreraModel, TutorModel, tplDirAsignaciones, Session){
 
 	var DirAsignacionesView = BaseView.extend({
         template: _.template(tplDirAsignaciones),
 
         events: {
             'change #dir-carrera': 'actualizaPersonal',
-            'change #dir-cuatrimestres': 'actualizaGrupos'
+            'change #dir-cuatrimestres': 'actualizaGrupos',
+            'click #dir-asignar': 'asignarTutor'
         },
 
         initialize: function() {
@@ -107,11 +109,12 @@ define([
             var idCuatrimestre = $(event.target).val();
             var carrera = this.carreras.get(idCarrera);
             var cuatrimestre = this.cuatrimestres.get(idCuatrimestre);
-            $("#dir-carrera").html
+            /*$("#dir-carrera").html*/
+            $("#dir-grupos").html('');
             this.grupos = new GruposCollection(carrera, cuatrimestre);
             this.listenTo(this.grupos, 'sync', this.syncGrupos);
             this.grupos.fetch({
-                data: { periodo: Session.get('idPeriodo')},
+                data: { periodo: Session.get('idPeriodo'), tipo: 'asignacion' },
                 processData: true
             });
         },
@@ -129,8 +132,24 @@ define([
                 value: modelo.get('id'),
                 text : modelo.get('grupo')
             }));
-        }
+        },
 
+        asignarTutor: function(){
+            var tutor = new TutorModel();
+            that = this;
+            tutor.save({idCarrera: $("#dir-carrera").val(),
+                        idPeriodoPersonal: $("#dir-personal").val(),
+                        idCuatrimestre: $("#dir-cuatrimestres").val(),
+                        idGrupo: $("#dir-grupos").val()}, {
+                wait:true,
+                success:function(model, response) {
+                    alert(response.message);
+                },
+                error: function(model, error) {
+                    alert(error);
+                }
+            });
+        }
 
 	});
 

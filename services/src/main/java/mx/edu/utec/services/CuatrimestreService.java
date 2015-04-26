@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface CuatrimestreService {
     List<CuatrimestreDTO> findAllCuatrimestreByCarrera(Long idCarrera, Long idPeriodo);
-    List<GrupoDTO> findAllGrupoByCuatrimestreAndCarrera(Long idCarrera, Long idGrupo, Long idPeriodo);
+    List<GrupoDTO> findAllGrupoByCuatrimestreAndCarrera(Long idCarrera, Long idGrupo, Long idPeriodo, String tipo);
 }

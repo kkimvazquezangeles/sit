@@ -34,19 +34,16 @@ public class PersonalController {
     CarreraService carreraService;
 
     @ResponseBody
-    @RequestMapping(value = { "/carrera/{carrera}" }, method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
-    public List<PersonalDTO> listProfesorByCarrera(@PathVariable("carrera") Long carrera_id, @RequestParam(value = "periodo") Long periodo) {
+    @RequestMapping(
+            value = { "/carrera/{carrera}" },
+            method = RequestMethod.GET,
+            produces = {"application/json;charset=UTF-8"})
+    public List<PersonalDTO> listProfesorByCarrera(
+            @PathVariable("carrera") Long carrera_id,
+            @RequestParam(value = "periodo") Long periodo) {
         logger.info("carrera_id " + carrera_id);
-        logger.info("page " + periodo);
-        return personalService.findAllProfesorByCarrera(carrera_id);
-    }
-
-    @ResponseBody
-    @RequestMapping(value = { "/{personal}/carreras" }, method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
-    public List<PersonalDTO> listProfesorByCarreraDos(@PathVariable("personal") Long carrera_id, @RequestParam(value = "periodo") Long periodo) {
-        logger.info("carrera_id " + carrera_id);
-        logger.info("page " + periodo);
-        return personalService.findAllProfesorByCarrera(carrera_id);
+        logger.info("periodo " + periodo);
+        return personalService.findAllProfesorByCarrera(carrera_id, periodo);
     }
 
     @ResponseBody

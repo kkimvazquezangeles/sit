@@ -19,6 +19,7 @@ public class SessionDTO {
     private String carrera;
     private String estadoPeriodo;
     private String idPeriodo;
+    private Long idPeriodoPersonal;
 
     public String getName() {
         return name;
@@ -80,5 +81,13 @@ public class SessionDTO {
 
     public void setIdPeriodo(String idPeriodo) {
         this.idPeriodo = idPeriodo;
+    }
+
+    public Long getIdPeriodoPersonal() {
+        return idPeriodoPersonal;
+    }
+
+    public void setIdPeriodoPersonal(Long idPeriodoPersonal) {
+        this.idPeriodoPersonal = idPeriodoPersonal;
     }
 }

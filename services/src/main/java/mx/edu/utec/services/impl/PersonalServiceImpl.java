@@ -1,10 +1,8 @@
 package mx.edu.utec.services.impl;
 
-import mx.edu.utec.dto.AlumnoDTO;
 import mx.edu.utec.dto.PersonalDTO;
-import mx.edu.utec.model.Alumno;
-import mx.edu.utec.model.Personal;
-import mx.edu.utec.repositories.PersonalRepository;
+import mx.edu.utec.model.PeriodoPersonal;
+import mx.edu.utec.repositories.PeriodoPersonalRepository;
 import mx.edu.utec.services.PersonalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,26 +19,26 @@ import java.util.List;
 public class PersonalServiceImpl implements PersonalService {
 
     @Autowired
-    PersonalRepository personalRepository;
+    PeriodoPersonalRepository periodoPersonalRepository;
 
     @Override
-    public List<PersonalDTO> findAllProfesorByCarrera(Long idCarrera) {
-        Iterator<Personal> itPersonal = personalRepository.findAllProfesorByCarrera(idCarrera).iterator();
+    public List<PersonalDTO> findAllProfesorByCarrera(Long idCarrera, Long idPeriodo) {
+        Iterator<PeriodoPersonal> itPersonal = periodoPersonalRepository.findAllByCarreraAndPeriodo(idCarrera, idPeriodo).iterator();
         List<PersonalDTO> copy = new ArrayList<PersonalDTO>();
         while (itPersonal.hasNext()) {
-            Personal p = itPersonal.next();
+            PeriodoPersonal p = itPersonal.next();
             PersonalDTO dto = convertPersonalToDTO(p);
             copy.add(dto);
         }
         return copy;
     }
 
-    private PersonalDTO convertPersonalToDTO(Personal personal) {
+    private PersonalDTO convertPersonalToDTO(PeriodoPersonal periodoPersonal) {
         PersonalDTO dto = new PersonalDTO();
-        dto.setId(personal.getId());
-        dto.setNombreCompleto(personal.getNombre() +
-                ' ' + personal.getApellidoPaterno() +
-                ' ' + personal.getApellidoMaterno());
+        dto.setId(periodoPersonal.getId());
+        dto.setNombreCompleto(periodoPersonal.getPersonal().getNombre() +
+                ' ' + periodoPersonal.getPersonal().getApellidoPaterno() +
+                ' ' + periodoPersonal.getPersonal().getApellidoMaterno());
         return dto;
     }
 

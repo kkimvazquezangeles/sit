@@ -20,7 +20,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 /**
- * Created by betuzo on 25/01/15.
+ * Created by kkimvazquezangeles on 25/01/15.
  */
 @Configuration
 @EnableWebSecurity
@@ -56,10 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/**").authenticated()
                     .and()
-                .addFilterAfter(new CsrfResponseHeaderFilter(), CsrfFilter.class)
-                    .csrf()
-                    .csrfTokenRepository(csrfTokenRepository())
-                    .and()
+                .csrf()
+                    .disable()
                 .exceptionHandling()
                     .accessDeniedPage("/login");
 

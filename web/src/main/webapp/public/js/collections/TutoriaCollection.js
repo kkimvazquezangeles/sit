@@ -9,6 +9,7 @@ define([
             return 'carrera/' + this.carreraId + '/seguimiento';
         },
         initialize: function(){
+
         },
         setCarreraId: function(carreraId){
             this.carreraId = carreraId;

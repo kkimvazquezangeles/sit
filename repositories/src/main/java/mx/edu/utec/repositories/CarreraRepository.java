@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface CarreraRepository extends CrudRepository<Carrera, Long> {
     @Query("SELECT distinct gm.carrera FROM CuatrimestreMateria gm " +
-            "WHERE gm.periodoPersonal.personal.id = :idPersonal AND gm.periodoPersonal.id = :idPeriodo")
+            "WHERE gm.periodoPersonal.personal.id = :idPersonal AND gm.periodoPersonal.periodo.id = :idPeriodo")
     List<Carrera> findAllByPersonalAndPeriodo(@Param("idPersonal") Long idPersonal, @Param("idPeriodo") Long idPeriodo);
 
     @Query("SELECT d.carrera FROM Director d " +

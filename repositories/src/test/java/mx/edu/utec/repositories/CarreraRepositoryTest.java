@@ -22,13 +22,13 @@ public class CarreraRepositoryTest {
 
     @Test
     public void findAllByPersonalAndPeriodo() {
-        List<Carrera> carreras = carreraRepository.findAllByPersonalAndPeriodo(1L, 1L);
+        List<Carrera> carreras = carreraRepository.findAllByPersonalAndPeriodo(4L, 1L);
         Assert.assertNotNull(carreras);
     }
 
     @Test
-    public void findByDirector() {
-        Carrera carrera = carreraRepository.findByDirector(1L);
+    public void findAllCarrerasByPeriodo() {
+        List<Carrera> carrera = carreraRepository.findAllCarrerasByPeriodo(1L);
         Assert.assertNotNull(carrera);
     }
 

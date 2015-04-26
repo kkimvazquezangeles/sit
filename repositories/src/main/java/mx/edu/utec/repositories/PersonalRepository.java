@@ -17,6 +17,7 @@ public interface PersonalRepository extends CrudRepository<Personal, Long> {
             "gm.periodoPersonal.personal.id in ( " +
                 "SELECT ur.user.personal.id FROM UserRole ur " +
                 "WHERE ur.role = 'PROFESOR' " +
-                ") ")
+                ") and " +
+            "gm.periodoPersonal.id not in (SELECT tu.periodoPersonal.id from Tutor tu)")
     public List<Personal> findAllProfesorByCarrera(@Param("idCarrera") Long idCarrera);
 }

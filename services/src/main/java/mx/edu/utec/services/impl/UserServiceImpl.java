@@ -2,7 +2,11 @@ package mx.edu.utec.services.impl;
 
 import mx.edu.utec.dto.CarreraDTO;
 import mx.edu.utec.dto.SessionDTO;
+import mx.edu.utec.model.Periodo;
+import mx.edu.utec.model.PeriodoPersonal;
+import mx.edu.utec.model.Personal;
 import mx.edu.utec.model.User;
+import mx.edu.utec.repositories.PeriodoPersonalRepository;
 import mx.edu.utec.repositories.UserRepository;
 import mx.edu.utec.services.CarreraService;
 import mx.edu.utec.services.UserService;
@@ -27,10 +31,20 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private CarreraService carreraService;
 
+    @Autowired
+    PeriodoPersonalRepository periodoPersonalRepository;
+
     @Override
     public SessionDTO findByUsername(String username, Long idPeriodo, Collection<? extends GrantedAuthority> authorities) {
         SessionDTO dto = convertUserToDTO(userRepository.findByUsername(username));
         dto.setRoles(authorities);
+        Periodo periodo = new Periodo();
+        periodo.setId(idPeriodo);
+        Personal personal = new Personal();
+        personal.setId(dto.getId());
+
+        PeriodoPersonal periodoPersonal= periodoPersonalRepository.findByPeriodoAndPersonal(periodo, personal);
+        dto.setIdPeriodoPersonal(periodoPersonal.getId());
 
         List<CarreraDTO> carreras =
                 carreraService.findAllByPersonalAndPeriodoAndPerfil(

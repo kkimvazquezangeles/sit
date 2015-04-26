@@ -27,10 +27,8 @@ public class UserServiceTest {
         Collection<GrantedAuthority> roles = new ArrayList<>();
 
         GrantedAuthority profesor = new TestAuthority("PROFESOR");
-        GrantedAuthority tutor = new TestAuthority("TUTOR");
         roles.add(profesor);
-        roles.add(tutor);
-        userService.findByUsername("jcruz@utec.edu.mx", 1L, roles);
+        userService.findByUsername("jsoto@utec.edu.mx", 1L, roles);
     }
 
     private class TestAuthority implements GrantedAuthority {

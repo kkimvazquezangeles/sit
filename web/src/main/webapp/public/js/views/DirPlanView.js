@@ -14,7 +14,8 @@ define([
 
         events: {
             'change #dir-carrera': 'actualizaCuatrimestre',
-            'change #dir-cuatrimestres': 'actualizaGrupos'
+            'change #dir-cuatrimestres': 'actualizaGrupos',
+            'click #btn-pdf' : 'generaPdf'
         },
 
         initialize: function() {
@@ -81,7 +82,7 @@ define([
             this.grupos = new GruposCollection(carrera, cuatrimestre);
             this.listenTo(this.grupos, 'sync', this.syncGrupos);
             this.grupos.fetch({
-                data: { periodo: Session.get('idPeriodo') },
+                data: { periodo: Session.get('idPeriodo'), tipo: 'plan' },
                 processData: true
             });
         },
@@ -99,7 +100,15 @@ define([
                 value: modelo.get('id'),
                 text : modelo.get('grupo')
             }));
-        }
+        },
+
+        generaPdf: function(){
+            var url = "report/programaGrupal?periodo=" + Session.get('idPeriodo') +
+                "&carrera=" + $('#dir-carrera').val() +
+                "&cuatrimestre=" + $('#dir-cuatrimestres').val() +
+                "&grupo=" + $('#dir-grupos').val();
+            window.open(url, '_blank');
+        },
 	});
 
 	return DirPlanView;

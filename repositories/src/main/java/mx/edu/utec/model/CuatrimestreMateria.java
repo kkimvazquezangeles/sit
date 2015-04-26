@@ -71,6 +71,14 @@ public class CuatrimestreMateria {
         this.carrera = carrera;
     }
 
+    public Grupo getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(Grupo grupo) {
+        this.grupo = grupo;
+    }
+
     @Override
     public String toString() {
         return "GradoMateria{" +
@@ -79,6 +87,7 @@ public class CuatrimestreMateria {
                 ", grado=" + cuatrimestre +
                 ", materia=" + materia +
                 ", carrera=" + carrera +
+                ", grupo=" + grupo +
                 '}';
     }
 }

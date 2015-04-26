@@ -41,8 +41,9 @@ public class SessionController {
         Periodo periodo = periodoService.findByEstadoPeriodo(EstadoPeriodo.ACTIVO);
         Collection<? extends GrantedAuthority> roles = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
         logger.info("Roles del usuario ------> " + roles);
+        if (periodo.getId() != null)
+            logger.info("Periodo ------> " + periodo.getId());
         SessionDTO sessionDTO = userService.findByUsername(user.getUsername(), periodo.getId(), roles);
-
         if(periodo != null){
             sessionDTO.setEstadoPeriodo(EstadoPeriodo.ACTIVO.name());
             sessionDTO.setIdPeriodo(periodo.getId().toString());

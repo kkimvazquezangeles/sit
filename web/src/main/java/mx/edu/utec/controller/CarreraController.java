@@ -46,8 +46,9 @@ public class CarreraController {
     public List<GrupoDTO> listGrupoByCuatrimestre(
             @PathVariable("carrera") Long idCarrera,
             @PathVariable("cuatrimestre") Long idCuatrimestre,
-            @RequestParam(value = "periodo") Long idPeriodo) {
-        return cuatrimestreService.findAllGrupoByCuatrimestreAndCarrera(idCarrera, idCuatrimestre, idPeriodo);
+            @RequestParam(value = "periodo") Long idPeriodo,
+            @RequestParam(value = "tipo") String tipo) {
+        return cuatrimestreService.findAllGrupoByCuatrimestreAndCarrera(idCarrera, idCuatrimestre, idPeriodo, tipo);
     }
 
     @ResponseBody
@@ -66,12 +67,6 @@ public class CarreraController {
     public List<TutoriaDTO> findAllSeguimientos(@PathVariable("carrera") Long idCarrera, @RequestParam(value = "periodo") Long idPeriodo) {
         return tutoriaService.findAllTutoriaByCarreraAndPeriodo(idCarrera, idPeriodo);
 
-    }
-
-    @ResponseBody
-    @RequestMapping(value = { "/{personal}/grupo/cuatrimestre" }, method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
-    public List<TutorDTO> findGrupoTutorado(@PathVariable("personal") Long idPersonal, @RequestParam(value = "periodo") Long idPeriodo) {
-        return tutorService.findGrupoTutoradoByTutorAndPeriodo(idPersonal, idPeriodo);
     }
 
 

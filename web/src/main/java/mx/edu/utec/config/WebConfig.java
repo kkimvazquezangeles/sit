@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 /**
- * Created by betuzo on 28/11/14.
+ * Created by kkimvazquezangeles on 28/11/14.
  */
 
 @Configuration

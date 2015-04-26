@@ -10,6 +10,7 @@ define([
         tagName: 'tr',
 
         events: {
+            'click #btn-eliminar' : 'eliminarTutor'
         },
 
         initialize: function() {
@@ -18,7 +19,23 @@ define([
         render: function() {
             this.$el.html(this.template(this.model.toJSON()));
             return this;
+        },
+
+        eliminarTutor: function(event){
+            var res = confirm("¿Desea eliminar esta asignación?");
+            if(res){
+                that = this;
+                this.model.destroy({ contentType: 'application/json',
+                    success: function() {
+                        console.log(that.parent.collection);
+                    },
+                    error: function(model, error) {
+                        alert(error);
+                    }
+                });
+            }
         }
+
 	});
 
 	return DirRegistroTutoresView;

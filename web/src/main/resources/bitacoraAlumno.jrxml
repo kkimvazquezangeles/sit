@@ -114,7 +114,7 @@ WHERE
 			</staticText>
 			<image>
 				<reportElement x="12" y="20" width="161" height="40" uuid="4d315e9c-351c-43eb-8070-56bfe3f8e914"/>
-				<imageExpression><![CDATA["/Users/kkimvazquezangeles/opt/java/sit/web/src/main/resources/utec_titulo.png"]]></imageExpression>
+				<imageExpression><![CDATA["utec_titulo.png"]]></imageExpression>
 			</image>
 			<rectangle>
 				<reportElement x="0" y="61" width="163" height="18" backcolor="#CCCCCC" uuid="d041cf32-47ce-498d-8d23-c3c934e3a255"/>
