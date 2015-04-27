@@ -27,6 +27,8 @@ public class Tutoria {
     @Column(name = "status_tutoria")
     private StatusTutoria statusTutoria;
 
+    private String observaciones;
+
     @Column(name = "fecha_inicio")
     private Date fechaInicio;
 
@@ -40,9 +42,6 @@ public class Tutoria {
     @ManyToOne
     @JoinColumn(name = "tutor_id")
     private Personal tutor;
-
-    @OneToMany(mappedBy = "tutoria")
-    private List<TutoriaDetalle> comentarios;
 
 
     @Enumerated(EnumType.STRING)
@@ -86,6 +85,14 @@ public class Tutoria {
         this.statusTutoria = statusTutoria;
     }
 
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
     public Date getFechaInicio() {
 
         return fechaInicio;
@@ -126,16 +133,6 @@ public class Tutoria {
         this.tutor = tutor;
     }
 
-    public List<TutoriaDetalle> getComentarios() {
-
-        return comentarios;
-    }
-
-    public void setComentarios(List<TutoriaDetalle> comentarios) {
-
-        this.comentarios = comentarios;
-    }
-
     public Departamento getDepartamento() {
         return departamento;
     }
@@ -155,7 +152,6 @@ public class Tutoria {
                 ", fechaFin=" + fechaFin +
                 ", canalizador=" + canalizador +
                 ", tutor=" + tutor +
-                ", comentarios=" + comentarios +
                 ", departamento=" + departamento +
                 '}';
     }

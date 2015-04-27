@@ -39,6 +39,9 @@ define([
             $('#dir-tpo-tutoria option[value="'+modelo.get('tipoTutoria')+'"]').attr('selected', 'selected');
             $('#dir-estatus option[value="'+modelo.get('statusTutoria')+'"]').attr('selected', 'selected');
             $('#dir-depto option[value="'+modelo.get('departamento')+'"]').attr('selected', 'selected');
+
+            $("#dir-depto option[value='TUTOR']").attr('disabled','disabled');
+            $("#dir-depto option[value='DIRECCION']").attr('disabled','disabled');
         }
 
 	});

@@ -9,6 +9,7 @@ public class PlanTutoriaDTO {
     private Long idTutoria;
     private String statusTutoria;
     private String tipoTutoria;
+    private String observaciones;
     private String departamento;
     private String diagnostico;
     private String proposito;
@@ -53,6 +54,13 @@ public class PlanTutoriaDTO {
         this.tipoTutoria = tipoTutoria;
     }
 
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
 
     public String getDepartamento() {
         return departamento;

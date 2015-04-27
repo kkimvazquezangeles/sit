@@ -35,7 +35,6 @@ public class PersistenceConfig {
         builder.addScript("classpath:/mx/edu/utec/scripts/periodoAlumno.sql");
         builder.addScript("classpath:/mx/edu/utec/scripts/periodoPersonal.sql");
         builder.addScript("classpath:/mx/edu/utec/scripts/tutoria.sql");
-        builder.addScript("classpath:/mx/edu/utec/scripts/tutoriaDetalle.sql");
         builder.addScript("classpath:/mx/edu/utec/scripts/materia.sql");
         builder.addScript("classpath:/mx/edu/utec/scripts/cuatrimestreMateria.sql");
         builder.addScript("classpath:/mx/edu/utec/scripts/tutor.sql");
@@ -72,7 +71,6 @@ public class PersistenceConfig {
         resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/alumno-data.sql"));
         resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/periodoAlumno-data.sql"));
         resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/tutoria-data.sql"));
-        resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/tutoriaDetalle-data.sql"));
         resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/plan-data.sql"));
         resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/planDetalle-data.sql"));
         resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/planTutoria-data.sql"));
