@@ -15,7 +15,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertNotNull;
 /**
- * Created by betuzo on 26/04/15.
+ * Created by kkimvazquezangeles on 26/04/15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {ServicesConfig.class, PersistenceConfig.class, MailConfig.class})

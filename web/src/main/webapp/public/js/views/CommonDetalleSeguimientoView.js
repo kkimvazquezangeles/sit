@@ -61,6 +61,7 @@ define([
         },
 
         configurePsic: function(){
+            $("#estatus option[value='REGISTRADA']").attr('disabled','disabled');
             $("#tpo-tutoria").attr('disabled','disabled');
             $("#canalizar").hide();
             $("#depto").hide();

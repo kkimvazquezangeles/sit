@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * Created by betuzo on 26/04/15.
+ * Created by kkimvazquezangeles on 26/04/15.
  */
 
 @Configuration
