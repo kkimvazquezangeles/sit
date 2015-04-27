@@ -1,0 +1,7 @@
+<html>
+<body>
+<h1>UTEC Sistema Institucional de Tutorias</h1>
+<p>Le informa que ${tutorName} registró una Tutoria para ${alumnoName}.</p>
+<p>Gracias por usar el Sistema Institucional de Tutorias.</p>
+</body>
+</html>
