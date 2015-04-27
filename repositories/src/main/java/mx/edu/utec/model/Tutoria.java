@@ -44,6 +44,7 @@ public class Tutoria {
     @OneToMany(mappedBy = "tutoria")
     private List<TutoriaDetalle> comentarios;
 
+
     @Enumerated(EnumType.STRING)
     private Departamento departamento;
 
@@ -135,6 +136,14 @@ public class Tutoria {
         this.comentarios = comentarios;
     }
 
+    public Departamento getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
+    }
+
     @Override
     public String toString() {
         return "Tutoria{" +
@@ -147,6 +156,7 @@ public class Tutoria {
                 ", canalizador=" + canalizador +
                 ", tutor=" + tutor +
                 ", comentarios=" + comentarios +
+                ", departamento=" + departamento +
                 '}';
     }
 }

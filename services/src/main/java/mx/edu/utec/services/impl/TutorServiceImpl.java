@@ -103,8 +103,8 @@ public class TutorServiceImpl implements TutorService {
     }
 
     @Override
-    public void deleteTutor(TutorDTO tutor) {
-        this.tutorRepository.delete(tutor.getId());
+    public void deleteTutor(Long idTutor) {
+        this.tutorRepository.delete(idTutor);
     }
 
 

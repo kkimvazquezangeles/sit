@@ -75,6 +75,7 @@ public class PersistenceConfig {
         resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/tutoriaDetalle-data.sql"));
         resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/plan-data.sql"));
         resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/planDetalle-data.sql"));
+        resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/planTutoria-data.sql"));
         resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/cuatrimestreMateria-data.sql"));
         resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/director-data.sql"));
         resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/user-data.sql"));

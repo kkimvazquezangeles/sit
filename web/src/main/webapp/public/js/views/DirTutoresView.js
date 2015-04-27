@@ -27,8 +27,8 @@ define([
                 processData: true
             });
 
-            this.tutores = new TutorCollection();
-            this.listenTo(this.tutores, 'add', this.agregaTutor);
+            app.tutores = new TutorCollection();
+            this.listenTo(app.tutores, 'add', this.agregaTutor);
 
         },
 
@@ -58,11 +58,9 @@ define([
                 processData: true
             });
 
-            this.tutores.setCarreraId(idCarrera);
-            this.tutores.fetch({
-                data: { periodo: Session.get('idPeriodo') },
-                processData: true
-            });
+            app.tutores.setCarreraId(idCarrera);
+            this.actualizaTutores();
+
         },
 
         syncCuatrimestres: function(){
@@ -86,8 +84,15 @@ define([
         },
 
         agregaTutor: function(modelo){
-            var vista = new DirRegistroTutoresView({model: modelo});
+            var vista = new DirRegistroTutoresView(modelo);
             $("#grid-data").find('tbody:last').append(vista.render().$el);
+        },
+
+        actualizaTutores: function(){
+            app.tutores.fetch({
+                data: { periodo: Session.get('idPeriodo') },
+                processData: true
+            });
         }
 	});
 

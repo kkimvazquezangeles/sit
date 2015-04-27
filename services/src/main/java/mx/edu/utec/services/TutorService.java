@@ -11,6 +11,6 @@ public interface TutorService {
     List<TutorDTO> findAllTutoresByCarreraAndPeriodo(Long idCarrera, Long idPeriodo);
     TutorDTO findGrupoTutoradoByTutorAndPeriodo(Long idPersonal, Long idPeriodo);
     void createTutor(TutorDTO tutor);
-    void deleteTutor(TutorDTO tutor);
+    void deleteTutor(Long idTutor);
 
 }

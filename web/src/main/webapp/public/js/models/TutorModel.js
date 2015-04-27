@@ -6,7 +6,12 @@ define([
     var TutorModel = Backbone.Model.extend({
 
         url: function() {
-            return 'tutor/personal/' + Session.get('id');
+            if(this.tipo == 2){
+                this.tipo = 1;
+                return 'tutor/' + this.id;
+            } else {
+                return 'tutor/personal/' + Session.get('id');
+            }
         },
 
         defaults: {
@@ -15,6 +20,10 @@ define([
         initialize: function() {
             this.on('change', function(){
             });
+        },
+
+        setTipo: function(tipo) {
+            this.tipo = tipo;
         },
 
         validate: function(atributos) {

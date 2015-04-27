@@ -144,12 +144,24 @@ define([
                 wait:true,
                 success:function(model, response) {
                     alert(response.message);
+                    Backbone.history.navigate('director/asignaciones', { trigger : true });
+                    that.destroyView();
                 },
                 error: function(model, error) {
                     alert(error);
                 }
             });
+        },
+
+        destroyView: function() {
+            // COMPLETELY UNBIND THE VIEW
+            this.undelegateEvents();
+            this.$el.removeData().unbind();
+            // Remove view from DOM
+            this.remove();
+            Backbone.View.prototype.remove.call(this);
         }
+
 
 	});
 

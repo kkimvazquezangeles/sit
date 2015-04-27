@@ -43,14 +43,12 @@ public class TutorController {
 
     @ResponseBody
     @RequestMapping(
-            value = { "/personal/{personal}" },
+            value = { "/{tutor}" },
             method = RequestMethod.DELETE,
             produces = {"application/json;charset=UTF-8"})
-    public ResponseDTO deleteTutor(@PathVariable("personal") Long idPersonal) {
+    public ResponseDTO deleteTutor(@PathVariable("tutor") Long idTutor) {
         ResponseDTO responseDTO = new ResponseDTO();
-        TutorDTO tutor = new TutorDTO();
-        tutor.setId(idPersonal);
-        tutorService.deleteTutor(tutor);
+        tutorService.deleteTutor(idTutor);
         responseDTO.setCode(ResponseDTO.CODE_SUCCESS);
         responseDTO.setMessage("Tutor eliminado correctamente");
         return responseDTO;

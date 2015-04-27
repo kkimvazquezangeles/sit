@@ -34,6 +34,7 @@ public class TutoriaServiceImpl implements TutoriaService{
 
     private TutoriaDTO convertTutoriaDTO(Tutoria tutoria) {
         TutoriaDTO dto = new TutoriaDTO();
+        dto.setId(tutoria.getId());
         dto.setMatricula(tutoria.getPeriodoAlumno().getAlumno().getMatricula());
         dto.setNombreAlumno(tutoria.getPeriodoAlumno().getAlumno().getNombre() + ' ' + tutoria.getPeriodoAlumno().getAlumno().getApellidoPaterno() + ' ' + tutoria.getPeriodoAlumno().getAlumno().getApellidoMaterno());
         dto.setNombreTutor(tutoria.getTutor().getNombre() + ' ' + tutoria.getTutor().getApellidoPaterno() + ' ' + tutoria.getTutor().getApellidoMaterno());
