@@ -44,8 +44,8 @@ public class MailConfig {
         mailSender.setPort(Integer.parseInt(env.getRequiredProperty(PROPERTY_NAME_PORT)));
         mailSender.setUsername(env.getRequiredProperty(PROPERTY_NAME_USERNAME));
         mailSender.setPassword(env.getRequiredProperty(PROPERTY_NAME_PASSWORD));
-
         mailSender.setJavaMailProperties(javaMailProperties());
+
         return mailSender;
     }
 
@@ -63,7 +63,7 @@ public class MailConfig {
         velocityEngine.setResourceLoaderPath("classpath:/email");
         velocityEngine.setPreferFileSystemAccess(false);
 
-              return velocityEngine.createVelocityEngine();
+        return velocityEngine.createVelocityEngine();
     }
 
     @Bean
@@ -72,6 +72,7 @@ public class MailConfig {
         simpleMailMessage.setFrom(env.getRequiredProperty(PROPERTY_NAME_FROM_DEFAULT));
         simpleMailMessage.setTo(env.getRequiredProperty(PROPERTY_NAME_TO_DEFAULT));
         simpleMailMessage.setSubject(env.getRequiredProperty(PROPERTY_NAME_SUBJECT_DEFAULT));
+
         return simpleMailMessage;
     }
 }

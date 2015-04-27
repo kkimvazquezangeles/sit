@@ -24,9 +24,9 @@ define([
         },
 
         configure: function(){
-            $('#tpo-tutoria option[value="'+this.model.get('tipoTutoria')+'"]').attr('selected', 'selected');
-            $('#estatus option[value="'+this.model.get('statusTutoria')+'"]').attr('selected', 'selected');
-            $('#depto option[value="'+this.model.get('departamento')+'"]').attr('selected', 'selected');
+            $('#seg-tipo-tutoria option[value="'+this.model.get('tipoTutoria')+'"]').attr('selected', 'selected');
+            $('#seg-status option[value="'+this.model.get('statusTutoria')+'"]').attr('selected', 'selected');
+            $('#seg-depto option[value="'+this.model.get('departamento')+'"]').attr('selected', 'selected');
 
             switch(Session.getRole()){
                 case 'DIRECTOR':
@@ -46,38 +46,38 @@ define([
         },
 
         configureDir: function(){
-            $("#depto option[value='TUTOR']").attr('disabled','disabled');
-            $("#depto option[value='DIRECCION']").attr('disabled','disabled');
-            $("#tpo-tutoria").attr('disabled','disabled');
-            $("#estatus").attr('disabled','disabled');
-            $("#btnRedactar").hide();
-            $("#btnBitacora").hide();
+            $("#seg-depto option[value='TUTOR']").attr('disabled','disabled');
+            $("#seg-depto option[value='DIRECCION']").attr('disabled','disabled');
+            $("#seg-tipo-tutoria").attr('disabled','disabled');
+            $("#seg-status").attr('disabled','disabled');
+            $("#seg-btn-redactar").hide();
+            $("#seg-btn-bitacora").hide();
         },
 
         configureTut: function(){
-            $("#depto option[value='TUTOR']").attr('disabled','disabled');
-            $("#depto option[value='PSICOLOGIA']").attr('disabled','disabled');
-            $("#btnRedactar").hide();
+            $("#seg-depto option[value='TUTOR']").attr('disabled','disabled');
+            $("#seg-depto option[value='PSICOLOGIA']").attr('disabled','disabled');
+            $("#seg-btn-redactar").hide();
         },
 
         configurePsic: function(){
-            $("#estatus option[value='REGISTRADA']").attr('disabled','disabled');
-            $("#tpo-tutoria").attr('disabled','disabled');
-            $("#canalizar").hide();
-            $("#depto").hide();
-            $("#btnGuardar").hide();
-            $("#btnBitacora").hide();
+            $("#seg-status option[value='REGISTRADA']").attr('disabled','disabled');
+            $("#seg-tipo-tutoria").attr('disabled','disabled');
+            $("#seg-lb-depto").hide();
+            $("#seg-depto").hide();
+            $("#seg-btn-guardar").hide();
+            $("#seg-btn-bitacora").hide();
 
         },
 
         configureProf: function(){
-            $("#depto").attr('disabled','disabled');
-            $("#tpo-tutoria").attr('disabled','disabled');
-            $("#estatus").attr('disabled','disabled');
-            $("#depto").hide();
-            $("#btnGuardar").hide();
-            $("#btnBitacora").hide();
-            $("#btnRedactar").hide();
+            $("#seg-depto").attr('disabled','disabled');
+            $("#seg-tipo-tutoria").attr('disabled','disabled');
+            $("#seg-status").attr('disabled','disabled');
+            $("#seg-depto").hide();
+            $("#seg-btn-guardar").hide();
+            $("#seg-btn-bitacora").hide();
+            $("#seg-btn-redactar").hide();
 
         }
 	});
