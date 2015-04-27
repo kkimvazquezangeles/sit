@@ -3,9 +3,9 @@ define([
 	'underscore',
 	'core/BaseView',
     'models/PlanTutoriaModel',
-    'views/TutDetalleSeguimientoView',
+    'views/CommonDetalleSeguimientoView',
 	'text!templates/tplTutRegistroSeguimiento.html'
-], function($, _, BaseView, PlanTutoriaModel, TutDetalleSeguimientoView, tplTutRegistroSeguimiento){
+], function($, _, BaseView, PlanTutoriaModel, CommonDetalleSeguimientoView, tplTutRegistroSeguimiento){
 
 	var TutRegistroSeguimientoView = BaseView.extend({
         template: _.template(tplTutRegistroSeguimiento),
@@ -33,17 +33,8 @@ define([
         },
 
         syncPlanTutoria: function(modelo){
-            var view = new TutDetalleSeguimientoView({model: modelo});
+            var view = new CommonDetalleSeguimientoView({model: modelo});
             view.render();
-
-            $('#tut-tpo-tutoria option[value="'+modelo.get('tipoTutoria')+'"]').attr('selected', 'selected');
-            $('#tut-estatus option[value="'+modelo.get('statusTutoria')+'"]').attr('selected', 'selected');
-            $('#tut-depto option[value="'+modelo.get('departamento')+'"]').attr('selected', 'selected');
-
-            $("#tut-estatus option[value='REGISTRADA']").attr('disabled','disabled');
-
-            $("#tut-depto option[value='TUTOR']").attr('disabled','disabled');
-            $("#tut-depto option[value='PSICOLOGIA']").attr('disabled','disabled');
         }
 	});
 

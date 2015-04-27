@@ -17,7 +17,7 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = { "mx.edu.utec.controller" })
-@Import({ PersistenceConfig.class, ServicesConfig.class, SecurityConfig.class })
+@Import({ PersistenceConfig.class, ServicesConfig.class, SecurityConfig.class, MailConfig.class })
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override

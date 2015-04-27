@@ -1,0 +1,31 @@
+<p>OBSERVACIONES</p>
+<textarea class="area" disabled><%=observaciones%></textarea><br>
+<a id="tutoria">TIPO DE TUTORÍA</a>
+<select id="tpo-tutoria" >
+    <option value="REMEDIAL">Remedial</option>
+    <option value="PREVENTIVA">Preventiva</option>
+</select>
+<a id="status" class="status">ESTATUS</a>
+<select id="estatus">
+    <option value="REGISTRADA">Registrada</option>
+    <option value="ENPROCESO">En Proceso</option>
+    <option value="FINALIZADA">Finalizada</option>
+</select><br>
+<a id="canalizar">CANALIZAR</a>
+<select id="depto">
+    <option value="TUTOR">Tutor</option>
+    <option value="DIRECCION">Dirección</option>
+    <option value="PSICOLOGIA">Depto. Psicología</option>
+</select>
+<button type="button" class="btnNota">Nota informativa</button>
+<p>DIAGNOSTICO DEL TUTOR</p>
+<textarea class="area"><%=diagnostico%></textarea>
+<p>PROPOSITO DE LA TUTORÍA</p>
+<textarea class="area"><%=proposito%></textarea>
+<p>MEDIDAS DE CONTROL</p>
+<textarea class="area"><%=medidas%></textarea>
+<p>RECOMENDACIONES</p>
+<textarea class="area"><%=recomendaciones%></textarea>
+<button type="button" id="btnGuardar" class="button">Guardar</button>
+<button type="button" id="btnBitacora" class="btnBit">Bitácora PDF</button>
+<button type="button"  id="btnRedactar" class="button">Redactar nota</button>

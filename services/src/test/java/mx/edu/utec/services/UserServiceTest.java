@@ -1,5 +1,6 @@
 package mx.edu.utec.services;
 
+import mx.edu.utec.config.MailConfig;
 import mx.edu.utec.config.PersistenceConfig;
 import mx.edu.utec.config.ServicesConfig;
 import org.junit.Test;
@@ -16,7 +17,7 @@ import java.util.Collection;
  * Created by kkimvazquezangeles on 22/04/15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {ServicesConfig.class, PersistenceConfig.class})
+@ContextConfiguration(classes = {ServicesConfig.class, PersistenceConfig.class, MailConfig.class})
 public class UserServiceTest {
 
     @Autowired
