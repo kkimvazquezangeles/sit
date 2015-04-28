@@ -7,6 +7,7 @@ public class PlanTutoriaDTO {
 
     private Long id;
     private Long idTutoria;
+    private String matricula;
     private String statusTutoria;
     private String tipoTutoria;
     private String observaciones;
@@ -36,6 +37,13 @@ public class PlanTutoriaDTO {
         this.idTutoria = idTutoria;
     }
 
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
 
     public String getStatusTutoria() {
         return statusTutoria;

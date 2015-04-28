@@ -12,6 +12,7 @@ define([
         template: _.template(tplCommonDetalleSeguimiento),
 
         events: {
+            'click #seg-btn-bitacora' : 'generaPdf'
         },
 
         initialize: function() {
@@ -55,6 +56,7 @@ define([
         },
 
         configureTut: function(){
+            $("#seg-status option[value='REGISTRADA']").attr('disabled','disabled');
             $("#seg-depto option[value='TUTOR']").attr('disabled','disabled');
             $("#seg-depto option[value='PSICOLOGIA']").attr('disabled','disabled');
             $("#seg-btn-redactar").hide();
@@ -74,11 +76,17 @@ define([
             $("#seg-depto").attr('disabled','disabled');
             $("#seg-tipo-tutoria").attr('disabled','disabled');
             $("#seg-status").attr('disabled','disabled');
+            $("#seg-lb-depto").hide();
             $("#seg-depto").hide();
             $("#seg-btn-guardar").hide();
             $("#seg-btn-bitacora").hide();
             $("#seg-btn-redactar").hide();
 
+        },
+
+        generaPdf: function(){
+            var url = "report/bitacoraAlumno?periodo=" + Session.get('idPeriodo') + "&matricula=" + this.model.get('matricula');
+            window.open(url, '_blank');
         }
 	});
 

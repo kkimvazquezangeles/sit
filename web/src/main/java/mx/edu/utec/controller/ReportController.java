@@ -77,4 +77,25 @@ public class ReportController {
         final OutputStream outStream = response.getOutputStream();
         JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
     }
+
+    @RequestMapping(value = "/bitacoraAlumno", method = RequestMethod.GET)
+    @ResponseBody
+    public void getRpt3(
+            HttpServletResponse response,
+            @RequestParam(value = "periodo") Long idPeriodo,
+            @RequestParam(value = "matricula") String matricula) throws JRException, IOException, SQLException {
+        InputStream jasperStream = new ClassPathResource("bitacoraAlumno.jasper").getInputStream();
+        Map<String,Object> params = new HashMap<>();
+        params.put("periodoid", idPeriodo);
+        params.put("matricula", matricula);
+        JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, dataSource.getConnection());
+
+        response.setContentType("application/x-pdf");
+        response.setHeader("Content-disposition", "inline; filename=BitacoraTutoriaAlumno.pdf");
+
+        final OutputStream outStream = response.getOutputStream();
+        JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+    }
+
 }

@@ -27,6 +27,7 @@ public class PlanTutoriaServiceImpl implements PlanTutoriaService {
         PlanTutoriaDTO dto = new PlanTutoriaDTO();
         dto.setId(planTutoria.getId());
         dto.setIdTutoria(planTutoria.getTutoria().getId());
+        dto.setMatricula(planTutoria.getTutoria().getPeriodoAlumno().getAlumno().getMatricula());
         dto.setObservaciones(planTutoria.getTutoria().getObservaciones());
         dto.setStatusTutoria(planTutoria.getTutoria().getStatusTutoria().toString());
         dto.setTipoTutoria(planTutoria.getTutoria().getTipoTutoria().toString());
