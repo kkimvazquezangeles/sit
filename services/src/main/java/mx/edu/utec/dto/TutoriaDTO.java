@@ -9,6 +9,7 @@ public class TutoriaDTO {
     private String nombreAlumno;
     private String matricula;
     private String nombreTutor;
+    private String departamento;
 
     public Long getId() {
         return id;
@@ -40,5 +41,13 @@ public class TutoriaDTO {
 
     public void setNombreTutor(String nombreTutor) {
         this.nombreTutor = nombreTutor;
+    }
+
+    public String getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
     }
 }

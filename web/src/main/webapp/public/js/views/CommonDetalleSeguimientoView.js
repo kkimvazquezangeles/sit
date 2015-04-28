@@ -2,9 +2,10 @@ define([
 	'jquery',
 	'underscore',
 	'core/BaseView',
+	'models/TutoriaModel',
 	'text!templates/tplCommonDetalleSeguimiento.html',
 	'Session'
-], function($, _, BaseView, tplCommonDetalleSeguimiento, Session){
+], function($, _, BaseView, TutoriaModel, tplCommonDetalleSeguimiento, Session){
 
 	var CommonDetalleSeguimientoView = BaseView.extend({
 	    el: '#detalle-seguimiento',
@@ -12,7 +13,8 @@ define([
         template: _.template(tplCommonDetalleSeguimiento),
 
         events: {
-            'click #seg-btn-bitacora' : 'generaPdf'
+            'click #seg-btn-bitacora' : 'generaPdf',
+            'click #seg-btn-guardar' : 'actualizaDepto'
         },
 
         initialize: function() {
@@ -87,6 +89,21 @@ define([
         generaPdf: function(){
             var url = "report/bitacoraAlumno?periodo=" + Session.get('idPeriodo') + "&matricula=" + this.model.get('matricula');
             window.open(url, '_blank');
+        },
+
+        actualizaDepto: function(){
+            var tutoria = new TutoriaModel();
+            tutoria.set({id: this.model.get('idTutoria')});
+            tutoria.set({departamento: $("#seg-depto").val()});
+            tutoria.save( {
+                wait:true,
+                success:function(model, response) {
+                    alert(response.message);
+                },
+                error: function(model, error) {
+                    alert(error);
+                }
+            });
         }
 	});
 

@@ -1,6 +1,7 @@
 package mx.edu.utec.services.impl;
 
 import mx.edu.utec.dto.TutoriaDTO;
+import mx.edu.utec.model.Departamento;
 import mx.edu.utec.model.Tutoria;
 import mx.edu.utec.repositories.TutoriaRepository;
 import mx.edu.utec.services.TutoriaService;
@@ -40,6 +41,14 @@ public class TutoriaServiceImpl implements TutoriaService{
         dto.setNombreTutor(tutoria.getTutor().getNombre() + ' ' + tutoria.getTutor().getApellidoPaterno() + ' ' + tutoria.getTutor().getApellidoMaterno());
         return dto;
 
+    }
+
+
+    @Override
+    public void updateTutoria(TutoriaDTO tutoriaDTO) {
+        Tutoria tutoria = tutoriaRepository.findOne(tutoriaDTO.getId());
+        tutoria.setDepartamento(Departamento.valueOf(tutoriaDTO.getDepartamento()));
+        tutoriaRepository.save(tutoria);
     }
 
 

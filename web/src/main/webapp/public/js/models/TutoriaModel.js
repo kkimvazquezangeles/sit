@@ -6,7 +6,7 @@ define([
     var TutoriaModel = Backbone.Model.extend({
 
         url: function() {
-            return 'carrera/seguimiento';
+            return 'tutoria';
         },
 
         defaults: {
