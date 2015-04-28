@@ -94,8 +94,7 @@ define([
         actualizaDepto: function(){
             var tutoria = new TutoriaModel();
             tutoria.set({id: this.model.get('idTutoria')});
-            tutoria.set({departamento: $("#seg-depto").val()});
-            tutoria.save( {
+            tutoria.save({departamento: $("#seg-depto").val()},{
                 wait:true,
                 success:function(model, response) {
                     alert(response.message);
