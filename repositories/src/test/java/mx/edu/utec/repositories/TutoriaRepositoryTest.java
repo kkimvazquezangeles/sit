@@ -26,4 +26,5 @@ public class TutoriaRepositoryTest {
         List<Tutoria> tutorias = tutoriaRepository.findAllTutoriaByCarreraAndPeriodo(1L, 1L);
         Assert.assertNotNull(tutorias);
     }
+
 }

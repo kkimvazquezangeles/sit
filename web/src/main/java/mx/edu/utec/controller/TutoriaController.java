@@ -1,7 +1,6 @@
 package mx.edu.utec.controller;
 
 
-import mx.edu.utec.dto.PlanTutoriaDTO;
 import mx.edu.utec.dto.ResponseDTO;
 import mx.edu.utec.dto.TutoriaDTO;
 import mx.edu.utec.services.TutoriaService;
@@ -35,6 +34,19 @@ public class TutoriaController {
         tutoriaService.updateTutoria(dto);
         responseDTO.setCode(ResponseDTO.CODE_SUCCESS);
         responseDTO.setMessage("Alumno canalizado al departamento de Psicología");
+        return responseDTO;
+    }
+
+    @ResponseBody
+    @RequestMapping(
+            value = { "" },
+            method = RequestMethod.POST,
+            produces = {"application/json;charset=UTF-8"})
+    public ResponseDTO createTutoria(@RequestBody TutoriaDTO tutoria) {
+        ResponseDTO responseDTO = new ResponseDTO();
+        tutoriaService.createTutoria(tutoria);
+        responseDTO.setCode(ResponseDTO.CODE_SUCCESS);
+        responseDTO.setMessage("Alumno canalizado correctamente");
         return responseDTO;
     }
 

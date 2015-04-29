@@ -1,19 +1,17 @@
 <form class="form1">
     <a>Programa educativo</a>
-    <select class="carreras" id="pro-carreras">
+    <select id="pro-carreras" class="carreras" >
     </select>
-    <input type="text" placeholder="Matricula" required/>
-    <select>
-        <option value="">Tipo de tutoria</option>
-        <option value="">PREVENTIVA</option>
-        <option value="">REMEDIAL</option>
+    <input type="text" id="matricula" placeholder="Matricula" value="" required/>
+    <select id="pro-tpo-tutoria">
+        <option value="">Tipo de tutoría</option>
+        <option value="PREVENTIVA">Preventiva</option>
+        <option value="REMEDIAL">Remedial</option>
     </select>
-    <select>
-        <option>Departamento</option>
-        <option>TUTOR</option>
-        <option>DEPTO. PSICOLOGIA</option>
+    <select id="pro-depto">
+        <option value="TUTOR">Tutor</option>
     </select>
     <p>OBSERVACIONES<br></p>
-    <textarea rows="5" cols="30"></textarea><br>
-    <button type="button" class="button">Enviar</button>
+    <textarea rows="5" cols="30" id="prof-obser"></textarea><br>
+    <button id="btn-enviar" type="button" class="button">Enviar</button>
 </form>

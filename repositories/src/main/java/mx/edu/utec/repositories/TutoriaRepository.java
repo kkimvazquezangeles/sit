@@ -15,7 +15,8 @@ import java.util.List;
 public interface TutoriaRepository extends CrudRepository<Tutoria, Long> {
     @Query("SELECT tt " +
             "FROM Tutoria tt " +
-            "WHERE tt.periodoAlumno.alumno.carrera.id = :idCarrera and tt.periodoAlumno.periodo.id = :idPeriodo")
+            "WHERE tt.periodoAlumno.alumno.carrera.id = :idCarrera AND" +
+            " tt.periodoAlumno.periodo.id = :idPeriodo")
     public List<Tutoria> findAllTutoriaByCarreraAndPeriodo(
             @Param("idCarrera") Long idCarrera,
             @Param("idPeriodo") Long idPeriodo);
