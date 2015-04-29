@@ -42,6 +42,9 @@ public class PlanGrupalServiceImpl implements PlanGrupalService {
         } else {
             planGrupalDTO = new PlanGrupalDTO();
         }
+        while (actividadesDTO.size() <= PLAN_GRUPAL_MAX_PLAN_DETALLE){
+            actividadesDTO.add(new PlanDetalleDTO());
+        }
         planGrupalDTO.setActividades(actividadesDTO);
         return planGrupalDTO;
     }

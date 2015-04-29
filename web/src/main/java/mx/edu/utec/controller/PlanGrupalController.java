@@ -4,9 +4,13 @@ import mx.edu.utec.dto.PlanGrupalDTO;
 import mx.edu.utec.dto.ResponseDTO;
 import mx.edu.utec.repositories.PlanGrupalRepository;
 import mx.edu.utec.services.PlanGrupalService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 /**
  * Created by kkimvazquezangeles on 28/04/15.
@@ -14,17 +18,25 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/planGrupal")
 public class PlanGrupalController {
+
+    private static final Logger logger = LoggerFactory.getLogger(PlanGrupalController.class);
+
     @Autowired
     PlanGrupalService planGrupalService;
 
-    @ResponseBody
     @RequestMapping(
             value = { "" },
             method = RequestMethod.POST,
             produces = {"application/json;charset=UTF-8"})
-    public ResponseDTO createTutor(@RequestBody PlanGrupalDTO plan) {
+    @ResponseBody
+    public ResponseDTO createTutor(@RequestBody Map<String, String> plan) {
+
+        for (Map.Entry sd : plan.entrySet()) {
+            logger.info("KEY----->>> " + sd.getKey());
+            logger.info("VALUE----->>> " + sd.getValue());
+        }
         ResponseDTO responseDTO = new ResponseDTO();
-        planGrupalService.createPlanGrupal(plan);
+        //planGrupalService.createPlanGrupal(plan);
         responseDTO.setCode(ResponseDTO.CODE_SUCCESS);
         responseDTO.setMessage("Se guardaron cambios en el plan grupal");
         return responseDTO;

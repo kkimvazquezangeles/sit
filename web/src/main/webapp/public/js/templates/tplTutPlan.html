@@ -1,22 +1,63 @@
 <form class="plantuto">
     <p>DIAGNOSTICO</p>
-    <textarea class="area"><%=diagnostico%></textarea>
+    <textarea id="tut-plan-diagnostico" class="area"><%=diagnostico%></textarea>
     <p>PROPOSITO</p>
-    <textarea class="area"><%=proposito%></textarea>
+    <textarea id="tut-plan-proposito" class="area"><%=proposito%></textarea>
     <p>ACTIVIDADES A DESARROLLAR EN EL CUATRIMESTRE:</p>
-    <a class="mes1">1er MES</a><a class="mes">2do MES</a><a class="mes">3er MES</a><a class="mes">4to MES</a><br>
-    <input type="text"><input type="radio" name="act1"><input type="radio" name="act1"><input type="radio" name="act1"><input type="radio" name="act1"><br>
-    <input type="text"><input type="radio" name="act2"><input type="radio" name="act2"><input type="radio" name="act2"><input type="radio" name="act2"><br>
-    <input type="text"><input type="radio" name="act3"><input type="radio" name="act3"><input type="radio" name="act3"><input type="radio" name="act3"><br>
-    <input type="text"><input type="radio" name="act4"><input type="radio" name="act4"><input type="radio" name="act4"><input type="radio" name="act4"><br>
-    <input type="text"><input type="radio" name="act5"><input type="radio" name="act5"><input type="radio" name="act5"><input type="radio" name="act5"><br>
-    <input type="text"><input type="radio" name="act6"><input type="radio" name="act6"><input type="radio" name="act6"><input type="radio" name="act6"><br>
-    <input type="text"><input type="radio" name="act7"><input type="radio" name="act7"><input type="radio" name="act7"><input type="radio" name="act7"><br>
-    <input type="text"><input type="radio" name="act8"><input type="radio" name="act8"><input type="radio" name="act8"><input type="radio" name="act8"><br>
+    <a class="mes1">1er MES</a><a class="mes">2do MES</a><a class="mes">3er MES</a><a class="mes">4to MES</a>
+    <br>
+        <input type="text" name="acttx1" value="<%= actividades[0].actividad %>">
+        <input type="radio" name="act1" value="MES1">
+        <input type="radio" name="act1" value="MES2">
+        <input type="radio" name="act1" value="MES3">
+        <input type="radio" name="act1" value="MES4">
+    <br>
+        <input type="text" name="acttx2" value="<%= actividades[1].actividad %>">
+        <input type="radio" name="act2" value="MES1">
+        <input type="radio" name="act2" value="MES2">
+        <input type="radio" name="act2" value="MES3">
+        <input type="radio" name="act2" value="MES4">
+    <br>
+        <input type="text" name="acttx3" value="<%= actividades[2].actividad %>">
+        <input type="radio" name="act3" value="MES1">
+        <input type="radio" name="act3" value="MES2">
+        <input type="radio" name="act3" value="MES3">
+        <input type="radio" name="act3" value="MES4">
+    <br>
+        <input type="text" name="acttx4" value="<%= actividades[3].actividad %>">
+        <input type="radio" name="act4" value="MES1">
+        <input type="radio" name="act4" value="MES2">
+        <input type="radio" name="act4" value="MES3">
+        <input type="radio" name="act4" value="MES4">
+    <br>
+        <input type="text" name="acttx5" value="<%= actividades[4].actividad %>">
+        <input type="radio" name="act5" value="MES1">
+        <input type="radio" name="act5" value="MES2">
+        <input type="radio" name="act5" value="MES3">
+        <input type="radio" name="act5" value="MES4">
+    <br>
+        <input type="text" name="acttx6" value="<%= actividades[5].actividad %>">
+        <input type="radio" name="act6" value="MES1">
+        <input type="radio" name="act6" value="MES2">
+        <input type="radio" name="act6" value="MES3">
+        <input type="radio" name="act6" value="MES4">
+    <br>
+        <input type="text" name="acttx7" value="<%= actividades[6].actividad %>">
+        <input type="radio" name="act7" value="MES1">
+        <input type="radio" name="act7" value="MES2">
+        <input type="radio" name="act7" value="MES3">
+        <input type="radio" name="act7" value="MES4">
+    <br>
+        <input type="text" name="acttx8" value="<%= actividades[7].actividad %>">
+        <input type="radio" name="act8" value="MES1">
+        <input type="radio" name="act8" value="MES2">
+        <input type="radio" name="act8" value="MES3">
+        <input type="radio" name="act8" value="MES4">
+    <br>
     <p>MEDIDAS DE CONTROL PARA EL LOGRO DE LA TUTORÍA</p>
-    <textarea class="area"><%=medidas%></textarea>
+    <textarea id="tut-plan-medida" class="area"><%=medidas%></textarea>
     <p>RECOMENDACIONES DEL TUTOR</p>
-    <textarea class="area"><%=recomendaciones%></textarea>
-    <button type="button" class="button">Guardar</button>
+    <textarea id="tut-plan-recomendacion" class="area"><%=recomendaciones%></textarea>
+    <button id="tut-plan-guardar" type="button" class="button">Guardar</button>
     <button type="button" class="button">Obtener PDF</button>
 </form>
