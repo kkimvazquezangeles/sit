@@ -34,11 +34,14 @@ define([
         },
 
         guardarPlan: function(event){
+            that = this;
             this.populateModel();
-            this.model.save({idTutor: Session.get('id').toString()},{
+            this.model.save({},{
                 wait:true,
                 success:function(model, response) {
                     alert(response.message);
+                    Backbone.history.navigate('tutor/plan', { trigger : true });
+                    that.destroyView();
                 },
                 error: function(model, error) {
                     alert(error);
@@ -52,7 +55,8 @@ define([
                 proposito: $('#tut-plan-proposito').val(),
                 medidas: $('#tut-plan-medida').val(),
                 recomendaciones: $('#tut-plan-recomendacion').val(),
-                idTutor: Session.get('id')
+                idTutor: Session.get('id'),
+                idPeriodo: Session.get('idPeriodo')
             });
             var acts = [];
             for (iCont = 1; iCont <= 8; iCont++) {
@@ -63,6 +67,15 @@ define([
                 }
             }
             this.model.set({ actividades:acts });
+        },
+
+        destroyView: function() {
+            // COMPLETELY UNBIND THE VIEW
+            this.undelegateEvents();
+            this.$el.removeData().unbind();
+            // Remove view from DOM
+            this.remove();
+            Backbone.View.prototype.remove.call(this);
         }
 	});
 

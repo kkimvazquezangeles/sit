@@ -8,7 +8,6 @@ public class PlanDetalleDTO {
     private Long id;
     private String actividad;
     private String mes;
-    private Long idPlanGrupal;
 
     public Long getId() {
         return id;
@@ -34,11 +33,4 @@ public class PlanDetalleDTO {
         this.mes = mes;
     }
 
-    public Long getIdPlanGrupal() {
-        return idPlanGrupal;
-    }
-
-    public void setIdPlanGrupal(Long idPlanGrupal) {
-        this.idPlanGrupal = idPlanGrupal;
-    }
 }

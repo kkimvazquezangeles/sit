@@ -29,13 +29,9 @@ public class PlanGrupalController {
             method = RequestMethod.POST,
             produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public ResponseDTO createTutor(@RequestBody Map<String, String> plan) {
-        for (Map.Entry sd : plan.entrySet()) {
-            logger.info("KEY----->>> " + sd.getKey());
-            logger.info("VALUE----->>> " + sd.getValue());
-        }
+    public ResponseDTO createTutor(@RequestBody PlanGrupalDTO plan) {
         ResponseDTO responseDTO = new ResponseDTO();
-        //planGrupalService.createPlanGrupal(plan);
+        planGrupalService.createPlanGrupal(plan);
         responseDTO.setCode(ResponseDTO.CODE_SUCCESS);
         responseDTO.setMessage("Se guardaron cambios en el plan grupal");
         return responseDTO;

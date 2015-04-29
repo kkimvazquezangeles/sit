@@ -13,6 +13,7 @@ public class PlanGrupalDTO {
     private String medidas;
     private String recomendaciones;
     private Long idTutor;
+    private Long idPeriodo;
     private List<PlanDetalleDTO> actividades;
 
     public Long getId() {
@@ -61,6 +62,14 @@ public class PlanGrupalDTO {
 
     public void setIdTutor(Long idTutor) {
         this.idTutor = idTutor;
+    }
+
+    public Long getIdPeriodo() {
+        return idPeriodo;
+    }
+
+    public void setIdPeriodo(Long idPeriodo) {
+        this.idPeriodo = idPeriodo;
     }
 
     public List<PlanDetalleDTO> getActividades() {

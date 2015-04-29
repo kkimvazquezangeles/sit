@@ -9,6 +9,7 @@ import mx.edu.utec.model.PlanDetalle;
 import mx.edu.utec.model.Tutor;
 import mx.edu.utec.repositories.PlanDetalleGrupalRepository;
 import mx.edu.utec.repositories.PlanGrupalRepository;
+import mx.edu.utec.repositories.TutorRepository;
 import mx.edu.utec.services.PlanGrupalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,9 @@ public class PlanGrupalServiceImpl implements PlanGrupalService {
 
     @Autowired
     PlanDetalleGrupalRepository planDetalleGrupalRepository;
+
+    @Autowired
+    TutorRepository tutorRepository;
 
     @Override
     public PlanGrupalDTO findByPersonalAndPeriodo(Long idPeriodo, Long idPersonal) {
@@ -55,7 +59,6 @@ public class PlanGrupalServiceImpl implements PlanGrupalService {
         dto.setId(actividad.getId());
         dto.setActividad(actividad.getActividad());
         dto.setMes(actividad.getMes().toString());
-        dto.setIdPlanGrupal(actividad.getPlan().getId());
 
         return dto;
     }
@@ -77,6 +80,8 @@ public class PlanGrupalServiceImpl implements PlanGrupalService {
     @Override
     public void createPlanGrupal(PlanGrupalDTO planGrupalDTO) {
         Plan plan = this.planGrupalRepository.save(convertDTOtoPlan(planGrupalDTO));
+        Tutor tutor = tutorRepository.findByPersonalAndPeriodo(planGrupalDTO.getIdTutor(), planGrupalDTO.getIdPeriodo());
+        plan.setTutor(tutor);
         for(PlanDetalleDTO planDetalleDTO : planGrupalDTO.getActividades()){
             PlanDetalle planDetalle = convertDTOtoPlanDetalle(planDetalleDTO);
             planDetalle.setPlan(plan);
@@ -87,15 +92,10 @@ public class PlanGrupalServiceImpl implements PlanGrupalService {
     private Plan convertDTOtoPlan(PlanGrupalDTO planGrupalDTO) {
         Plan plan = new Plan();
 
-        Tutor tutor = new Tutor();
-        tutor.setId(planGrupalDTO.getIdTutor());
-
-        plan.setId(planGrupalDTO.getId());
         plan.setMedidas(planGrupalDTO.getMedidas());
         plan.setProposito(planGrupalDTO.getProposito());
         plan.setDiagnostico(planGrupalDTO.getDiagnostico());
         plan.setRecomendaciones(planGrupalDTO.getRecomendaciones());
-        plan.setTutor(tutor);
 
         return plan;
     }
@@ -103,7 +103,6 @@ public class PlanGrupalServiceImpl implements PlanGrupalService {
     private PlanDetalle convertDTOtoPlanDetalle(PlanDetalleDTO planDetalleDTO){
         PlanDetalle planDetalle = new PlanDetalle();
 
-        planDetalle.setId(planDetalleDTO.getId());
         planDetalle.setActividad(planDetalleDTO.getActividad());
         planDetalle.setMes(Mes.valueOf(planDetalleDTO.getMes()));
 
