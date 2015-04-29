@@ -35,7 +35,7 @@ define([
 
         guardarPlan: function(event){
             this.populateModel();
-            this.model.save({
+            this.model.save({idTutor: Session.get('id').toString()},{
                 wait:true,
                 success:function(model, response) {
                     alert(response.message);
@@ -62,7 +62,7 @@ define([
                     acts.push(new PlanDetalleModel({actividad: valAct, mes: valMes}));
                 }
             }
-            //this.model.set({ actividades:acts });
+            this.model.set({ actividades:acts });
         }
 	});
 

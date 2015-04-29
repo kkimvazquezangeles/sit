@@ -30,7 +30,6 @@ public class PlanGrupalController {
             produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public ResponseDTO createTutor(@RequestBody Map<String, String> plan) {
-
         for (Map.Entry sd : plan.entrySet()) {
             logger.info("KEY----->>> " + sd.getKey());
             logger.info("VALUE----->>> " + sd.getValue());
