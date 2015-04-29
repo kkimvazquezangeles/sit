@@ -24,20 +24,18 @@ define([
         },
 
         mostrarSeguimiento: function(){
-         var modelo = new PlanTutoriaModel();
-         this.listenTo(modelo, 'sync', this.syncPlanTutoria);
-         modelo.fetch({
-             data: { tutoria: this.model.id },
-             processData: true
-         });
+            var modelo = new PlanTutoriaModel();
+            this.listenTo(modelo, 'sync', this.syncPlanTutoria);
+            modelo.fetch({
+                data: { tutoria: this.model.id },
+                processData: true
+            });
         },
 
         syncPlanTutoria: function(modelo){
-         var view = new CommonDetalleSeguimientoView({model: modelo});
-         view.render();
-
+            var view = new CommonDetalleSeguimientoView({model: modelo});
+            view.render();
         }
-
 	});
 
 	return ProfRegistroSeguimientoView;

@@ -3,6 +3,7 @@ package mx.edu.utec.model;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by kkimvazquezangeles on 22/03/15.
@@ -20,6 +21,9 @@ public class Plan {
     @OneToOne
     @JoinColumn(name = "tutor_id")
     private Tutor tutor;
+
+    @OneToMany(mappedBy = "plan", fetch = FetchType.EAGER)
+    private List<PlanDetalle> actividades;
 
 
     public Long getId() {
@@ -78,6 +82,14 @@ public class Plan {
 
     public void setTutor(Tutor tutor) {
         this.tutor = tutor;
+    }
+
+    public List<PlanDetalle> getActividades() {
+        return actividades;
+    }
+
+    public void setActividades(List<PlanDetalle> actividades) {
+        this.actividades = actividades;
     }
 
     @Override

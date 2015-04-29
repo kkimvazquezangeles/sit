@@ -11,7 +11,9 @@ public class PlanDetalle {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String actividad;
+
     @Enumerated(EnumType.STRING)
     private Mes mes;
 
@@ -41,6 +43,14 @@ public class PlanDetalle {
 
     public void setMes(Mes mes) {
         this.mes = mes;
+    }
+
+    public Plan getPlan() {
+        return plan;
+    }
+
+    public void setPlan(Plan plan) {
+        this.plan = plan;
     }
 
     @Override
