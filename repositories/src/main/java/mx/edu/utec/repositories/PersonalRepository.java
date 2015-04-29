@@ -20,4 +20,15 @@ public interface PersonalRepository extends CrudRepository<Personal, Long> {
                 ") and " +
             "gm.periodoPersonal.id not in (SELECT tu.periodoPersonal.id from Tutor tu)")
     public List<Personal> findAllProfesorByCarrera(@Param("idCarrera") Long idCarrera);
+
+    @Query("SELECT tu.periodoPersonal.personal FROM Tutor tu" +
+            " WHERE tu.periodoPersonal.periodo.id = :idPeriodo AND" +
+            " tu.carrera.id = :idCarrera AND" +
+            " tu.grupo in (SELECT pa.grupo FROM PeriodoAlumno pa WHERE" +
+            " pa.alumno.matricula = :matricula AND" +
+            " pa.periodo.id = :idPeriodo)")
+    Personal findByCarreraAndMatriculaAndPeriodo(
+            @Param("idPeriodo") Long idPeriodo,
+            @Param("idCarrera") Long idCarrera,
+            @Param("matricula") String matricula);
 }

@@ -13,4 +13,6 @@ import java.util.List;
 public interface TutoriaService {
     public List<TutoriaDTO> findAllTutoriaByCarreraAndPeriodo(Long idCarrera, Long idPeriodo);
     void updateTutoria(TutoriaDTO tutoriaDTO);
+    public void createTutoria(TutoriaDTO tutoriaDTO);
+
 }

@@ -26,4 +26,10 @@ public class PersonalRepositoryTest {
         List<Personal> profesores = personalRepository.findAllProfesorByCarrera(1L);
         Assert.assertNotNull(profesores);
     }
+
+    @Test
+    public void testfindByCarreraAndMatriculaAndPeriodo(){
+        Personal tutor = personalRepository.findByCarreraAndMatriculaAndPeriodo(1L, 1L, "1712100276");
+        Assert.assertNotNull(tutor);
+    }
 }
