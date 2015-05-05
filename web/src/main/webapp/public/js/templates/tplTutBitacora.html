@@ -1,30 +1,36 @@
 <form class="form4">
-    <input type="text" placeholder="Matricula" required/>
+    <input id="matricula" type="text" placeholder="Matricula" class="solo-numero" required/>
     <a class="tip">TIPO DE TUTORÍA</a>
-    <select>
-        <option>SELECCIONAR</option>
-        <option>PREVENTIVA</option>
-        <option>REMEDIAL</option>
+    <select id="tpo-tutoria">
+        <option>Seleccionar</option>
+        <option value="PREVENTIVA">Preventiva</option>
+        <option value="REMEDIAL">Remedial</option>
     </select><br>
     <a>ESTATUS</a>
-    <select>
-        <option>REGISTRADA</option>
-        <option>EN PROCESO</option>
-        <option>FINALIZADA</option>
+    <select id="status">
+        <option value="ENPROCESO">En Proceso</option>
     </select>
     <a>CANALIZAR</a>
-    <select>
-        <option>DEPTO.</option>
-        <option>DIRECCIÓN</option>
-        <option>DEPTO. PSICOLOGIA</option>
+    <select id="depto">
+        <option>Depto.</option>
+        <option value="TUTOR">Tutor</option>
+        <option value="DIRECCION">Dirección</option>
     </select>
     <p>DIAGNOSTICO DEL TUTOR</p>
-    <textarea class="area"></textarea>
+    <textarea class="area" id="diagnostico"></textarea>
     <p>PROPOSITO DE LA TUTORÍA</p>
-    <textarea class="area"></textarea>
+    <textarea class="area" id="proposito"></textarea>
     <p>MEDIDAS DE CONTROL</p>
-    <textarea class="area"></textarea>
+    <textarea class="area" id="medidas"></textarea>
     <p>RECOMENDACIONES</p>
-    <textarea class="area"></textarea>
-    <button type="button" class="button">GUARDAR</button>
+    <textarea class="area" id="recomendaciones"></textarea>
+    <button type="button" class="button" id="btn-guardar">GUARDAR</button>
 </form>
+
+<script>
+        $(document).ready(function (){
+          $('.solo-numero').keyup(function (){
+            this.value = (this.value + '').replace(/[^0-9]/g, '');
+          });
+        });
+</script>

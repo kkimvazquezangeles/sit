@@ -14,7 +14,9 @@ define([
 
         events: {
             'click #seg-btn-bitacora' : 'generaPdf',
-            'click #seg-btn-guardar' : 'actualizaDepto'
+            'click #tut-seg-btn-guardar' : 'actualizaTutoria',
+            'click #psic-seg-btn-guardar' : 'actualizaEstatus',
+            'click #dir-seg-btn-guardar' : 'actualizaDepto'
         },
 
         initialize: function() {
@@ -53,6 +55,10 @@ define([
             $("#seg-depto option[value='DIRECCION']").attr('disabled','disabled');
             $("#seg-tipo-tutoria").attr('disabled','disabled');
             $("#seg-status").attr('disabled','disabled');
+            $("#seg-diagnostico").attr('disabled','disabled');
+            $("#seg-proposito").attr('disabled','disabled');
+            $("#seg-medidas").attr('disabled','disabled');
+            $("#seg-recomendaciones").attr('disabled','disabled');
             $("#seg-btn-redactar").hide();
             $("#seg-btn-bitacora").hide();
         },
@@ -62,6 +68,8 @@ define([
             $("#seg-depto option[value='TUTOR']").attr('disabled','disabled');
             $("#seg-depto option[value='PSICOLOGIA']").attr('disabled','disabled');
             $("#seg-btn-redactar").hide();
+            $("#dir-seg-btn-guardar").hide();
+            $("#psic-seg-btn-guardar").hide();
         },
 
         configurePsic: function(){
@@ -69,8 +77,13 @@ define([
             $("#seg-tipo-tutoria").attr('disabled','disabled');
             $("#seg-lb-depto").hide();
             $("#seg-depto").hide();
-            $("#seg-btn-guardar").hide();
+            $("#seg-diagnostico").attr('disabled','disabled');
+            $("#seg-proposito").attr('disabled','disabled');
+            $("#seg-medidas").attr('disabled','disabled');
+            $("#seg-recomendaciones").attr('disabled','disabled');
+            $("#dir-seg-btn-guardar").hide();
             $("#seg-btn-bitacora").hide();
+            $("#tut-seg-btn-guardar").hide();
 
         },
 
@@ -80,7 +93,13 @@ define([
             $("#seg-status").attr('disabled','disabled');
             $("#seg-lb-depto").hide();
             $("#seg-depto").hide();
-            $("#seg-btn-guardar").hide();
+            $("#seg-diagnostico").attr('disabled','disabled');
+            $("#seg-proposito").attr('disabled','disabled');
+            $("#seg-medidas").attr('disabled','disabled');
+            $("#seg-recomendaciones").attr('disabled','disabled');
+            $("#dir-seg-btn-guardar").hide();
+            $("#dir-seg-btn-guardar").hide();
+            $("#psic-seg-btn-guardar").hide();
             $("#seg-btn-bitacora").hide();
             $("#seg-btn-redactar").hide();
 
@@ -94,7 +113,43 @@ define([
         actualizaDepto: function(){
             var tutoria = new TutoriaModel();
             tutoria.set({id: this.model.get('idTutoria')});
-            tutoria.save({departamento: $("#seg-depto").val()},{
+            tutoria.save({departamento: $("#seg-depto").val(), tipo: 1},{
+                wait:true,
+                success:function(model, response) {
+                    alert(response.message);
+                },
+                error: function(model, error) {
+                    alert(error);
+                }
+            });
+        },
+
+        actualizaEstatus: function(){
+            var tutoria = new TutoriaModel();
+            tutoria.set({id: this.model.get('idTutoria')});
+            tutoria.save({statusTutoria: $("#seg-status").val(), tipo: 2},{
+                wait:true,
+                success:function(model, response) {
+                    alert(response.message);
+                },
+                error: function(model, error) {
+                    alert(error);
+                }
+            });
+        },
+
+        actualizaTutoria: function(){
+            var tutoria = new TutoriaModel();
+            tutoria.set({id: this.model.get('idTutoria')});
+            tutoria.save({statusTutoria: $("#seg-status").val(),
+                            tipo: 3,
+                            departamento: $("#seg-depto").val(),
+                            tipoTutoria: $("#seg-tipo-tutoria").val(),
+                            diagnostico: $("#seg-diagnostico").val(),
+                            proposito: $("#seg-proposito").val(),
+                            medidas: $("#seg-medidas").val(),
+                            recomendaciones: $("#seg-recomendaciones").val()
+                           },{
                 wait:true,
                 success:function(model, response) {
                     alert(response.message);

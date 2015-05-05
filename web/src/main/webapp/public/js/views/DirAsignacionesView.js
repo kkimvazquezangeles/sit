@@ -137,20 +137,24 @@ define([
         asignarTutor: function(){
             var tutor = new TutorModel();
             that = this;
-            tutor.save({idCarrera: $("#dir-carrera").val(),
-                        idPeriodoPersonal: $("#dir-personal").val(),
-                        idCuatrimestre: $("#dir-cuatrimestres").val(),
-                        idGrupo: $("#dir-grupos").val()}, {
-                wait:true,
-                success:function(model, response) {
-                    alert(response.message);
-                    Backbone.history.navigate('director/asignaciones', { trigger : true });
-                    that.destroyView();
-                },
-                error: function(model, error) {
-                    alert(error);
-                }
-            });
+            if($("#dir-personal").val()!= null && $("#dir-grupos").val()!= null){
+                tutor.save({idCarrera: $("#dir-carrera").val(),
+                            idPeriodoPersonal: $("#dir-personal").val(),
+                            idCuatrimestre: $("#dir-cuatrimestres").val(),
+                            idGrupo: $("#dir-grupos").val()}, {
+                    wait:true,
+                    success:function(model, response) {
+                        alert(response.message);
+                        Backbone.history.navigate('director/asignaciones', { trigger : true });
+                        that.destroyView();
+                    },
+                    error: function(model, error) {
+                        alert(error);
+                    }
+                });
+            } else {
+                alert("No es posible realizar la asignación, verifica los datos.");
+            }
         },
 
         destroyView: function() {

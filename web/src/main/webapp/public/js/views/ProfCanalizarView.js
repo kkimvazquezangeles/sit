@@ -45,24 +45,28 @@ define([
         canalizarAlumno: function(){
              var tutoria = new TutoriaModel();
              that = this;
-             tutoria.save({idCarrera: parseInt($("#pro-carreras").val()),
-                         matricula: $("#matricula").val(),
-                         tipoTutoria: $("#pro-tpo-tutoria").val(),
-                         departamento: $("#pro-depto").val(),
-                         observaciones: $("#prof-obser").val(),
-                         statusTutoria: 'REGISTRADA',
-                         idPeriodo: Session.get('idPeriodo'),
-                         idCanalizador: Session.get('id'),
-                         nombreAlumno: '',
-                         nombreTutor: ''},{
-                 wait:true,
-                 success:function(model, response) {
-                     alert(response.message);
-                 },
-                 error: function(model, error) {
-                     alert(error);
-                 }
-             });
+             if($("#matricula").val()!= '' && $("#pro-tpo-tutoria").val()!= '' && $("#prof-obser").val()!= ''){
+                 tutoria.save({idCarrera: parseInt($("#pro-carreras").val()),
+                             matricula: $("#matricula").val(),
+                             tipoTutoria: $("#pro-tpo-tutoria").val(),
+                             departamento: $("#pro-depto").val(),
+                             observaciones: $("#prof-obser").val(),
+                             statusTutoria: 'REGISTRADA',
+                             idPeriodo: Session.get('idPeriodo'),
+                             idCanalizador: Session.get('id'),
+                             nombreAlumno: '',
+                             nombreTutor: ''},{
+                     wait:true,
+                     success:function(model, response) {
+                         alert(response.message);
+                     },
+                     error: function(model, error) {
+                         alert(error);
+                     }
+                 });
+             } else {
+                alert("Tutoria no solicitada, verifica los datos.");
+             }
         }
 
     });

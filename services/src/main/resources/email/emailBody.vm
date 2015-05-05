@@ -1,7 +1,8 @@
 <html>
 <body>
-<h1>UTEC Sistema Institucional de Tutorias</h1>
-<p>Le informa que ${tutorName} registró una Tutoria para ${alumnoName}.</p>
-<p>Gracias por usar el Sistema Institucional de Tutorias.</p>
+<font color="#122C09"><h3>El Sistema Institucional de Tutorias</h3></font>
+<p>Le informa que el profesor <b>${tutorName}</b> registró una Tutoria para el alumno <b>${alumnoName}</b>, ingrese al sistema para verificar su seguimiento.</p>
+<p>Gracias por usar SIT-UTEC.</p>
+<h6>Esta es una notificación automatica, no responda este correo.</h6>
 </body>
 </html>

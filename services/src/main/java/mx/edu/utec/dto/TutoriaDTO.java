@@ -16,6 +16,10 @@ public class TutoriaDTO {
     private String observaciones;
     private String statusTutoria;
     private Long idCanalizador;
+    private String diagnostico;
+    private String proposito;
+    private String medidas;
+    private String recomendaciones;
 
 
     public Long getId() {
@@ -104,5 +108,37 @@ public class TutoriaDTO {
 
     public void setIdCanalizador(Long idCanalizador) {
         this.idCanalizador = idCanalizador;
+    }
+
+    public String getDiagnostico() {
+        return diagnostico;
+    }
+
+    public void setDiagnostico(String diagnostico) {
+        this.diagnostico = diagnostico;
+    }
+
+    public String getProposito() {
+        return proposito;
+    }
+
+    public void setProposito(String proposito) {
+        this.proposito = proposito;
+    }
+
+    public String getMedidas() {
+        return medidas;
+    }
+
+    public void setMedidas(String medidas) {
+        this.medidas = medidas;
+    }
+
+    public String getRecomendaciones() {
+        return recomendaciones;
+    }
+
+    public void setRecomendaciones(String recomendaciones) {
+        this.recomendaciones = recomendaciones;
     }
 }

@@ -2,24 +2,23 @@ package mx.edu.utec.services.impl;
 
 import mx.edu.utec.dto.TutoriaDTO;
 import mx.edu.utec.model.*;
-import mx.edu.utec.repositories.PeriodoAlumnoRepository;
-import mx.edu.utec.repositories.PersonalRepository;
-import mx.edu.utec.repositories.TutorRepository;
-import mx.edu.utec.repositories.TutoriaRepository;
+import mx.edu.utec.repositories.*;
+import mx.edu.utec.services.MailService;
 import mx.edu.utec.services.TutoriaService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by kkimvazquezangeles on 22/04/15.
  */
 @Service
 public class TutoriaServiceImpl implements TutoriaService{
+    private static final Logger logger = LoggerFactory.getLogger(TutoriaServiceImpl.class);
 
     @Autowired
     TutoriaRepository tutoriaRepository;
@@ -29,6 +28,18 @@ public class TutoriaServiceImpl implements TutoriaService{
 
     @Autowired
     PeriodoAlumnoRepository periodoAlumnoRepository;
+
+    @Autowired
+    MailService mailService;
+
+    @Autowired
+    SimpleMailMessage templateMessage;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    PlanTutoriaRepository planTutoriaRepository;
 
     @Override
     public List<TutoriaDTO> findAllTutoriaByCarreraAndPeriodo(Long idCarrera, Long idPeriodo) {
@@ -54,10 +65,28 @@ public class TutoriaServiceImpl implements TutoriaService{
 
 
     @Override
-    public void updateTutoria(TutoriaDTO tutoriaDTO) {
+    public void updateDeptoTutoria(TutoriaDTO tutoriaDTO) {
         Tutoria tutoria = tutoriaRepository.findOne(tutoriaDTO.getId());
         tutoria.setDepartamento(Departamento.valueOf(tutoriaDTO.getDepartamento()));
         tutoriaRepository.save(tutoria);
+    }
+
+    @Override
+    public void updateStatusTutoria(TutoriaDTO tutoriaDTO) {
+        Tutoria tutoria = tutoriaRepository.findOne(tutoriaDTO.getId());
+        tutoria.setStatusTutoria(StatusTutoria.valueOf(tutoriaDTO.getStatusTutoria()));
+        tutoriaRepository.save(tutoria);
+    }
+
+    @Override
+    public void updateTutoria(TutoriaDTO tutoriaDTO) {
+        Tutoria tutoria = tutoriaRepository.findOne(tutoriaDTO.getId());
+        tutoria.setStatusTutoria(StatusTutoria.valueOf(tutoriaDTO.getStatusTutoria()));
+        tutoriaRepository.save(tutoria);
+
+        PlanTutoria planTutoria = new PlanTutoria();
+        planTutoria.set();
+        planTutoriaRepository.save(planTutoria);
     }
 
 
@@ -72,8 +101,13 @@ public class TutoriaServiceImpl implements TutoriaService{
                         tutoriaDTO.getMatricula());
         tutoria.setPeriodoAlumno(periodoAlumno);
         tutoria.setTutor(tutor);
-        this.tutoriaRepository.save(tutoria);
+        Tutoria tutoriaSave = this.tutoriaRepository.save(tutoria);
 
+        if(tutoriaDTO.getDiagnostico() != null && !tutoriaDTO.getDiagnostico().isEmpty()){
+            PlanTutoria planTutoria = convertDTOtoPlanTutoria(tutoriaDTO);
+            planTutoria.setTutoria(tutoriaSave);
+            PlanTutoria result = this.planTutoriaRepository.save(planTutoria);
+        }
     }
 
     private Tutoria convertDTOtoTutoria(TutoriaDTO tutoriaDTO) {
@@ -86,8 +120,43 @@ public class TutoriaServiceImpl implements TutoriaService{
         tutoria.setObservaciones(tutoriaDTO.getObservaciones());
         tutoria.setCanalizador(canalizador);
         tutoria.setFechaInicio(new Date());
+
         return tutoria;
     }
 
+    private PlanTutoria convertDTOtoPlanTutoria(TutoriaDTO tutoriaDTO) {
+        PlanTutoria planTutoria = new PlanTutoria();
+        planTutoria.setDiagnostico(tutoriaDTO.getDiagnostico());
+        planTutoria.setMedidas(tutoriaDTO.getMedidas());
+        planTutoria.setProposito(tutoriaDTO.getProposito());
+        planTutoria.setRecomendaciones(tutoriaDTO.getRecomendaciones());
+
+        return planTutoria;
+    }
+
+    private void sendMail(String matricula, Long idPeriodo, Personal personal){
+
+        String[] correo = new String[3];
+
+        User director = userRepository.findDirectorByMatriculaAndPeriodo(idPeriodo, matricula);
+        User psicologo = userRepository.findPsicologoByPeriodo(idPeriodo);
+        User tutor = userRepository.findTutorByMatriculaAndPeriodo(idPeriodo, matricula);
+        User profesor = userRepository.findByPersonal(personal);
+
+        correo[0] = director.getUsername();
+        correo[1] = psicologo.getUsername();
+        correo[2] = profesor.getUsername();
+
+        templateMessage.setTo(tutor.getUsername());
+        templateMessage.setCc(correo);
+
+        Map<String, Object> props = new HashMap<String, Object>();
+        props.put("tutorName", "Jose Soto");
+        props.put("alumnoName", "Karen Vazquez");
+
+        mailService.send(templateMessage, props);
+
+
+    }
 
 }

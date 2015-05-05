@@ -2,7 +2,7 @@
     <a>Programa educativo</a>
     <select id="pro-carreras" class="carreras" >
     </select>
-    <input type="text" id="matricula" placeholder="Matricula" value="" required/>
+    <input type="text" id="matricula" placeholder="Matricula" value="" class="solo-numero" required/>
     <select id="pro-tpo-tutoria">
         <option value="">Tipo de tutoría</option>
         <option value="PREVENTIVA">Preventiva</option>
@@ -15,3 +15,11 @@
     <textarea rows="5" cols="30" id="prof-obser"></textarea><br>
     <button id="btn-enviar" type="button" class="button">Enviar</button>
 </form>
+
+<script>
+        $(document).ready(function (){
+          $('.solo-numero').keyup(function (){
+            this.value = (this.value + '').replace(/[^0-9]/g, '');
+          });
+        });
+</script>

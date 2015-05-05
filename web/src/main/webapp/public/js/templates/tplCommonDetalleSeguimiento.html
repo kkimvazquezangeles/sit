@@ -2,8 +2,8 @@
 <textarea class="area" disabled><%=observaciones%></textarea><br>
 <a id="seg-lb-tipo-tutoria">TIPO DE TUTORÍA</a>
 <select id="seg-tipo-tutoria" >
-    <option value="REMEDIAL">Remedial</option>
     <option value="PREVENTIVA">Preventiva</option>
+    <option value="REMEDIAL">Remedial</option>
 </select>
 <a id="seg-lb-status" class="status">ESTATUS</a>
 <select id="seg-status">
@@ -19,13 +19,15 @@
 </select>
 <button type="button" class="btnNota">Nota informativa</button>
 <p>DIAGNOSTICO DEL TUTOR</p>
-<textarea class="area"><%=diagnostico%></textarea>
+<textarea class="area" id="seg-diagnostico"><%=diagnostico%></textarea>
 <p>PROPOSITO DE LA TUTORÍA</p>
-<textarea class="area"><%=proposito%></textarea>
+<textarea class="area" id="seg-proposito"><%=proposito%></textarea>
 <p>MEDIDAS DE CONTROL</p>
-<textarea class="area"><%=medidas%></textarea>
+<textarea class="area" id="seg-medidas"><%=medidas%></textarea>
 <p>RECOMENDACIONES</p>
-<textarea class="area"><%=recomendaciones%></textarea>
-<button type="button" id="seg-btn-guardar" class="button">Guardar</button>
+<textarea class="area" id="seg-recomendaciones"><%=recomendaciones%></textarea>
+<button type="button" id="psic-seg-btn-guardar" class="button">Guardar</button>
+<button type="button" id="tut-seg-btn-guardar" class="button">Guardar</button>
+<button type="button" id="dir-seg-btn-guardar" class="button">Guardar</button>
 <button type="button" id="seg-btn-bitacora" class="btnBit">Bitácora PDF</button>
 <button type="button" id="seg-btn-redactar" class="button">Redactar nota</button>

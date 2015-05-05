@@ -34,6 +34,7 @@ public class MailServiceTest {
 
         templateMessage.setTo("kkimvazquezangeles@hotmail.com");
 
+
         Map<String, Object> props = new HashMap<String, Object>();
         props.put("tutorName", "Jose Soto");
         props.put("alumnoName", "Karen Vazquez");
