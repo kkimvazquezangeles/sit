@@ -6,58 +6,66 @@
     <p>ACTIVIDADES A DESARROLLAR EN EL CUATRIMESTRE:</p>
     <a class="mes1">1er MES</a><a class="mes">2do MES</a><a class="mes">3er MES</a><a class="mes">4to MES</a>
     <br>
+        <input type="hidden" name="actid1" value="<%= actividades[0].id %>">
         <input type="text" name="acttx1" value="<%= actividades[0].actividad %>">
-        <input type="radio" name="act1" value="MES1">
-        <input type="radio" name="act1" value="MES2">
-        <input type="radio" name="act1" value="MES3">
-        <input type="radio" name="act1" value="MES4">
+        <input type="radio" name="act1" value="MES1" <% print( actividades[0].mes == 'MES1' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act1" value="MES2" <% print( actividades[0].mes == 'MES2' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act1" value="MES3" <% print( actividades[0].mes == 'MES3' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act1" value="MES4" <% print( actividades[0].mes == 'MES4' ?  'checked="checked"' : '') %>>
     <br>
+        <input type="hidden" name="actid2" value="<%= actividades[1].id %>">
         <input type="text" name="acttx2" value="<%= actividades[1].actividad %>">
-        <input type="radio" name="act2" value="MES1">
-        <input type="radio" name="act2" value="MES2">
-        <input type="radio" name="act2" value="MES3">
-        <input type="radio" name="act2" value="MES4">
+        <input type="radio" name="act2" value="MES1" <% print( actividades[1].mes == 'MES1' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act2" value="MES2" <% print( actividades[1].mes == 'MES2' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act2" value="MES3" <% print( actividades[1].mes == 'MES3' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act2" value="MES4" <% print( actividades[1].mes == 'MES4' ?  'checked="checked"' : '') %>>
     <br>
+        <input type="hidden" name="actid3" value="<%= actividades[2].id %>">
         <input type="text" name="acttx3" value="<%= actividades[2].actividad %>">
-        <input type="radio" name="act3" value="MES1">
-        <input type="radio" name="act3" value="MES2">
-        <input type="radio" name="act3" value="MES3">
-        <input type="radio" name="act3" value="MES4">
+        <input type="radio" name="act3" value="MES1" <% print( actividades[2].mes == 'MES1' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act3" value="MES2" <% print( actividades[2].mes == 'MES2' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act3" value="MES3" <% print( actividades[2].mes == 'MES3' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act3" value="MES4" <% print( actividades[2].mes == 'MES4' ?  'checked="checked"' : '') %>>
     <br>
+        <input type="hidden" name="actid4" value="<%= actividades[3].id %>">
         <input type="text" name="acttx4" value="<%= actividades[3].actividad %>">
-        <input type="radio" name="act4" value="MES1">
-        <input type="radio" name="act4" value="MES2">
-        <input type="radio" name="act4" value="MES3">
-        <input type="radio" name="act4" value="MES4">
+        <input type="radio" name="act4" value="MES1" <% print( actividades[3].mes == 'MES1' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act4" value="MES2" <% print( actividades[3].mes == 'MES2' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act4" value="MES3" <% print( actividades[3].mes == 'MES3' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act4" value="MES4" <% print( actividades[3].mes == 'MES4' ?  'checked="checked"' : '') %>>
     <br>
+        <input type="hidden" name="actid5" value="<%= actividades[4].id %>">
         <input type="text" name="acttx5" value="<%= actividades[4].actividad %>">
-        <input type="radio" name="act5" value="MES1">
-        <input type="radio" name="act5" value="MES2">
-        <input type="radio" name="act5" value="MES3">
-        <input type="radio" name="act5" value="MES4">
+        <input type="radio" name="act5" value="MES1" <% print( actividades[4].mes == 'MES1' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act5" value="MES2" <% print( actividades[4].mes == 'MES2' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act5" value="MES3" <% print( actividades[4].mes == 'MES3' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act5" value="MES4" <% print( actividades[4].mes == 'MES4' ?  'checked="checked"' : '') %>>
     <br>
+        <input type="hidden" name="actid6" value="<%= actividades[5].id %>">
         <input type="text" name="acttx6" value="<%= actividades[5].actividad %>">
-        <input type="radio" name="act6" value="MES1">
-        <input type="radio" name="act6" value="MES2">
-        <input type="radio" name="act6" value="MES3">
-        <input type="radio" name="act6" value="MES4">
+        <input type="radio" name="act6" value="MES1" <% print( actividades[5].mes == 'MES1' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act6" value="MES2" <% print( actividades[5].mes == 'MES2' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act6" value="MES3" <% print( actividades[5].mes == 'MES3' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act6" value="MES4" <% print( actividades[5].mes == 'MES4' ?  'checked="checked"' : '') %>>
     <br>
+    <input type="hidden" name="actid7" value="<%= actividades[6].id %>">
         <input type="text" name="acttx7" value="<%= actividades[6].actividad %>">
-        <input type="radio" name="act7" value="MES1">
-        <input type="radio" name="act7" value="MES2">
-        <input type="radio" name="act7" value="MES3">
-        <input type="radio" name="act7" value="MES4">
+        <input type="radio" name="act7" value="MES1" <% print( actividades[6].mes == 'MES1' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act7" value="MES2" <% print( actividades[6].mes == 'MES2' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act7" value="MES3" <% print( actividades[6].mes == 'MES3' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act7" value="MES4" <% print( actividades[6].mes == 'MES4' ?  'checked="checked"' : '') %>>
     <br>
+    <input type="hidden" name="actid8" value="<%= actividades[7].id %>">
         <input type="text" name="acttx8" value="<%= actividades[7].actividad %>">
-        <input type="radio" name="act8" value="MES1">
-        <input type="radio" name="act8" value="MES2">
-        <input type="radio" name="act8" value="MES3">
-        <input type="radio" name="act8" value="MES4">
+        <input type="radio" name="act8" value="MES1" <% print( actividades[7].mes == 'MES1' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act8" value="MES2" <% print( actividades[7].mes == 'MES2' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act8" value="MES3" <% print( actividades[7].mes == 'MES3' ?  'checked="checked"' : '') %>>
+        <input type="radio" name="act8" value="MES4" <% print( actividades[7].mes == 'MES4' ?  'checked="checked"' : '') %>>
     <br>
     <p>MEDIDAS DE CONTROL PARA EL LOGRO DE LA TUTORÍA</p>
     <textarea id="tut-plan-medida" class="area"><%=medidas%></textarea>
     <p>RECOMENDACIONES DEL TUTOR</p>
     <textarea id="tut-plan-recomendacion" class="area"><%=recomendaciones%></textarea>
     <button id="tut-plan-guardar" type="button" class="button">Guardar</button>
-    <button type="button" class="button">Obtener PDF</button>
+    <button type="button" id="btn-pdf" class="button">Obtener PDF</button>
 </form>

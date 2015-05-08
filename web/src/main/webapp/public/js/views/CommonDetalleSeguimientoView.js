@@ -61,9 +61,14 @@ define([
             $("#seg-recomendaciones").attr('disabled','disabled');
             $("#seg-btn-redactar").hide();
             $("#seg-btn-bitacora").hide();
+            $("#psic-seg-btn-guardar").hide();
+            $("#tut-seg-btn-guardar").hide();
         },
 
         configureTut: function(){
+            if($("#seg-depto").val() == 'PSICOLOGIA'){
+                $("#seg-depto option[value='DIRECCION']").attr('disabled','disabled');
+            }
             $("#seg-status option[value='REGISTRADA']").attr('disabled','disabled');
             $("#seg-depto option[value='TUTOR']").attr('disabled','disabled');
             $("#seg-depto option[value='PSICOLOGIA']").attr('disabled','disabled');
@@ -141,9 +146,13 @@ define([
         actualizaTutoria: function(){
             var tutoria = new TutoriaModel();
             tutoria.set({id: this.model.get('idTutoria')});
+            var depto = $("#seg-depto").val();
+            if(depto == null){
+                depto = this.model.get('departamento');
+            }
             tutoria.save({statusTutoria: $("#seg-status").val(),
                             tipo: 3,
-                            departamento: $("#seg-depto").val(),
+                            departamento: depto,
                             tipoTutoria: $("#seg-tipo-tutoria").val(),
                             diagnostico: $("#seg-diagnostico").val(),
                             proposito: $("#seg-proposito").val(),

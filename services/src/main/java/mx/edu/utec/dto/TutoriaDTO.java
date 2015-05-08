@@ -20,6 +20,7 @@ public class TutoriaDTO {
     private String proposito;
     private String medidas;
     private String recomendaciones;
+    private String rol;
 
 
     public Long getId() {
@@ -140,5 +141,13 @@ public class TutoriaDTO {
 
     public void setRecomendaciones(String recomendaciones) {
         this.recomendaciones = recomendaciones;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 }

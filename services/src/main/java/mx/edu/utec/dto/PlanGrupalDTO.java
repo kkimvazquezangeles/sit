@@ -14,6 +14,8 @@ public class PlanGrupalDTO {
     private String recomendaciones;
     private Long idTutor;
     private Long idPeriodo;
+    private Long idGrupo;
+    private Long idCuatrimestre;
     private List<PlanDetalleDTO> actividades;
 
     public Long getId() {
@@ -70,6 +72,22 @@ public class PlanGrupalDTO {
 
     public void setIdPeriodo(Long idPeriodo) {
         this.idPeriodo = idPeriodo;
+    }
+
+    public Long getIdGrupo() {
+        return idGrupo;
+    }
+
+    public void setIdGrupo(Long idGrupo) {
+        this.idGrupo = idGrupo;
+    }
+
+    public Long getIdCuatrimestre() {
+        return idCuatrimestre;
+    }
+
+    public void setIdCuatrimestre(Long idCuatrimestre) {
+        this.idCuatrimestre = idCuatrimestre;
     }
 
     public List<PlanDetalleDTO> getActividades() {

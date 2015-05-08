@@ -11,7 +11,8 @@ define([
         template: _.template(tplTutPlan),
 
         events: {
-            'click #tut-plan-guardar': 'guardarPlan'
+            'click #tut-plan-guardar': 'guardarPlan',
+            'click #btn-pdf' : 'generaPdf'
         },
 
         initialize: function() {
@@ -62,8 +63,10 @@ define([
             for (iCont = 1; iCont <= 8; iCont++) {
                 var valMes = $("input:radio:checked[name='act" + iCont + "']").val();
                 var valAct = $("input:text[name='acttx" + iCont + "']").val();
-                if (valMes != 'undefined' && valAct != 'undefined' && valAct != '') {
-                    acts.push(new PlanDetalleModel({actividad: valAct, mes: valMes}));
+                var valId = $("input:hidden[name='actid" + iCont + "']").val();
+                if ((valMes != 'undefined' && valAct != 'undefined' && valAct != '') ||
+                    valId != '') {
+                    acts.push(new PlanDetalleModel({actividad: valAct, mes: valMes, id: valId}));
                 }
             }
             this.model.set({ actividades:acts });
@@ -76,7 +79,15 @@ define([
             // Remove view from DOM
             this.remove();
             Backbone.View.prototype.remove.call(this);
-        }
+        },
+
+        generaPdf: function(){
+            var url = "report/programaGrupal?periodo=" + Session.get('idPeriodo') +
+            "&carrera=" + Session.get('idCarrera') +
+            "&cuatrimestre=" +  this.model.get('idCuatrimestre') +
+            "&grupo=" + this.model.get('idGrupo');
+            window.open(url, '_blank');
+        },
 	});
 
 	return TutPlanView;

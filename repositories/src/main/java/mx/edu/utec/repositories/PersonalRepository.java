@@ -26,6 +26,9 @@ public interface PersonalRepository extends CrudRepository<Personal, Long> {
             " tu.carrera.id = :idCarrera AND" +
             " tu.grupo in (SELECT pa.grupo FROM PeriodoAlumno pa WHERE" +
             " pa.alumno.matricula = :matricula AND" +
+            " pa.periodo.id = :idPeriodo) AND " +
+            " tu.cuatrimestre in (SELECT pa.cuatrimestre FROM PeriodoAlumno pa WHERE" +
+            " pa.alumno.matricula = :matricula AND" +
             " pa.periodo.id = :idPeriodo)")
     Personal findByCarreraAndMatriculaAndPeriodo(
             @Param("idPeriodo") Long idPeriodo,

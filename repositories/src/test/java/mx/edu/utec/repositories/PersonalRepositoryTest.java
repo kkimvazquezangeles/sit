@@ -29,7 +29,7 @@ public class PersonalRepositoryTest {
 
     @Test
     public void testfindByCarreraAndMatriculaAndPeriodo(){
-        Personal tutor = personalRepository.findByCarreraAndMatriculaAndPeriodo(1L, 1L, "1712100276");
+        Personal tutor = personalRepository.findByCarreraAndMatriculaAndPeriodo(1L, 1L, "1713110139");
         Assert.assertNotNull(tutor);
     }
 }

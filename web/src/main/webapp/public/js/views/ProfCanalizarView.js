@@ -55,7 +55,8 @@ define([
                              idPeriodo: Session.get('idPeriodo'),
                              idCanalizador: Session.get('id'),
                              nombreAlumno: '',
-                             nombreTutor: ''},{
+                             nombreTutor: '',
+                             rol: Session.getRole()},{
                      wait:true,
                      success:function(model, response) {
                          alert(response.message);

@@ -29,11 +29,24 @@ public class PlanGrupalController {
             method = RequestMethod.POST,
             produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public ResponseDTO createTutor(@RequestBody PlanGrupalDTO plan) {
+    public ResponseDTO createPlanGrupal(@RequestBody PlanGrupalDTO plan) {
         ResponseDTO responseDTO = new ResponseDTO();
         planGrupalService.createPlanGrupal(plan);
         responseDTO.setCode(ResponseDTO.CODE_SUCCESS);
         responseDTO.setMessage("Se guardaron cambios en el plan grupal");
+        return responseDTO;
+    }
+
+    @RequestMapping(
+            value = { "" },
+            method = RequestMethod.PUT,
+            produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public ResponseDTO updatePlanGrupal(@RequestBody PlanGrupalDTO plan) {
+        ResponseDTO responseDTO = new ResponseDTO();
+        planGrupalService.createPlanGrupal(plan);
+        responseDTO.setCode(ResponseDTO.CODE_SUCCESS);
+        responseDTO.setMessage("Se actualizaron datos en el plan grupal");
         return responseDTO;
     }
 

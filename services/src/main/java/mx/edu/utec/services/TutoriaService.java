@@ -2,6 +2,7 @@ package mx.edu.utec.services;
 
 
 
+import mx.edu.utec.dto.ErrorApp;
 import mx.edu.utec.dto.PlanTutoriaDTO;
 import mx.edu.utec.dto.TutoriaDTO;
 
@@ -15,6 +16,6 @@ public interface TutoriaService {
     void updateDeptoTutoria(TutoriaDTO tutoriaDTO);
     void updateStatusTutoria(TutoriaDTO tutoriaDTO);
     public void updateTutoria(TutoriaDTO tutoriaDTO);
-    public void createTutoria(TutoriaDTO tutoriaDTO);
+    public ErrorApp createTutoria(TutoriaDTO tutoriaDTO);
 
 }

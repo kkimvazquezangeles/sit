@@ -1,6 +1,7 @@
 package mx.edu.utec.controller;
 
 
+import mx.edu.utec.dto.ErrorApp;
 import mx.edu.utec.dto.ResponseDTO;
 import mx.edu.utec.dto.TutoriaDTO;
 import mx.edu.utec.services.TutoriaService;
@@ -77,9 +78,15 @@ public class TutoriaController {
         logger.info("Recibe Modelo ID -------------- " + tutoria.getId());
         logger.info("Recibe Modelo Tipo Tutoria -------------- " + tutoria.getTipoTutoria());
         ResponseDTO responseDTO = new ResponseDTO();
-        tutoriaService.createTutoria(tutoria);
-        responseDTO.setCode(ResponseDTO.CODE_SUCCESS);
-        responseDTO.setMessage("Tutoría registrada correctamente");
+        ErrorApp result = tutoriaService.createTutoria(tutoria);
+        if (result == ErrorApp.MATRICULANOTFOUND) {
+            responseDTO.setCode(ResponseDTO.CODE_ERROR);
+            responseDTO.setMessage("La matricula es inválida.");
+        } else if (result == ErrorApp.OK) {
+            responseDTO.setCode(ResponseDTO.CODE_SUCCESS);
+            responseDTO.setMessage("Tutoría registrada correctamente");
+        }
+
         return responseDTO;
     }
 

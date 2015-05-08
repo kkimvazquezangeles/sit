@@ -24,7 +24,7 @@ public class PlanGrupalRepositoryTest {
 
     @Test
     public void testfindPlanByPeriodoAndPersonal() {
-        Plan plan = planGrupalRepository.findPlanByPeriodoAndPersonal(1L, 1L);
+        Plan plan = planGrupalRepository.findPlanByPeriodoAndPersonal(1L, 3L);
         Assert.assertNotNull(plan);
     }
 }

@@ -25,7 +25,7 @@ define([
         registrarTutoriaAlumno: function(){
              var tutoria = new TutoriaModel();
              that = this;
-             if($("#matricula").val()!= '' && $("#tpo-tutoria").val()!= '' && $("#diagnostico").val()!= ''){
+             if($("#matricula").val()!= '' && $("#tpo-tutoria").val()!= '' && $("#diagnostico").val()!= '' && $("#depto").val()!= ''){
                  tutoria.save({idCarrera: Session.get('idCarrera'),
                              matricula: $("#matricula").val(),
                              tipoTutoria: $("#tpo-tutoria").val(),
@@ -38,7 +38,8 @@ define([
                              medidas: $("#medidas").val(),
                              recomendaciones: $("#recomendaciones").val(),
                              nombreAlumno: '',
-                             nombreTutor: ''},{
+                             nombreTutor: '',
+                             rol: Session.getRole()},{
                      wait:true,
                      success:function(model, response) {
                          alert(response.message);

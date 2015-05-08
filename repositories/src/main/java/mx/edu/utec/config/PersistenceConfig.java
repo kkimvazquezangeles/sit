@@ -25,7 +25,7 @@ public class PersistenceConfig {
 
     @Bean
     public DataSource dataSource() {
-        EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+        /*EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
         builder.addScript("classpath:/mx/edu/utec/scripts/alumno.sql");
         builder.addScript("classpath:/mx/edu/utec/scripts/carrera.sql");
         builder.addScript("classpath:/mx/edu/utec/scripts/cuatrimestre.sql");
@@ -43,21 +43,22 @@ public class PersistenceConfig {
         builder.addScript("classpath:/mx/edu/utec/scripts/director.sql");
         builder.addScript("classpath:/mx/edu/utec/scripts/user.sql");
         builder.addScript("classpath:/mx/edu/utec/scripts/constraints.sql");
-        return builder.setType(EmbeddedDatabaseType.H2).build();
+        return builder.setType(EmbeddedDatabaseType.H2).build(); */
 
-        /*DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/sitdb?useUnicode=true&characterEncoding=UTF-8");
         dataSource.setUsername("root");
         dataSource.setPassword("password");
 
-        return dataSource; */
+        return dataSource;
     }
 
     @Bean
     public DataSourceInitializer dataSourceInitializer() {
         ResourceDatabasePopulator resourceDatabasePopulator = new ResourceDatabasePopulator();
+        /*
         resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/carrera-data.sql"));
         resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/cuatrimestre-data.sql"));
         resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/grupo-data.sql"));
@@ -76,7 +77,9 @@ public class PersistenceConfig {
         resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/planTutoria-data.sql"));
         resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/cuatrimestreMateria-data.sql"));
         resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/director-data.sql"));
-        resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/user-data.sql"));
+        resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/user-data.sql"));*/
+
+        /*resourceDatabasePopulator.addScript(new ClassPathResource("/mx/edu/utec/scripts/utec/real-data.sql"));*/
 
         DataSourceInitializer dataSourceInitializer = new DataSourceInitializer();
         dataSourceInitializer.setDataSource(dataSource());
@@ -99,7 +102,7 @@ public class PersistenceConfig {
         HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
         hibernateJpaVendorAdapter.setShowSql(true);
         hibernateJpaVendorAdapter.setGenerateDdl(true);
-        hibernateJpaVendorAdapter.setDatabase(Database.H2);
+        hibernateJpaVendorAdapter.setDatabase(Database.MYSQL);
         return hibernateJpaVendorAdapter;
     }
 
