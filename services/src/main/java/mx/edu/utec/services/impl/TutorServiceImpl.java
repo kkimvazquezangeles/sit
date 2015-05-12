@@ -3,9 +3,14 @@ package mx.edu.utec.services.impl;
 import mx.edu.utec.dto.PersonalDTO;
 import mx.edu.utec.dto.TutorDTO;
 import mx.edu.utec.model.*;
+import mx.edu.utec.repositories.PeriodoPersonalRepository;
+import mx.edu.utec.repositories.PersonalRepository;
 import mx.edu.utec.repositories.TutorRepository;
+import mx.edu.utec.repositories.UserRoleRepository;
 import mx.edu.utec.services.PeriodoService;
 import mx.edu.utec.services.TutorService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +24,16 @@ import java.util.List;
 @Service
 public class TutorServiceImpl implements TutorService {
 
+    private static final Logger logger = LoggerFactory.getLogger(PlanGrupalServiceImpl.class);
+
     @Autowired
     TutorRepository tutorRepository;
+
+    @Autowired
+    UserRoleRepository userRoleRepository;
+
+    @Autowired
+    PeriodoPersonalRepository periodoPersonalRepository;
 
     @Override
     public List<TutorDTO> findAllTutoresByCarreraAndPeriodo(Long idCarrera, Long idPeriodo) {
@@ -75,8 +88,9 @@ public class TutorServiceImpl implements TutorService {
     }
 
     @Override
-    public void createTutor(TutorDTO tutor) {
-        this.tutorRepository.save(convertDTOtoTutor(tutor));
+    public void createTutor(TutorDTO tutorDTO) {
+        this.tutorRepository.save(convertDTOtoTutor(tutorDTO));
+        this.createUserTutorRole(tutorDTO);
     }
 
     private Tutor convertDTOtoTutor(TutorDTO tutorDto) {
@@ -104,8 +118,29 @@ public class TutorServiceImpl implements TutorService {
 
     @Override
     public void deleteTutor(Long idTutor) {
+        this.deleteUserTutorRole(idTutor);
         this.tutorRepository.delete(idTutor);
+
+    }
+
+    private void deleteUserTutorRole(Long idTutor) {
+        Tutor tutor = this.tutorRepository.findOne(idTutor);
+        PeriodoPersonal personal =
+                periodoPersonalRepository.findOne(tutor.getPeriodoPersonal().getId());
+        User user = new User();
+        user.setUsername(personal.getPersonal().getUser().getUsername());
+        UserRole userRole = this.userRoleRepository.findOneByUserAndRole(user, "TUTOR");
+        this.userRoleRepository.delete(userRole);
     }
 
 
+    private void createUserTutorRole(TutorDTO tutor) {
+        PeriodoPersonal personal =
+                periodoPersonalRepository.findOne(tutor.getIdPeriodoPersonal());
+        UserRole userRole = new UserRole();
+        userRole.setRole("TUTOR");
+        userRole.setUser(personal.getPersonal().getUser());
+
+        this.userRoleRepository.save(userRole);
+    }
 }
