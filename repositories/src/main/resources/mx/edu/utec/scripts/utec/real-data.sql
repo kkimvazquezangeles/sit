@@ -499,3 +499,25 @@ INSERT INTO CUATRIMESTREMATERIA(ID, PERIODO_PERSONAL_ID, CUATRIMESTRE_ID, GRUPO_
 (28, 8, 3, 1, 16, 1),
 (29, 4, 3, 1, 17, 1),
 (30, 5, 3, 1, 18, 1);
+
+INSERT INTO Tutoria(id, departamento, fecha_fin, fecha_inicio, observaciones, status_tutoria, tipo_tutoria, canalizador_id, periodo_alumno_id, tutor_id)VALUES
+(1, TUTOR, , 2015-05-14 08:34:24, , FINALIZADA, PREVENTIVA, 6, 1, 6),
+(2, TUTOR, , 2015-05-14 08:52:29, , FINALIZADA, PREVENTIVA, 6, 5, 6),
+(4, TUTOR, , 2015-05-14 19:47:37, No cumple con tareas., REGISTRADA, PREVENTIVA, 2, 14, 6),
+(5, TUTOR, , 2015-05-18 12:26:56, jdgdfgfdgdfdfg, REGISTRADA, PREVENTIVA, 2, 12, 6),
+(6, TUTOR, , 2015-05-18 13:04:31, , FINALIZADA, PREVENTIVA, 6, 8, 6),
+(7, TUTOR, , 2015-05-22 09:51:28, , ENPROCESO, PREVENTIVA, 6, 10, 6),
+(8, TUTOR, , 2015-05-26 17:13:49, sdasdasdasd, REGISTRADA, PREVENTIVA, 6, 2, 6),
+(9, TUTOR, , 2015-05-27 10:56:19, , ENPROCESO, PREVENTIVA, 6, 13, 6),
+(10, TUTOR, , 2015-05-27 10:57:55, , ENPROCESO, PREVENTIVA, 6, 11, 6);
+
+
+
+INSERT INTO PlanTutoria(id, diagnostico, medidas, nota, proposito, recomendaciones, tutoria_id)VALUES
+(1, No asiste a clase desde la semana pasada., , Se dará de baja de forma temporal., , , 1),
+(2, hola., , sfsdfsdfsdf, , , 2),
+(3, No presento examen., , , , , 3),
+(4, Necesita ayuda con Base de Datos I, , Asiste a clase Martes y Jueves en asesoria 7pm, , , 6),
+(5, esta si pasa., , , , , 7),
+(6, zdasdasdasdasd, , , , , 9),
+(7, que pedo, , , , , 10);
