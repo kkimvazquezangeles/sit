@@ -17,7 +17,7 @@
     <option value="DIRECCION">Dirección</option>
     <option value="PSICOLOGIA">Depto. Psicología</option>
 </select>
-<button type="button" class="btnNota">Nota informativa</button>
+<button type="button" id="seg-btnNota" class="btnNota">Nota informativa</button>
 <p>DIAGNOSTICO DEL TUTOR</p>
 <textarea class="area" id="seg-diagnostico"><%=diagnostico%></textarea>
 <p>PROPOSITO DE LA TUTORÍA</p>
@@ -26,14 +26,13 @@
 <textarea class="area" id="seg-medidas"><%=medidas%></textarea>
 <p>RECOMENDACIONES</p>
 <textarea class="area" id="seg-recomendaciones"><%=recomendaciones%></textarea>
-<button type="button" id="psic-seg-btn-guardar" class="button">Guardar</button>
 <button type="button" id="tut-seg-btn-guardar" class="button">Guardar</button>
 <button type="button" id="dir-seg-btn-guardar" class="button">Guardar</button>
 <button type="button" id="seg-btn-bitacora" class="btnBit">Bitácora PDF</button>
-<button type="button" id="seg-btn-redactar" class="button" onclick=" ventanaNueva()" >Redactar nota</button>
+<button type="button" id="seg-btn-redactar" class="button">Redactar nota</button>
 
-<script type="text/javascript">
-    function ventanaNueva(){
-        window.open()
-    }
-</script>
+<div id="dialog" title="NOTA INFORMATIVA" style="display:none;" aria-hidden="true">
+    <a>Para finalizar esta tutoría debe redactar y guardar la nota informativa</a>
+    <textarea class="area" id="seg-nota"></textarea>
+</div>
+

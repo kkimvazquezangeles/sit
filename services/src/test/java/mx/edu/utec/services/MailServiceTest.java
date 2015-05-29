@@ -32,7 +32,8 @@ public class MailServiceTest {
         assertNotNull("MailService is null.", mailService);
         assertNotNull("SimpleMailMessage is null.", templateMessage);
 
-        templateMessage.setTo("kkimvazquezangeles@hotmail.com");
+        templateMessage.setTo("k2509o@hotmail.com");
+        templateMessage.setCc("betotsol@gmail.com");
 
 
         Map<String, Object> props = new HashMap<String, Object>();

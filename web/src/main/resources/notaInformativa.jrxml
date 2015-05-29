@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="notaInformativa" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9ecddcdd-c0cd-4a69-8ef8-7f5e5e017528">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="periodoid" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idtutoria" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="matricula" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     CONCAT(CONCAT(CONCAT(CONCAT(al.nombre,' '),al.apellido_paterno),' '),al.apellido_materno) AS Alumno,
+     al.`matricula` AS Matricula,
+     pr.`nombre_periodo` AS Periodo,
+     pt.`nota` AS Nota,
+     gpo.`grupo` AS Grupo,
+     ctm.`cuatrimestre` AS Cuatrimestre,
+     tt.`fecha_inicio` AS Fecha
+FROM
+     `Alumno` al INNER JOIN `PeriodoAlumno` pa ON al.`id` = pa.`alumno_id`
+     INNER JOIN `Periodo` pr ON pa.`periodo_id` = pr.`id`
+     INNER JOIN `Tutoria` tt ON pa.`id` = tt.`periodo_alumno_id`
+     INNER JOIN `Cuatrimestre` ctm ON pa.`cuatrimestre_id` = ctm.`id`
+     INNER JOIN `Grupo` gpo ON pa.`grupo_id` = gpo.`id`
+     INNER JOIN `PlanTutoria` pt ON tt.`id` = pt.`tutoria_id`
+WHERE
+     pr.id = $P{periodoid}
+     and tt.id = $P{idtutoria}
+     and al.matricula = $P{matricula}]]>
+	</queryString>
+	<field name="Alumno" class="java.lang.String"/>
+	<field name="Matricula" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Periodo" class="java.lang.String"/>
+	<field name="Nota" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Grupo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Cuatrimestre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Fecha" class="java.sql.Timestamp"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="80" splitType="Stretch">
+			<rectangle>
+				<reportElement x="163" y="18" width="392" height="43" forecolor="#000000" uuid="f93b80af-8f11-4a6d-8bda-ab15c4c97d3b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="326" y="61" width="229" height="18" forecolor="#000000" uuid="0dce9623-86d3-4201-874d-7934287da877"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="0" width="163" height="79" uuid="54f58d10-bff6-447f-b37e-324154830caa"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="163" y="0" width="392" height="18" backcolor="#CCCCCC" uuid="c701ff6a-3480-4fff-88b0-16f6a3cfd3f1"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="163" y="0" width="169" height="18" uuid="f9a7f8bd-3e6f-441c-8da6-ac1575d8f91a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="0" width="163" height="18" backcolor="#CCCCCC" uuid="0c76b81b-93a9-4a8c-8949-39f10f16e800"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="0" width="163" height="18" backcolor="#FFFFFF" uuid="2223624d-651e-4d7c-9cf9-107f00c5a265"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<image>
+				<reportElement x="12" y="20" width="161" height="40" uuid="e9d8b56d-d0b7-446a-9fbb-396c3917684e"/>
+				<imageExpression><![CDATA["utec_titulo.png"]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="0" y="61" width="163" height="18" backcolor="#CCCCCC" uuid="cd9c7f37-b41f-4afa-8cc6-f44e26f1e570"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="61" width="163" height="18" backcolor="#FFFFFF" uuid="90e230a7-8f34-4ffc-bad9-f2c26eaab4cd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="163" y="18" width="392" height="42" uuid="e9e343ae-7d20-4a77-9ee4-0a2ca487f842"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nota Informativa]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="163" y="61" width="392" height="18" backcolor="#CCCCCC" uuid="df39b464-a951-41fa-af26-9d08c05e4018"/>
+			</rectangle>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="2" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="59" splitType="Stretch">
+			<rectangle>
+				<reportElement x="385" y="19" width="66" height="18" backcolor="#CCCCCC" uuid="f0b33644-393c-4170-897d-dd7df04dcd37"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="19" width="163" height="18" backcolor="#CCCCCC" uuid="259e3373-2543-474e-b4a4-c6aa03a124ef"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="18" width="163" height="18" uuid="5b692e1c-d64b-495c-856b-18cd5b1a95c4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[Nombre del alumno:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="163" y="19" width="222" height="18" forecolor="#000000" uuid="443fdcd6-5e72-4110-adf7-eb73d874866e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="385" y="19" width="66" height="18" uuid="4fdaa73a-4529-4bf0-9b16-c76a1287dc6a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[Matricula:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="451" y="19" width="104" height="18" forecolor="#000000" uuid="8bfcccc6-a139-4d70-a725-7831c81133a1"/>
+			</rectangle>
+			<textField>
+				<reportElement x="165" y="20" width="222" height="15" uuid="d0f6b15c-6255-40af-a1d0-31f3e240f9ed"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Alumno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="452" y="20" width="103" height="15" uuid="5507bf33-844e-4cd4-891a-67e3010bb0c2"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Matricula}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="1" width="163" height="18" backcolor="#CCCCCC" uuid="98ea19eb-3296-4464-b78a-ffd70c6e6047"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="1" width="144" height="18" uuid="ffcf3626-4574-486d-8810-57d66b0c83e3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[Periodo:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="163" y="1" width="144" height="18" forecolor="#000000" uuid="5ac9c402-927a-4e18-a02f-0a2613bd2596"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="307" y="1" width="66" height="18" backcolor="#CCCCCC" uuid="93f2569e-6627-46e9-b7f8-0ddda6d88062"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="307" y="1" width="66" height="18" uuid="78ef97db-4bea-4eb8-87fb-fab8e91ad608"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="373" y="1" width="182" height="18" forecolor="#000000" uuid="36d9eed4-f66e-4d59-b46e-c5156f51d91d"/>
+			</rectangle>
+			<textField>
+				<reportElement x="165" y="1" width="142" height="18" uuid="3d0d0642-e367-47bd-b800-7db27e35473b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Periodo}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="37" width="163" height="18" backcolor="#CCCCCC" uuid="a69d958c-d3ee-42aa-abd3-fc172a3d0c20"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="37" width="161" height="18" uuid="76781666-b0fd-47c3-bac0-74f6d681de30"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[Cuatrimestre:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="278" y="37" width="163" height="18" backcolor="#CCCCCC" uuid="59cfe6ea-e1fa-43fc-8f9c-d428fa7a3715"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="278" y="37" width="163" height="18" uuid="c63f31cb-3ea9-40e6-ba17-5a66ba3c61a9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[Grupo:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="441" y="37" width="114" height="18" forecolor="#000000" uuid="2dec666c-5175-4b0c-a0aa-c2ee81c659d6"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="163" y="37" width="115" height="18" forecolor="#000000" uuid="967112e7-ca15-4b4c-9463-9be2b610a860"/>
+			</rectangle>
+			<textField>
+				<reportElement x="445" y="37" width="108" height="18" uuid="432615cf-268e-42fc-954f-435561275185"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Grupo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="169" y="38" width="109" height="17" uuid="f7b7e2bc-c9b5-406c-b2d4-52d961809664"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Cuatrimestre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="376" y="3" width="173" height="15" uuid="afe7c1fb-e62b-49cd-94f1-eba242ec0974"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Fecha}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="335" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="1" width="555" height="18" backcolor="#CCCCCC" uuid="8dc71e89-9ade-456e-a31a-a772f8c39c3d"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="1" width="555" height="18" uuid="d1b6c9f0-d971-48f6-8329-b65575458609"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[Información]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="19" width="555" height="309" forecolor="#000000" uuid="f337b225-8786-4dc9-9a19-921f9ae972c8"/>
+			</rectangle>
+			<textField>
+				<reportElement x="6" y="30" width="543" height="286" uuid="a1a58a98-33ec-42cf-ad01-03136fef2ced"/>
+				<textFieldExpression><![CDATA[$F{Nota}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="73" splitType="Stretch">
+			<staticText>
+				<reportElement x="173" y="43" width="212" height="18" uuid="14bff720-b282-4a92-91f7-dea005438b7c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12"/>
+				</textElement>
+				<text><![CDATA[Responsable del Depto. de Psicológia]]></text>
+			</staticText>
+			<line>
+				<reportElement x="173" y="42" width="212" height="1" uuid="84830076-f285-4cbf-8c4b-11cde51629df"/>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

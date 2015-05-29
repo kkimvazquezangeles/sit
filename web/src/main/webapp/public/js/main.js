@@ -19,7 +19,9 @@ require.config({
         momentes: 'vendor/moment/locale/es',
         jquerytimeago: 'vendor/jquery-timeago/jquery.timeago',
         text : 'vendor/requirejs-text/text',
-        underscore: 'vendor/underscore/underscore-min'
+        underscore: 'vendor/underscore/underscore-min',
+        bigframe: 'vendor/jquery/jquery.bgiframe-2.1.2',
+        jqueryui: 'vendor/jquery/jquery-ui'
     }
 });
 

@@ -23,9 +23,11 @@ define([
         },
 
         registrarTutoriaAlumno: function(){
+        $("#btn-guardar").attr('disabled','disabled');
              var tutoria = new TutoriaModel();
              that = this;
-             if($("#matricula").val()!= '' && $("#tpo-tutoria").val()!= '' && $("#diagnostico").val()!= '' && $("#depto").val()!= ''){
+             if($("#matricula").val()!= '' && $("#tpo-tutoria").val()!= 'Seleccionar' &&
+                $("#diagnostico").val()!= '' && $("#depto").val()!= 'Depto.'){
                  tutoria.save({idCarrera: Session.get('idCarrera'),
                              matricula: $("#matricula").val(),
                              tipoTutoria: $("#tpo-tutoria").val(),
@@ -42,15 +44,35 @@ define([
                              rol: Session.getRole()},{
                      wait:true,
                      success:function(model, response) {
-                         alert(response.message);
+                        if(response.code == "success"){
+                            alert(response.message);
+                            Backbone.history.navigate('tutor/bitacora', { trigger : true });
+                            that.destroyView();
+                        } else {
+                            alert(response.message);
+                            $("#btn-guardar").removeAttr("disabled");
+                        }
+
                      },
                      error: function(model, error) {
                          alert(error);
+                         Backbone.history.navigate('tutor/bitacora', { trigger : true });
+                         that.destroyView();
                      }
                  });
              } else {
                 alert("Tutoria no registrada, verifica los datos.");
+                $("#btn-guardar").removeAttr("disabled");
              }
+        },
+
+        destroyView: function() {
+            // COMPLETELY UNBIND THE VIEW
+            this.undelegateEvents();
+            this.$el.removeData().unbind();
+            // Remove view from DOM
+            this.remove();
+            Backbone.View.prototype.remove.call(this);
         }
 	});
 

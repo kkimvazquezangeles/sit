@@ -43,6 +43,7 @@ define([
         },
 
         canalizarAlumno: function(){
+             $("#btn-enviar").attr('disabled','disabled');
              var tutoria = new TutoriaModel();
              that = this;
              if($("#matricula").val()!= '' && $("#pro-tpo-tutoria").val()!= '' && $("#prof-obser").val()!= ''){
@@ -59,15 +60,34 @@ define([
                              rol: Session.getRole()},{
                      wait:true,
                      success:function(model, response) {
+                     if(response.code == "success"){
                          alert(response.message);
+                         Backbone.history.navigate('profesor/canalizar', { trigger : true });
+                         that.destroyView();
+                     } else {
+                         alert(response.message);
+                         $("#btn-enviar").removeAttr("disabled");
+                     }
                      },
                      error: function(model, error) {
                          alert(error);
+                         Backbone.history.navigate('profesor/canalizar', { trigger : true });
+                         that.destroyView();
                      }
                  });
              } else {
                 alert("Tutoria no solicitada, verifica los datos.");
+                $("#btn-enviar").removeAttr("disabled");
              }
+        },
+
+        destroyView: function() {
+         // COMPLETELY UNBIND THE VIEW
+         this.undelegateEvents();
+         this.$el.removeData().unbind();
+         // Remove view from DOM
+         this.remove();
+         Backbone.View.prototype.remove.call(this);
         }
 
     });

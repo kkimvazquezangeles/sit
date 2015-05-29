@@ -17,5 +17,6 @@ public interface TutoriaService {
     void updateStatusTutoria(TutoriaDTO tutoriaDTO);
     public void updateTutoria(TutoriaDTO tutoriaDTO);
     public ErrorApp createTutoria(TutoriaDTO tutoriaDTO);
+    public void updateTutoriaFinalizada(TutoriaDTO tutoriaDTO);
 
 }

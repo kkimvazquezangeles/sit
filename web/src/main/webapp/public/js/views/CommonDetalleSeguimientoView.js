@@ -1,11 +1,13 @@
 define([
 	'jquery',
+	'bigframe',
+	'jqueryui',
 	'underscore',
 	'core/BaseView',
 	'models/TutoriaModel',
 	'text!templates/tplCommonDetalleSeguimiento.html',
 	'Session'
-], function($, _, BaseView, TutoriaModel, tplCommonDetalleSeguimiento, Session){
+], function($, bigframe, jqueryui, _, BaseView, TutoriaModel, tplCommonDetalleSeguimiento, Session){
 
 	var CommonDetalleSeguimientoView = BaseView.extend({
 	    el: '#detalle-seguimiento',
@@ -16,7 +18,9 @@ define([
             'click #seg-btn-bitacora' : 'generaPdf',
             'click #tut-seg-btn-guardar' : 'actualizaTutoria',
             'click #psic-seg-btn-guardar' : 'actualizaEstatus',
-            'click #dir-seg-btn-guardar' : 'actualizaDepto'
+            'click #dir-seg-btn-guardar' : 'actualizaDepto',
+            'click #seg-btn-redactar' : 'redactarNota',
+            'click #seg-btnNota' : 'generaNotaPdf'
         },
 
         initialize: function() {
@@ -51,6 +55,17 @@ define([
         },
 
         configureDir: function(){
+            if($("#seg-status").val() != 'FINALIZADA'){
+                $("#seg-btnNota").hide();
+            }
+
+            if($("#seg-status").val() == 'FINALIZADA'){
+                $("#dir-seg-btn-guardar").hide();
+            }
+
+            if($("#seg-depto").val() == 'PSICOLOGIA'){
+                $("#dir-seg-btn-guardar").hide();
+            }
             $("#seg-depto option[value='TUTOR']").attr('disabled','disabled');
             $("#seg-depto option[value='DIRECCION']").attr('disabled','disabled');
             $("#seg-tipo-tutoria").attr('disabled','disabled');
@@ -66,8 +81,19 @@ define([
         },
 
         configureTut: function(){
-            if($("#seg-depto").val() == 'PSICOLOGIA'){
-                $("#seg-depto option[value='DIRECCION']").attr('disabled','disabled');
+            if($("#seg-depto").val() == 'PSICOLOGIA' || $("#seg-status").val() == 'FINALIZADA'){
+                $("#seg-lb-depto").hide();
+                $("#seg-depto").hide();
+                $("#seg-tipo-tutoria").attr('disabled','disabled');
+                $("#seg-status").attr('disabled','disabled');
+                $("#seg-diagnostico").attr('disabled','disabled');
+                $("#seg-proposito").attr('disabled','disabled');
+                $("#seg-medidas").attr('disabled','disabled');
+                $("#seg-recomendaciones").attr('disabled','disabled');
+                $("#tut-seg-btn-guardar").hide();
+            }
+            if($("#seg-status").val() != 'FINALIZADA'){
+                $("#seg-btnNota").hide();
             }
             $("#seg-status option[value='REGISTRADA']").attr('disabled','disabled');
             $("#seg-depto option[value='TUTOR']").attr('disabled','disabled');
@@ -78,7 +104,16 @@ define([
         },
 
         configurePsic: function(){
+            if($("#seg-status").val() != 'FINALIZADA'){
+                $("#seg-btnNota").hide();
+            }
+
+            if($("#seg-status").val() == 'FINALIZADA'){
+                $("#seg-btn-redactar").hide();
+            }
+
             $("#seg-status option[value='REGISTRADA']").attr('disabled','disabled');
+            $("#seg-status").attr('disabled','disabled');
             $("#seg-tipo-tutoria").attr('disabled','disabled');
             $("#seg-lb-depto").hide();
             $("#seg-depto").hide();
@@ -93,6 +128,9 @@ define([
         },
 
         configureProf: function(){
+            if($("#seg-status").val() != 'FINALIZADA'){
+                $("#seg-btnNota").hide();
+            }
             $("#seg-depto").attr('disabled','disabled');
             $("#seg-tipo-tutoria").attr('disabled','disabled');
             $("#seg-status").attr('disabled','disabled');
@@ -107,11 +145,17 @@ define([
             $("#psic-seg-btn-guardar").hide();
             $("#seg-btn-bitacora").hide();
             $("#seg-btn-redactar").hide();
+            $("#tut-seg-btn-guardar").hide();
 
         },
 
         generaPdf: function(){
             var url = "report/bitacoraAlumno?periodo=" + Session.get('idPeriodo') + "&matricula=" + this.model.get('matricula');
+            window.open(url, '_blank');
+        },
+
+        generaNotaPdf: function(){
+            var url = "report/notaInformativa?periodo=" + Session.get('idPeriodo') + "&tutoria=" + this.model.get('idTutoria') + "&matricula=" + this.model.get('matricula');
             window.open(url, '_blank');
         },
 
@@ -167,6 +211,41 @@ define([
                     alert(error);
                 }
             });
+        },
+
+        redactarNota: function(){
+            that = this;
+            $( "#dialog" ).dialog({
+                resizable: true,
+                height:190,
+                modal: true,
+                buttons: {
+                    "Guardar": function() {
+                        var tutoria = new TutoriaModel();
+                        var notatut = $("#seg-nota").val();
+                        tutoria.set({id: that.model.get('idTutoria')});
+                        tutoria.save({statusTutoria: "FINALIZADA",
+                                tipo: 4,
+                                nota: notatut
+                        });
+                        $( this ).dialog( "close" );
+                        Backbone.history.navigate('psicologo/seguimiento', { trigger : true });
+                        that.destroyView();
+                    },
+                    Cancel: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+        },
+
+        destroyView: function() {
+         // COMPLETELY UNBIND THE VIEW
+         this.undelegateEvents();
+         this.$el.removeData().unbind();
+         // Remove view from DOM
+         this.remove();
+         Backbone.View.prototype.remove.call(this);
         }
 	});
 

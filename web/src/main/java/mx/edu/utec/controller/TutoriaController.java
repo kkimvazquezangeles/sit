@@ -63,6 +63,12 @@ public class TutoriaController {
                 responseDTO.setCode(ResponseDTO.CODE_SUCCESS);
                 responseDTO.setMessage("Seguimiento de tutoría actualizado correctamente.");
                 break;
+            case 4:
+                dto.setId(Long.valueOf(tutoriaMap.get("id")));
+                dto.setStatusTutoria(tutoriaMap.get("statusTutoria"));
+                dto.setNota(tutoriaMap.get("nota"));
+                tutoriaService.updateTutoriaFinalizada(dto);
+                break;
 
         }
         return responseDTO;

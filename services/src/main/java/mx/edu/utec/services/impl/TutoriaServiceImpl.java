@@ -103,6 +103,20 @@ public class TutoriaServiceImpl implements TutoriaService{
         planTutoriaRepository.save(planTutoria);
     }
 
+    @Override
+    public void updateTutoriaFinalizada(TutoriaDTO tutoriaDTO) {
+        Tutoria tutoria = tutoriaRepository.findOne(tutoriaDTO.getId());
+        tutoria.setStatusTutoria(StatusTutoria.valueOf(tutoriaDTO.getStatusTutoria()));
+        Tutoria tutoria1 = tutoriaRepository.save(tutoria);
+
+        PlanTutoria planTutoria = planTutoriaRepository.findByTutoria(tutoria1);
+        if(planTutoria == null){
+            planTutoria = new PlanTutoria();
+        }
+
+        planTutoria.setNota(tutoriaDTO.getNota());
+        planTutoriaRepository.save(planTutoria);
+    }
 
     @Override
     public ErrorApp createTutoria(TutoriaDTO tutoriaDTO) {
@@ -171,6 +185,7 @@ public class TutoriaServiceImpl implements TutoriaService{
         correo[0] = director.getUsername();
         correo[1] = psicologo.getUsername();
         correo[2] = profesor.getUsername();
+
 
         logger.info("Enviando correo a " + correo[0] + ' ' + correo[1] + ' ' + correo[2]);
         templateMessage.setTo(tutor.getUsername());

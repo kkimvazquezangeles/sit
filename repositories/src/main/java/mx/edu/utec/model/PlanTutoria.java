@@ -14,6 +14,7 @@ public class PlanTutoria {
     private String proposito;
     private String medidas;
     private String recomendaciones;
+    private String nota;
 
 
     @OneToOne
@@ -79,6 +80,14 @@ public class PlanTutoria {
         this.tutoria = tutoria;
     }
 
+    public String getNota() {
+        return nota;
+    }
+
+    public void setNota(String nota) {
+        this.nota = nota;
+    }
+
     @Override
     public String toString() {
         return "Plan{" +
@@ -88,6 +97,7 @@ public class PlanTutoria {
                 ", medidas='" + medidas + '\'' +
                 ", recomendaciones='" + recomendaciones + '\'' +
                 ", tutoria=" + tutoria +
+                ", nota=" + nota +
                 '}';
     }
 }

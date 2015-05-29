@@ -36,6 +36,7 @@ public class VelocityMailServiceImpl implements MailService {
             public void prepare(MimeMessage mimeMessage) throws Exception {
                 MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
                 message.setTo(msg.getTo());
+                message.setCc(msg.getCc());
                 message.setFrom(msg.getFrom());
                 message.setSubject(msg.getSubject());
 
