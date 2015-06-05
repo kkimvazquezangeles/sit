@@ -33,8 +33,12 @@ define([
         },
 
         syncPlanTutoria: function(modelo){
-            var view = new CommonDetalleSeguimientoView({model: modelo});
-            view.render();
+            if (app.seguimientoDetailView != undefined) {
+                app.seguimientoDetailView.destroyView();
+                $("<div id='detalle-seguimiento'></div>").appendTo('.form6');
+            }
+            app.seguimientoDetailView = new CommonDetalleSeguimientoView({model: modelo});
+            app.seguimientoDetailView.render();
         }
 	});
 
